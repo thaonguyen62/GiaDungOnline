@@ -1,0 +1,18 @@
+spring:
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: houseware
+  jpa:
+    hibernate:
+      ddl-auto: update
+server:
+  port: 8087
+  servlet:
+    context-path: /houseware-service
+
+
+
+
+
