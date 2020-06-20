@@ -56,6 +56,11 @@
             <version>${swagger.version}</version>
             <scope>compile</scope>
         </dependency>
+        <!--thymleaf-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
+        </dependency>
         <dependency>
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
