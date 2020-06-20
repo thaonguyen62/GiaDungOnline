@@ -11,7 +11,7 @@ import java.util.Date;
 
 @Data
 @Document
-public class Order implements Serializable {
+public class OrderDetail implements Serializable {
 
 
 
@@ -23,6 +23,7 @@ public class Order implements Serializable {
     private String customer;
     private String products;
     private int quantity;
+    private String orderId;
     //private String serviceAddress;
 
 

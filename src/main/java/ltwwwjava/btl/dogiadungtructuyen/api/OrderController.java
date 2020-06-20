@@ -2,10 +2,10 @@ package ltwwwjava.btl.dogiadungtructuyen.api;
 
 import ltwwwjava.btl.dogiadungtructuyen.controllerAdvice.Dto;
 import ltwwwjava.btl.dogiadungtructuyen.dto.CustomerDTO;
-import ltwwwjava.btl.dogiadungtructuyen.dto.OrderDTO;
+import ltwwwjava.btl.dogiadungtructuyen.dto.OrderDetailDTO;
 import ltwwwjava.btl.dogiadungtructuyen.exception.ResourceNotFoundException;
 import ltwwwjava.btl.dogiadungtructuyen.model.Customer;
-import ltwwwjava.btl.dogiadungtructuyen.model.Order;
+import ltwwwjava.btl.dogiadungtructuyen.model.OrderDetail;
 import ltwwwjava.btl.dogiadungtructuyen.service.impl.OrderImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -20,27 +20,27 @@ public class OrderController {
     private OrderImpl orderService;
 
     @GetMapping("/orders")
-    @Dto(value = OrderDTO.class)
-    public List<Order> getAllOrders() {
+    @Dto(value = OrderDetailDTO.class)
+    public List<OrderDetail> getAllOrders() {
         return orderService.getAll();
     }
 
     @GetMapping("/orders/{id}")
-    @Dto(value = OrderDTO.class)
-    public Order getOrderById(@PathVariable(value = "id") String id) throws ResourceNotFoundException {
-        Order order = orderService.getOrderById(id);
-        return order;
+    @Dto(value = OrderDetailDTO.class)
+    public OrderDetail getOrderById(@PathVariable(value = "id") String id) throws ResourceNotFoundException {
+        OrderDetail orderDetail = orderService.getOrderById(id);
+        return orderDetail;
     }
 
     @PostMapping("/orders")
-    public Order createOrder(@RequestBody Order order) throws ResourceNotFoundException {
-        Order o = orderService.createAndUpdate(order);
+    public OrderDetail createOrder(@RequestBody OrderDetail orderDetail) throws ResourceNotFoundException {
+        OrderDetail o = orderService.createAndUpdate(orderDetail);
         return o;
     }
 
     @PutMapping("/orders/{id}")
-    public ResponseEntity<Order> updateOrder(@PathVariable(value = "id") String id, @Valid @RequestBody Order order1) throws ResourceNotFoundException {
-        Order o = orderService.createAndUpdate(order1);
+    public ResponseEntity<OrderDetail> updateOrder(@PathVariable(value = "id") String id, @Valid @RequestBody OrderDetail orderDetail1) throws ResourceNotFoundException {
+        OrderDetail o = orderService.createAndUpdate(orderDetail1);
         return ResponseEntity.ok(o);
 
     }
@@ -67,9 +67,9 @@ public class OrderController {
         Danh sách sản phẩm KH đã thêm vào giỏ hàng mà chưa thanh toán
     * */
     @GetMapping("/orders/customer")
-    @Dto(value = OrderDTO.class)
-    public List<Order> getOrderByCustomer(String id) throws ResourceNotFoundException {
-        List<Order> list = orderService.getAllOrderByCustomer(id);
+    @Dto(value = OrderDetailDTO.class)
+    public List<OrderDetail> getOrderByCustomer(String id) throws ResourceNotFoundException {
+        List<OrderDetail> list = orderService.getAllOrderByCustomer(id);
         return list;
     }
 }

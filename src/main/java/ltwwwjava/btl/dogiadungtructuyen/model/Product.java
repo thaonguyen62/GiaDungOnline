@@ -20,7 +20,8 @@ public class Product implements Serializable {
     private double price;
     private String description;
     private String category;
-    private String fileName;
+    private List<String> fileName;
+
     //private List<Feedback> feedbacks;
 
 

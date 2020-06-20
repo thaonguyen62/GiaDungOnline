@@ -2,7 +2,7 @@ package ltwwwjava.btl.dogiadungtructuyen.service.impl;
 
 import ltwwwjava.btl.dogiadungtructuyen.exception.ResourceNotFoundException;
 import ltwwwjava.btl.dogiadungtructuyen.model.Customer;
-import ltwwwjava.btl.dogiadungtructuyen.model.Order;
+import ltwwwjava.btl.dogiadungtructuyen.model.OrderDetail;
 import ltwwwjava.btl.dogiadungtructuyen.model.Product;
 import ltwwwjava.btl.dogiadungtructuyen.repository.CustomerRepository;
 import ltwwwjava.btl.dogiadungtructuyen.repository.OrderRepository;
@@ -10,7 +10,6 @@ import ltwwwjava.btl.dogiadungtructuyen.repository.ProductRepository;
 import ltwwwjava.btl.dogiadungtructuyen.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,28 +24,28 @@ public class OrderImpl implements OrderService {
     @Autowired
     private ProductRepository productRepository;
 
-    public List<Order> getAll() {
+    public List<OrderDetail> getAll() {
         return orderRepository.findAll();
     }
 
-    public Order getOrderById(String id) throws ResourceNotFoundException {
-        Order order = orderRepository.findById(id)
+    public OrderDetail getOrderById(String id) throws ResourceNotFoundException {
+        OrderDetail orderDetail = orderRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Order not found for this id: " + id));
-        return order;
+        return orderDetail;
     }
 
-    public Order createAndUpdate(Order order) throws ResourceNotFoundException {
-        Customer cus = customerRepository.findById(order.getCustomer())
+    public OrderDetail createAndUpdate(OrderDetail orderDetail) throws ResourceNotFoundException {
+        Customer cus = customerRepository.findById(orderDetail.getCustomer())
                 .orElseThrow(() -> new ResourceNotFoundException("Customer not found "));
-        Product product = productRepository.findById(order.getProducts())
+        Product product = productRepository.findById(orderDetail.getProducts())
                 .orElseThrow(() -> new ResourceNotFoundException("Product not found "));
-        return orderRepository.save(order);
+        return orderRepository.save(orderDetail);
     }
 
     public boolean delete(String id) throws ResourceNotFoundException {
-        Order order = orderRepository.findById(id).
+        OrderDetail orderDetail = orderRepository.findById(id).
                 orElseThrow(() -> new ResourceNotFoundException("Order not found for this id: " + id));
-        orderRepository.delete(order);
+        orderRepository.delete(orderDetail);
         return true;
     }
 
@@ -57,7 +56,7 @@ public class OrderImpl implements OrderService {
             new ResourceNotFoundException("Order not found for this product: " + name);
         }
         for (Product p : products) {
-            Order o = orderRepository.findByProducts(p.getId())
+            OrderDetail o = orderRepository.findByProducts(p.getId())
                     .orElseThrow(() -> new ResourceNotFoundException("Order not found for this product: " + name));
             Customer cus = customerRepository.findById(o.getCustomer())
                     .orElseThrow(() -> new ResourceNotFoundException("Order not found for this product: " + name));
@@ -66,8 +65,8 @@ public class OrderImpl implements OrderService {
         return list;
     }
 
-    public List<Order> getAllOrderByCustomer(String id) throws ResourceNotFoundException {
-        List<Order> list = orderRepository.findByCustomer(id);
+    public List<OrderDetail> getAllOrderByCustomer(String id) throws ResourceNotFoundException {
+        List<OrderDetail> list = orderRepository.findByCustomer(id);
         if (list.isEmpty()) {
             throw new ResourceNotFoundException("Order not found ");
         }
