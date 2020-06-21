@@ -10,6 +10,53 @@ html, body{
 	background: #fff;
 	font-family: 'Open Sans', sans-serif;
 }
+.menuhorizontal{
+text-align:center;
+
+ padding-left:50px;
+ padding-right:50px;
+ padding-top:10px;
+
+}
+ .menuhorizontal ul{
+
+
+         width: 250px;
+         padding: 0;
+         list-style-type: none;
+         text-align: left;
+        }
+        .menuhorizontal li{
+         width: auto;
+         height: 40px;
+         line-height: 40px;
+         border-bottom: 1px solid #e8e8e8;
+         padding: 0 1em;
+        }
+        .menuhorizontal a {
+        text-decoration: none;
+
+         font-weight: bold;
+         display: block;
+        }
+        .menuhorizontal li:hover{
+        background: #66CCFF;
+
+        }
+        .menuhorizontal ul li{
+        position: relative;
+        }
+        .menuhorizontallevel2{
+        position: absolute;
+         left: 250px;
+         top: 0;
+         display: none;
+        }
+     .menuhorizontal li:hover .menuhorizontallevel2 {
+     display: block;
+      background: #66CCFF;
+    }
+
 body a {
 	text-decoration:none;
 	transition:0.5s all;
@@ -4809,6 +4856,7 @@ input[type="radio"], input[type="checkbox"] {
         font-size: 13px;
         line-height: 23px;
     }
+
     .wthree-help textarea {
         height: 100px;
         padding: 0 16px;
@@ -4872,7 +4920,7 @@ input[type="radio"], input[type="checkbox"] {
     .vertical_post form input[type="submit"], .number-paymk input[type="submit"] {
         margin-top: 20px;
     }
-    
+
 }
 
 /*--//responsive--*/
