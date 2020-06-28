@@ -37,23 +37,28 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <form th:action="@{/register}"
                           th:object="${personForm}" method="POST">
 
-                        <input placeholder="Name" type="text" th:field="*{name}"/>
+                        <input placeholder="Name" type="text" th:field="*{name}" required=""/>
                         <br/>
-                        <input placeholder="Address" type="text" th:field="*{address}"/>
+                        <input placeholder="Username" type="text" th:field="*{username}" required=""/>
                         <br/>
-                        <input placeholder="BirthDay" type="date" th:field="*{birth}"/>
+                        <input placeholder="Address" type="text" th:field="*{address}" required=""/>
                         <br/>
-                        <input placeholder="Phone" type="text" th:field="*{phone}"/>
+                        <input placeholder="BirthDay" type="date" th:field="*{birth}" required=""/>
                         <br/>
-                        <input placeholder="Mail" type="text" th:field="*{mail}"/>
+                        <input placeholder="Phone" type="text" th:field="*{phone}" required=""/>
                         <br/>
-                        <input placeholder="Password" type="password" th:field="*{password}"/>
+                        <input placeholder="Mail" type="text" th:field="*{mail}" required=""/>
                         <br/>
-                        <input placeholder="Retype Password" type="password" th:field="*{retypePassword}"/>
+                        <input placeholder="Password" type="password" th:field="*{password}" required=""/>
+                        <br/>
+                        <input placeholder="Retype Password" type="password" th:field="*{retypePassword}" required=""/>
                         <br/>
                         <input type="submit" value="Create"/>
                     </form>
-
+                    <div th:if="${errorMessage}" th:utext="${errorMessage}"
+                         style="color:red;font-style:italic;">
+                        ...
+                    </div>
                     <p>
                         <a href="#">By clicking register, I agree to your terms</a>
                     </p>

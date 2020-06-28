@@ -1,6 +1,5 @@
 package ltwwwjava.btl.dogiadungtructuyen.service.impl;
 
-import lombok.SneakyThrows;
 import ltwwwjava.btl.dogiadungtructuyen.exception.ResourceNotFoundException;
 import ltwwwjava.btl.dogiadungtructuyen.model.User;
 import ltwwwjava.btl.dogiadungtructuyen.repository.CustomerRepository;
@@ -33,11 +32,11 @@ public class UserImpl implements UserService {
         return list;
     }
 
-     public User createAndUpdate(User user) throws ResourceNotFoundException {
+    public User createAndUpdate(User user) throws ResourceNotFoundException {
         User cu = user;
-        Optional<User> cus = customerRepository.findCustomerByPhoneAndMail(user.getPhone(), user.getMail());
-        if (cus.isPresent())
-            throw new ResourceNotFoundException("Phone and mail existed");
+//        Optional<User> cus = customerRepository.findCustomerByPhoneAndMail(user.getPhone(), user.getMail());
+//        if (cus.isPresent())
+//            throw new ResourceNotFoundException("Phone and mail existed");
         //cu.setPassword(passwordEncoder.encode(customer.getPassword()));
         return customerRepository.save(cu);
     }
@@ -47,6 +46,22 @@ public class UserImpl implements UserService {
                 .orElseThrow(() -> new ResourceNotFoundException("Customer not found this id " + id));
         customerRepository.delete(user);
         return true;
+    }
+
+    @Override
+    public boolean checkUserNameIsExist(String userName) {
+        Optional<User> user = customerRepository.findByUsername(userName);
+        if (user.isPresent())
+            return true;
+        return false;
+    }
+
+    @Override
+    public boolean checkUserNameAndPassword(String username, String password) {
+        Optional<User> user = customerRepository.findByUsernameAndPassword(username,password);
+        if (user.isPresent())
+            return true;
+        return false;
     }
 
 
