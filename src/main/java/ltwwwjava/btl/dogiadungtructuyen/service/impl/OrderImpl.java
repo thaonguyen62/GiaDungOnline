@@ -1,7 +1,10 @@
 package ltwwwjava.btl.dogiadungtructuyen.service.impl;
 
+import ltwwwjava.btl.dogiadungtructuyen.controllerAdvice.Dto;
+import ltwwwjava.btl.dogiadungtructuyen.dto.CategoryDTO;
+import ltwwwjava.btl.dogiadungtructuyen.dto.OrderDetailDTO;
 import ltwwwjava.btl.dogiadungtructuyen.exception.ResourceNotFoundException;
-import ltwwwjava.btl.dogiadungtructuyen.model.Customer;
+import ltwwwjava.btl.dogiadungtructuyen.model.User;
 import ltwwwjava.btl.dogiadungtructuyen.model.OrderDetail;
 import ltwwwjava.btl.dogiadungtructuyen.model.Product;
 import ltwwwjava.btl.dogiadungtructuyen.repository.CustomerRepository;
@@ -24,10 +27,12 @@ public class OrderImpl implements OrderService {
     @Autowired
     private ProductRepository productRepository;
 
+    @Dto(OrderDetailDTO.class)
     public List<OrderDetail> getAll() {
         return orderRepository.findAll();
     }
 
+    @Dto(OrderDetailDTO.class)
     public OrderDetail getOrderById(String id) throws ResourceNotFoundException {
         OrderDetail orderDetail = orderRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Order not found for this id: " + id));
@@ -35,7 +40,7 @@ public class OrderImpl implements OrderService {
     }
 
     public OrderDetail createAndUpdate(OrderDetail orderDetail) throws ResourceNotFoundException {
-        Customer cus = customerRepository.findById(orderDetail.getCustomer())
+        User cus = customerRepository.findById(orderDetail.getCustomer())
                 .orElseThrow(() -> new ResourceNotFoundException("Customer not found "));
         Product product = productRepository.findById(orderDetail.getProducts())
                 .orElseThrow(() -> new ResourceNotFoundException("Product not found "));
@@ -49,8 +54,9 @@ public class OrderImpl implements OrderService {
         return true;
     }
 
-    public List<Customer> getOrdersByFilter(String name) throws ResourceNotFoundException {
-        List<Customer> list = new ArrayList<>();
+    @Dto(OrderDetailDTO.class)
+    public List<User> getOrdersByFilter(String name) throws ResourceNotFoundException {
+        List<User> list = new ArrayList<>();
         List<Product> products = productRepository.findByNameContaining(name);
         if (products.isEmpty()) {
             new ResourceNotFoundException("Order not found for this product: " + name);
@@ -58,13 +64,14 @@ public class OrderImpl implements OrderService {
         for (Product p : products) {
             OrderDetail o = orderRepository.findByProducts(p.getId())
                     .orElseThrow(() -> new ResourceNotFoundException("Order not found for this product: " + name));
-            Customer cus = customerRepository.findById(o.getCustomer())
+            User cus = customerRepository.findById(o.getCustomer())
                     .orElseThrow(() -> new ResourceNotFoundException("Order not found for this product: " + name));
             list.add(cus);
         }
         return list;
     }
 
+    @Dto(OrderDetailDTO.class)
     public List<OrderDetail> getAllOrderByCustomer(String id) throws ResourceNotFoundException {
         List<OrderDetail> list = orderRepository.findByCustomer(id);
         if (list.isEmpty()) {

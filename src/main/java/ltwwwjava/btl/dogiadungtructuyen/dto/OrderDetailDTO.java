@@ -1,7 +1,6 @@
 package ltwwwjava.btl.dogiadungtructuyen.dto;
 
 import lombok.Data;
-import ltwwwjava.btl.dogiadungtructuyen.model.Customer;
 
 import java.io.Serializable;
 import java.util.Date;

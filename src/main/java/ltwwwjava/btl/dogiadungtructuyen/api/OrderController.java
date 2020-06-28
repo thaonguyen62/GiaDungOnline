@@ -1,10 +1,10 @@
 package ltwwwjava.btl.dogiadungtructuyen.api;
 
 import ltwwwjava.btl.dogiadungtructuyen.controllerAdvice.Dto;
-import ltwwwjava.btl.dogiadungtructuyen.dto.CustomerDTO;
+import ltwwwjava.btl.dogiadungtructuyen.dto.UserDTO;
 import ltwwwjava.btl.dogiadungtructuyen.dto.OrderDetailDTO;
 import ltwwwjava.btl.dogiadungtructuyen.exception.ResourceNotFoundException;
-import ltwwwjava.btl.dogiadungtructuyen.model.Customer;
+import ltwwwjava.btl.dogiadungtructuyen.model.User;
 import ltwwwjava.btl.dogiadungtructuyen.model.OrderDetail;
 import ltwwwjava.btl.dogiadungtructuyen.service.impl.OrderImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,9 +57,9 @@ public class OrderController {
         tìm danh sách KH đã mua 1 sản phẩm bất kỳ
     * */
     @GetMapping("/customer")
-    @Dto(value = CustomerDTO.class)
-    public List<Customer> getOrdersByFilter(@RequestParam(value = "name") String name) throws ResourceNotFoundException {
-        List<Customer> cus = orderService.getOrdersByFilter(name);
+    @Dto(value = UserDTO.class)
+    public List<User> getOrdersByFilter(@RequestParam(value = "name") String name) throws ResourceNotFoundException {
+        List<User> cus = orderService.getOrdersByFilter(name);
         return cus;
     }
 

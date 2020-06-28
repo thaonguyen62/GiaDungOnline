@@ -9,7 +9,7 @@ import java.util.Date;
 
 @Data
 @Document
-public class Customer implements Serializable {
+public class User implements Serializable {
 
     @Id
     private String id;

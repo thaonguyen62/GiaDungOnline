@@ -18,7 +18,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/*
 @RestController
+*/
 public class ProductController {
     @Autowired
     private ProductImpl productService;
@@ -41,7 +43,6 @@ public class ProductController {
     }
 
     @PostMapping("/products")
-
     public Product createProduct(@RequestBody Product product) throws ResourceNotFoundException {
         Product p = productService.createAndUpdate(product);
         return p;

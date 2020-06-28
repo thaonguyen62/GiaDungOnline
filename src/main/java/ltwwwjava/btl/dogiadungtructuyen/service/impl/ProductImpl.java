@@ -1,5 +1,7 @@
 package ltwwwjava.btl.dogiadungtructuyen.service.impl;
 
+import ltwwwjava.btl.dogiadungtructuyen.controllerAdvice.Dto;
+import ltwwwjava.btl.dogiadungtructuyen.dto.ProductDTO;
 import ltwwwjava.btl.dogiadungtructuyen.exception.ResourceNotFoundException;
 import ltwwwjava.btl.dogiadungtructuyen.model.Category;
 import ltwwwjava.btl.dogiadungtructuyen.model.Product;
@@ -23,6 +25,7 @@ public class ProductImpl implements ProductService {
         return productRepository.findAll();
     }
 
+    @Dto(ProductDTO.class)
     public Product findById(String id) throws ResourceNotFoundException {
         Product product = productRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Product not found for this id: " + id));
@@ -44,6 +47,7 @@ public class ProductImpl implements ProductService {
         return true;
     }
 
+    @Dto(ProductDTO.class)
     public List<Product> findProductByName(String name) throws ResourceNotFoundException {
         List<Product> product = productRepository.findByNameContaining(name);
         if(product.isEmpty()){
@@ -52,7 +56,7 @@ public class ProductImpl implements ProductService {
         }
         return product;
     }
-
+    @Dto(ProductDTO.class)
     public List<Product> findProductByCategory(String idCat) throws ResourceNotFoundException {
         List<Product> products = productRepository.findByCategory(idCat);
         if (products.isEmpty()) {
