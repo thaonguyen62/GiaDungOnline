@@ -21,7 +21,7 @@ import java.util.Map;
 /*
 @RestController
 */
-public class ProductController {
+public class ProductAPI {
     @Autowired
     private ProductImpl productService;
     @Autowired
@@ -29,7 +29,7 @@ public class ProductController {
     @Autowired
     private CategoryRepository categoryRepository;
 
-    @GetMapping("/products")
+    @GetMapping("/productsss")
     @Dto(value = ProductDTO.class)
     public List<Product> getAllProducts() {
         return productService.findAll();
