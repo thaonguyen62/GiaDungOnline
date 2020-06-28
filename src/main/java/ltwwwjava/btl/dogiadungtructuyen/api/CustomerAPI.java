@@ -1,10 +1,10 @@
 package ltwwwjava.btl.dogiadungtructuyen.api;
 
 import ltwwwjava.btl.dogiadungtructuyen.controllerAdvice.Dto;
-import ltwwwjava.btl.dogiadungtructuyen.dto.CustomerDTO;
+import ltwwwjava.btl.dogiadungtructuyen.dto.UserDTO;
 import ltwwwjava.btl.dogiadungtructuyen.exception.ResourceNotFoundException;
-import ltwwwjava.btl.dogiadungtructuyen.model.Customer;
-import ltwwwjava.btl.dogiadungtructuyen.service.impl.CustomerImpl;
+import ltwwwjava.btl.dogiadungtructuyen.model.User;
+import ltwwwjava.btl.dogiadungtructuyen.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,24 +18,24 @@ import java.util.Map;
 public class CustomerAPI {
 
     @Autowired
-    private CustomerImpl customerService;
+    private UserService customerService;
 
     @GetMapping("/customers")
-    @Dto(value = CustomerDTO.class)
-    public List<Customer> getAllCustomer() {
+    @Dto(value = UserDTO.class)
+    public List<User> getAllCustomer() {
         return customerService.getAllCustomer();
     }
 
     @GetMapping("/customers/{id}")
-    @Dto(value = CustomerDTO.class)
-    public ResponseEntity<Customer> getCustomerById(@PathVariable(value = "id") String id) throws ResourceNotFoundException {
-        Customer customer = customerService.findById(id);
+    @Dto(value = UserDTO.class)
+    public ResponseEntity<User> getCustomerById(@PathVariable(value = "id") String id) throws ResourceNotFoundException {
+        User customer = customerService.findById(id);
         return ResponseEntity.ok().body(customer);
     }
 
     @PostMapping("/customers")
-    public Customer createCustomer(@RequestBody Customer customer) throws ResourceNotFoundException {
-        Customer cus = customerService.createAndUpdate(customer);
+    public User createCustomer(@RequestBody User customer) throws ResourceNotFoundException {
+        User cus = customerService.createAndUpdate(customer);
         return cus;
     }
 
@@ -43,8 +43,8 @@ public class CustomerAPI {
         không update được khi không cập nhật hết dữ liệu
     * */
     @PutMapping("/customers/{id}")
-    public ResponseEntity<Customer> updateCustomer(@Valid @RequestBody Customer cus, @PathVariable(value = "id") String id) throws ResourceNotFoundException {
-        Customer customer = customerService.createAndUpdate(cus);
+    public ResponseEntity<User> updateCustomer(@Valid @RequestBody User cus, @PathVariable(value = "id") String id) throws ResourceNotFoundException {
+        User customer = customerService.createAndUpdate(cus);
         return ResponseEntity.ok(customer);
     }
 
@@ -57,8 +57,8 @@ public class CustomerAPI {
     }
 
     @GetMapping("/customer-add")
-    public List<Customer> getCustomersByAdd(@RequestParam(value = "add") String add) throws ResourceNotFoundException {
-        List<Customer> cus = customerService.findByAddress(add);
+    public List<User> getCustomersByAdd(@RequestParam(value = "add") String add) throws ResourceNotFoundException {
+        List<User> cus = customerService.findByAddress(add);
         return cus;
 
     }
