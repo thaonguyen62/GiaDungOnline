@@ -20,6 +20,11 @@ public class UserController {
         return "login";
     }
 
+    @PostMapping("/login")
+    public String login(Model model, @ModelAttribute("personForm") UserDTO personForm) throws ResourceNotFoundException {
+        return "redirect:/products";
+    }
+
     @RequestMapping(value = {"/register"}, method = RequestMethod.GET)
     public String showAddPersonPage(Model model) {
 
