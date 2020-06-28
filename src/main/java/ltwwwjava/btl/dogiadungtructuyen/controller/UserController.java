@@ -30,7 +30,6 @@ public class UserController {
 
         UserDTO personForm = new UserDTO();
         model.addAttribute("personForm", personForm);
-
         return "register";
     }
 
