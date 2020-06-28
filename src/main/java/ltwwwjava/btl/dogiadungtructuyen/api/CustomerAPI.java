@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-public class CustomerController {
+public class CustomerAPI {
 
     @Autowired
     private CustomerImpl customerService;

@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-public class CategoryController {
+public class CategoryAPI {
     @Autowired
     private CategoryRepository categoryRepository;
     @Autowired

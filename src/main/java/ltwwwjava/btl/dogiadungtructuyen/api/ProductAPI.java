@@ -19,7 +19,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-public class ProductController {
+public class ProductAPI {
     @Autowired
     private ProductImpl productService;
     @Autowired
