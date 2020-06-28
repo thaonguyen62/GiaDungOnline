@@ -20,5 +20,6 @@ public class User implements Serializable {
     private String mail;
     private String username;
     private String password;
+    private int accountType;
 
 }
