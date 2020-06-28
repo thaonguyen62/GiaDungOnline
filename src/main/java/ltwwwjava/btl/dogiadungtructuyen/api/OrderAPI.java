@@ -15,7 +15,7 @@ import javax.validation.Valid;
 import java.util.*;
 
 @RestController
-public class OrderController {
+public class OrderAPI {
     @Autowired
     private OrderImpl orderService;
 
