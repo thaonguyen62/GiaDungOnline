@@ -947,6 +947,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<div class="wrapper">
 					<!-- first section -->
 					<div class="product-sec1">
+						<h3 class="heading-tittle">Nuts</h3>
+						<li th:each="info : ${products}">
+							<span th:text="*{info.name}"></span>
+						</li>
 						<div class="col-xs-4 product-men">
 							<div class="men-pro-item simpleCart_shelfItem">
 								<div class="men-thumb-item">
