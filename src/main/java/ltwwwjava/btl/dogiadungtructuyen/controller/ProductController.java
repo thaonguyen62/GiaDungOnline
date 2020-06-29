@@ -40,7 +40,7 @@ public class ProductController {
         model.addAttribute("categories",listCat);
         return "index";
     }
-    ////
+
 
     @GetMapping("/products/{id}")
     public String getProductById(@PathVariable(value = "id") String id, Model model) throws ResourceNotFoundException {

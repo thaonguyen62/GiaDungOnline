@@ -8,6 +8,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
+
 	<title>Grocery Shoppy an Ecommerce Category Bootstrap Responsive Web Template | About Us :: w3layouts</title>
 	<!--/tags -->
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -36,6 +37,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<!-- price range -->
 	<link rel="stylesheet" type="text/css" href="css/jquery-ui1.css">
 	<!-- fonts -->
+
 </head>
 
 <body>
@@ -70,18 +72,21 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<span class="fa fa-phone" aria-hidden="true"></span> 0163 884 5676
 				</li>
 				<li>
-					<a href="http://localhost:63342/dogiadungtructuyen/templates/signin.html" data-toggle="modal" data-target="#myModal1">
+					<a th:href="@{/login}">
 						<span class="fa fa-unlock-alt" aria-hidden="true"></span> Đăng nhập </a>
 				</li>
 				<li>
-					<a href="http://localhost:63342/dogiadungtructuyen/templates/signup.html" data-toggle="modal" data-target="#myModal2">
+					<a th:href="@{/register}">
 						<span class="fa fa-pencil-square-o" aria-hidden="true"></span> Đăng Ký</a>
+				</li>
+				<li>
+					<p>Tài Khoản</p>
 				</li>
 			</ul>
 			<!-- //header lists -->
 			<!-- search -->
 			<div class="agileits_search">
-				<form action="#" method="post">
+				<form action="@{/search}" method="post">
 					<input name="Search" type="search" placeholder="Hàng chính hãng-giá rẻ vô địch" required="">
 					<button type="submit" class="btn btn-default" aria-label="Left Align">
 						<span class="fa fa-search" aria-hidden="true"> </span>
@@ -124,7 +129,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<div class="collapse navbar-collapse menu--shylock" id="bs-example-navbar-collapse-1">
 						<ul class="nav navbar-nav menu__list">
 							<li>
-								<a class="nav-stylehead" href="index.html">Trang chủ
+								<a class="nav-stylehead" th:href="@{/products}">Trang chủ
 									<span class="sr-only">(current)</span>
 								</a>
 							</li>
@@ -135,20 +140,20 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								</a>
 								<ul class="dropdown-menu agile_short_dropdown">
 									<li>
-										<a href="about.html">Về chúng tôi</a>
+										<a th:href="@{/about}">Về chúng tôi</a>
 									</li>
 									<li>
-										<a href="about2.html">Về hệ thống phân phối</a>
+										<a th:href="@{/about2}">Về hệ thống phân phối</a>
 									</li>
 								</ul>
 							</li>
 							<li>
-								<a class="nav-stylehead" href="document.html">Tài liệu
+								<a class="nav-stylehead" th:href="@{/document}">Tài liệu
 									<span class="sr-only">(current)</span>
 								</a>
 							</li>
 							<li>
-								<a class="nav-stylehead" href="recruitment.html">Tuyển dụng
+								<a class="nav-stylehead"th:href="@{/recruitment}">Tuyển dụng
 									<span class="sr-only">(current)</span>
 								</a>
 							</li>
@@ -158,17 +163,30 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								</a>
 								<ul class="dropdown-menu agile_short_dropdown">
 									<li>
-										<a href="warrantyPolicy.html">Chính sách bảo hành</a>
+										<a th:href="@{/warrantyPolicy}">Chính sách bảo hành</a>
 									</li>
 									<li>
-										<a href="warrantySystem.html">Hệ thống bảo hành</a>
+										<a th:href="@{/warrantySystem}">Hệ thống bảo hành</a>
 									</li>
 								</ul>
 							</li>
 							<li>
-								<a class="nav-stylehead" href="contact.html">Liên hệ
+								<a class="nav-stylehead" th:href="@{/contact}">Liên hệ
 									<span class="sr-only">(current)</span>
 								</a>
+							</li>
+							<li class="dropdown" id = "quanly">
+								<a class="nav-stylehead dropdown-toggle" href="#" data-toggle="dropdown">Quản lý
+									<b class="caret"></b>
+								</a>
+								<ul class="dropdown-menu agile_short_dropdown">
+									<li>
+										<a th:href="@{/employeeManager}">Quản Lý Nhân Viên</a>
+									</li>
+									<li>
+										<a th:href="@{/customerManager}">Quản Lý Khách Hàng</a>
+									</li>
+								</ul>
 							</li>
 
 						</ul>
@@ -182,32 +200,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-- banner-2 -->
 <div  class="row">
 	<div class=" col-sm-3 menuhorizontal" >
-		<h3>Danh sách sản phẩm</h3>
-		<ul class="menuhorizontallevel1">
+		<h3>Danh mục</h3>
+		<ul class="menuhorizontallevel1" >
 
-			<li><a href="#">Điện gia dụng</a>
-				<ul class="menuhorizontallevel2">
-					<li><a href="#">Nồi cơm điện</a></li>
-					<li><a href="#">Lò nướng</a></li>
-					<li><a href="#">Bếp điện</a></li>
-				</ul>
-			</li>
-			<li><a href="#">Gia dụng</a>
-				<ul class="menuhorizontallevel2">
-					<li><a href="#">Chảo</a></li>
-					<li><a href="#">Nồi</a></li>
-					<li><a href="#">Hộp đựng</a></li>
-				</ul>
-			</li>
-			<li><a href="#">Thiết bị làm mát</a>
-				<ul class="menuhorizontallevel2">
-					<li><a href="#">Quạt</a></li>
-					<li><a href="#">Điều hòa</a></li>
+			<li class="a" th:each="cat:${categories}"><a th:href="@{/products/{cat.id}}" th:text="${cat.name}" ></a>
 
-				</ul>
 			</li>
-			<li><a href="#">Thiết bị lọc nước</a></li>
-			<li><a href="#">Thiết bị khác</a></li>
 
 
 		</ul>
@@ -226,10 +224,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div class="container">
 			<ul class="w3_short">
 				<li>
-					<a href="index.html">Trang chủ</a>
+					<a th:href="@{/products}">Trang chủ</a>
 					<i>|</i>
 				</li>
-				<li>Thông tin sản phẩm</li>
+				<li></li>
 			</ul>
 		</div>
 	</div>
@@ -239,6 +237,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-- welcome -->
 <div class="welcome">
 	<div class="container">
+		<div class="danhmuc">
+			<h1>DSSP</h1>
+			<div th:each="product : ${listProduct}">
+				<h6 th:text="${product.name}"></h6>
+
+			</div>
+		</div>
 		<!-- tittle heading -->
 		<h3 class="tittle-w3l"> Chào mừng đến với trang web của chúng tôi
 			<span class="heading-style">
