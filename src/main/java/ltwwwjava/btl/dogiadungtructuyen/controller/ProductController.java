@@ -31,7 +31,7 @@ public class ProductController {
     private ProductRepository productRepository;
     @Autowired
     private CategoryRepository categoryRepository;
-//localhost:8087/houseware-service/products
+    //localhost:8087/houseware-service/products
     @GetMapping("/products")
     public String getAllProducts(Model model) {
         List<Product> list = productService.findAll();
@@ -72,7 +72,7 @@ public class ProductController {
         productService.createAndUpdate(product);
         return "redirect:/products";
 
-}
+    }
 
     @GetMapping("/edit/{id}")
     public String showUpdateForm(@PathVariable("id") String id, Model model) throws ResourceNotFoundException {
