@@ -15,4 +15,8 @@ public interface UserService {
     User createAndUpdate(User user) throws ResourceNotFoundException;
 
     boolean deleteCustomerById(String id) throws ResourceNotFoundException;
+
+    boolean checkUserNameIsExist(String userName);
+
+    boolean checkUserNameAndPassword(String username,String password);
 }

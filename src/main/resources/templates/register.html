@@ -24,7 +24,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <link href="//fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800" rel="stylesheet">
 </head>
 <body>
-<div>
+<div role="dialog">
     <div class="modal-dialog">
         <!-- Modal content-->
         <div class="modal-content">
@@ -33,24 +33,36 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <span class="fa fa-envelope-o" aria-hidden="true"></span>
                 </div>
                 <div class="modal_body_left modal_body_left1">
-                    <h3 class="agileinfo_sign">Sign In </h3>
-                    <p>
-                        Sign In now, Let's start your Grocery Shopping. Don't have an account?
-                        <a href="http://localhost:63342/dogiadungtructuyen/templates/signup.html" data-toggle="modal" data-target="#myModal2">
-                            Sign Up Now</a>
-                    </p>
-                    <form action="#" method="post">
-                        <div class="styled-input agile-styled-input-top">
-                            <input type="text" placeholder="User Name" name="Name" required="">
-                        </div>
-                        <div class="styled-input">
-                            <input type="password" placeholder="Password" name="password" required="">
-                        </div>
-                        <input type="submit" value="Sign In">
+                    <h3 class="agileinfo_sign">Sign Up</h3>
+                    <form th:action="@{/register}"
+                          th:object="${personForm}" method="POST">
+
+                        <input placeholder="Name" type="text" th:field="*{name}" required=""/>
+                        <br/>
+                        <input placeholder="Username" type="text" th:field="*{username}" required=""/>
+                        <br/>
+                        <input placeholder="Address" type="text" th:field="*{address}" required=""/>
+                        <br/>
+                        <input placeholder="BirthDay" type="date" th:field="*{birth}" required=""/>
+                        <br/>
+                        <input placeholder="Phone" type="text" th:field="*{phone}" required=""/>
+                        <br/>
+                        <input placeholder="Mail" type="text" th:field="*{mail}" required=""/>
+                        <br/>
+                        <input placeholder="Password" type="password" th:field="*{password}" required=""/>
+                        <br/>
+                        <input placeholder="Retype Password" type="password" th:field="*{retypePassword}" required=""/>
+                        <br/>
+                        <input type="submit" value="Create"/>
                     </form>
-                    <div class="clearfix"></div>
+                    <div th:if="${errorMessage}" th:utext="${errorMessage}"
+                         style="color:red;font-style:italic;">
+                        ...
+                    </div>
+                    <p>
+                        <a href="#">By clicking register, I agree to your terms</a>
+                    </p>
                 </div>
-                <div class="clearfix"></div>
             </div>
         </div>
         <!-- //Modal content-->
