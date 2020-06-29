@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class ProductController {
@@ -31,6 +32,7 @@ public class ProductController {
     private ProductRepository productRepository;
     @Autowired
     private CategoryRepository categoryRepository;
+
     //localhost:8087/houseware-service/products
     @GetMapping("/products")
     public String getAllProducts(Model model) {
@@ -42,11 +44,18 @@ public class ProductController {
     }
 
 
+//    @GetMapping("/products/{id}")
+//    public String getProductById(@PathVariable(value = "id") String id, Model model) throws ResourceNotFoundException {
+//        Product product = productService.findById(id);
+//
+//        model.addAttribute("product", product);
+//        return "single";
+//    }
     @GetMapping("/products/{id}")
     public String getProductById(@PathVariable(value = "id") String id, Model model) throws ResourceNotFoundException {
-        Product product = productService.findById(id);
+        Optional<Category> c = categoryRepository.findById(id);
 
-        model.addAttribute("product", product);
+        model.addAttribute("c", c);
         return "single";
     }
 
