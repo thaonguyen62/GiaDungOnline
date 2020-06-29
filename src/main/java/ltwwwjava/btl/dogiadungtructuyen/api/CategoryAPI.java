@@ -16,8 +16,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@RestController
-public class CategoryAPI {
+//@RestController
+public class
+CategoryAPI {
     @Autowired
     private CategoryRepository categoryRepository;
     @Autowired
