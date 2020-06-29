@@ -19,8 +19,6 @@ public class CategoryController {
 
     @Autowired
     private CategoryService categoryService;
-    @Autowired
-    private CategoryRepository categoryRepository;
 
     @GetMapping("/categories")
     public String getAllCategories(Model model) {
