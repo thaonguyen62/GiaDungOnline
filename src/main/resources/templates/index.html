@@ -182,10 +182,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-- banner-2 -->
 <div  class="row">
 	<div class=" col-sm-3 menuhorizontal" >
-		<h3>Danh sách sản phẩm</h3>
-		<ul class="menuhorizontallevel1">
+		<h3>Danh mục</h3>
+		<ul class="menuhorizontallevel1" >
 
-			<li th:each="cat:${categories}"><a href="#" th:text="${cat.name}" ></a>
+			<li class="a" th:each="cat:${categories}"><a href="#" th:text="${cat.name}" ></a>
 
 			</li>
 
@@ -219,10 +219,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-- welcome -->
 <div class="welcome">
 	<div class="container">
-		<h1>DSSP</h1>
-		<div th:each="product : ${listProduct}">
-			<h6 th:text="${product.name}"></h6>
+		<div class="danhmuc">
+			<h1>DSSP</h1>
+			<div th:each="product : ${listProduct}">
+				<h6 th:text="${product.name}"></h6>
 
+			</div>
 		</div>
 		<!-- tittle heading -->
 		<h3 class="tittle-w3l"> Chào mừng đến với trang web của chúng tôi
