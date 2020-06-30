@@ -39,11 +39,15 @@ public class ProductController {
     private final String UPLOAD_DIR = "src\\main\\resources\\static\\images\\";
 
     @GetMapping("/products")
-    public String getAllProducts(Model model) {
+    public String getAllProducts(Model model) throws ResourceNotFoundException{
         List<Product> list = productService.findAll();
         List<Category> listCat = categoryRepository.findAll();
         model.addAttribute("listProduct", list);
         model.addAttribute("categories", listCat);
+        List<Product> list1=productService.findProductByCategory(listCat.get(0).getId());
+        model.addAttribute("listProductDoGiaDungNhat",list1);
+        List<Product> list2=productService.findProductByCategory(listCat.get(1).getId());
+        model.addAttribute("listProductBepDien",list2);
         return "index";
     }
     @GetMapping("/cart")
