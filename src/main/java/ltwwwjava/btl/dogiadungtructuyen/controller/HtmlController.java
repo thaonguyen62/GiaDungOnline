@@ -75,5 +75,16 @@ public class HtmlController {
         return "warrantySystem";
     }
 
+    @GetMapping("/edit-cat")
+    public String getEditCat(Model model) {
+
+        return "edit-cat";
+    }
+
+    @GetMapping("/edit-product")
+    public String getEditProct(Model model)
+    {
+        return "edit-product";
+    }
 
 }

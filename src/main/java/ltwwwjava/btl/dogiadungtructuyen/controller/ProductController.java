@@ -95,25 +95,25 @@ public class ProductController {
 
     }
 
-    @GetMapping("/edit/{id}")
+    /*@GetMapping("/edit-products")
     public String showUpdateForm(@PathVariable("id") String id, Model model) throws ResourceNotFoundException {
         Product product = productService.findById(id);
         model.addAttribute("product", product);
-        return "update-product";
+        return "edit-product";
     }
 
-    @PutMapping("/edit-products/id}")
+    @PutMapping("/edit-products")
     public String updateProduct(@PathVariable(value = "id") String id, Model model, @Valid Product product, BindingResult result) throws ResourceNotFoundException {
         if (result.hasErrors()) {
             product.setId(id);
-            return "update-product";
+            return "edit-product";
         }
 
         productService.createAndUpdate(product);
         model.addAttribute("products", productService.findAll());
         return "redirect:/index";
 
-    }
+    }*/
 
     @GetMapping("/delete/{id}")
     public String deleteProduct(@PathVariable("id") String id, Model model) throws ResourceNotFoundException {
