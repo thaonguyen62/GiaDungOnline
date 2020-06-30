@@ -42,6 +42,16 @@ public class ProductController {
         model.addAttribute("categories",listCat);
         return "index";
     }
+    @GetMapping("/cart")
+     public String getAllProductsd(Model model) {
+
+        return "cartt";
+    }
+    @GetMapping("/dshd")
+    public String getAllProductsdd(Model model) {
+
+        return "dshdd";
+    }
 
 
 //    @GetMapping("/products/{id}")
