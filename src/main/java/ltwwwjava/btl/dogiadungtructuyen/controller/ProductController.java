@@ -2,9 +2,11 @@ package ltwwwjava.btl.dogiadungtructuyen.controller;
 
 import ltwwwjava.btl.dogiadungtructuyen.exception.ResourceNotFoundException;
 import ltwwwjava.btl.dogiadungtructuyen.model.Category;
+import ltwwwjava.btl.dogiadungtructuyen.model.OrderDetail;
 import ltwwwjava.btl.dogiadungtructuyen.model.Product;
 import ltwwwjava.btl.dogiadungtructuyen.repository.CategoryRepository;
 import ltwwwjava.btl.dogiadungtructuyen.repository.ProductRepository;
+import ltwwwjava.btl.dogiadungtructuyen.service.OrderService;
 import ltwwwjava.btl.dogiadungtructuyen.service.impl.ProductImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
@@ -23,6 +25,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -36,6 +39,8 @@ public class ProductController {
     @Autowired
     private CategoryRepository categoryRepository;
 
+    @Autowired
+    private OrderService orderService;
     private final String UPLOAD_DIR = "src\\main\\resources\\static\\images\\";
 
     @GetMapping("/products")
@@ -110,6 +115,20 @@ public class ProductController {
 
         product.setFileName(images);
         productService.createAndUpdate(product);
+        return "redirect:/products";
+
+    }
+
+
+    @PostMapping("/add-cart")
+    public String addToCart(Model model, @ModelAttribute("product") Product product) throws ResourceNotFoundException {
+        OrderDetail orderDetail =  new OrderDetail();
+        orderDetail.setBillDate(new Date());
+        orderDetail.setCustomer("1");
+        orderDetail.setProducts(product.getId());
+        orderDetail.setQuantity(15);
+        orderService.createAndUpdate(orderDetail);
+//        productService.createAndUpdate(product);
         return "redirect:/products";
 
     }

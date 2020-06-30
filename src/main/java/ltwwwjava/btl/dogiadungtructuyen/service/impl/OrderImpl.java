@@ -39,10 +39,6 @@ public class OrderImpl implements OrderService {
     }
 
     public OrderDetail createAndUpdate(OrderDetail orderDetail) throws ResourceNotFoundException {
-        User cus = customerRepository.findById(orderDetail.getCustomer())
-                .orElseThrow(() -> new ResourceNotFoundException("Customer not found "));
-        Product product = productRepository.findById(orderDetail.getProducts())
-                .orElseThrow(() -> new ResourceNotFoundException("Product not found "));
         return orderRepository.save(orderDetail);
     }
 
