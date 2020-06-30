@@ -167,10 +167,8 @@ display:block;
             <!-- cart details -->
             <div class="top_nav_right">
                 <div class="wthreecartaits wthreecartaits2 cart cart box_1">
-                    <form action="checkout.html" method="post" class="last">
-                        <input type="hidden" name="cmd" value="_cart">
-                        <input type="hidden" name="display" value="1">
-                        <button class="w3view-cart" type="submit" name="submit" value="">
+                    <form th:action="@{/cart}" method="get" class="last">
+                        <button class="w3view-cart" type="submit" value="">
                             <i class="fa fa-cart-arrow-down" aria-hidden="true"></i>
                         </button>
                     </form>
@@ -349,7 +347,7 @@ display:block;
                 </td>
             </tr>
             <tr>
-                <td><a href="http://hocwebgiare.com/" class="btn btn-warning"><i class="fa fa-angle-left"></i> Tiếp tục mua hàng</a>
+                <td><a  th:href="@{/products}" class="btn btn-warning"><i class="fa fa-angle-left"></i> Tiếp tục mua hàng</a>
                 </td>
                 <td colspan="2" class="hidden-xs"> </td>
                 <td class="hidden-xs text-center"><strong>Tổng tiền 500.000 đ</strong>
