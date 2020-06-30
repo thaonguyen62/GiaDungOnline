@@ -241,7 +241,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<h1>DSSP</h1>
 			<div th:each="product : ${listProduct}">
 				<h6 th:text="${product.name}"></h6>
-
+				<img th:src="${product.getFileName().get(0)}">
 			</div>
 		</div>
 		<!-- tittle heading -->

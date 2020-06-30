@@ -22,7 +22,6 @@ public class Product implements Serializable {
     private String category;
     private List<String> fileName;
 
-    //private List<Feedback> feedbacks;
 
 
 }

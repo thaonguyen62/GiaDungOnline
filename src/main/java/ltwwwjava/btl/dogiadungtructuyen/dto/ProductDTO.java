@@ -1,8 +1,6 @@
 package ltwwwjava.btl.dogiadungtructuyen.dto;
 
 import lombok.Data;
-import ltwwwjava.btl.dogiadungtructuyen.dto.CategoryDTO;
-import ltwwwjava.btl.dogiadungtructuyen.model.Feedback;
 
 import java.io.Serializable;
 import java.util.List;
