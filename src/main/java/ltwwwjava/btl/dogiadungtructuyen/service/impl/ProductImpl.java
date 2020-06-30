@@ -11,6 +11,7 @@ import ltwwwjava.btl.dogiadungtructuyen.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -60,7 +61,7 @@ public class ProductImpl implements ProductService {
     public List<Product> findProductByCategory(String idCat) throws ResourceNotFoundException {
         List<Product> products = productRepository.findByCategory(idCat);
         if (products.isEmpty()) {
-            throw new ResourceNotFoundException("Product not found for this category: " + idCat);
+            return new ArrayList<>();
         }
         return products;
     }
