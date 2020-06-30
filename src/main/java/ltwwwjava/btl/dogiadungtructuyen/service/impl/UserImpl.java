@@ -2,7 +2,7 @@ package ltwwwjava.btl.dogiadungtructuyen.service.impl;
 
 import ltwwwjava.btl.dogiadungtructuyen.exception.ResourceNotFoundException;
 import ltwwwjava.btl.dogiadungtructuyen.model.User;
-import ltwwwjava.btl.dogiadungtructuyen.repository.CustomerRepository;
+import ltwwwjava.btl.dogiadungtructuyen.repository.UserRepository;
 import ltwwwjava.btl.dogiadungtructuyen.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,7 +14,7 @@ import java.util.Optional;
 public class UserImpl implements UserService {
 
     @Autowired
-    private CustomerRepository customerRepository;
+    private UserRepository customerRepository;
 
     public List<User> getAllCustomer() {
         return customerRepository.findAll();
@@ -26,8 +26,13 @@ public class UserImpl implements UserService {
         return user;
     }
 
+     public List<User> findByAccountType(int loai) {
+        List<User> list = customerRepository.findByAccountType(loai);
+        return list;
+    }
+
     public List<User> findByAddress(String add) throws ResourceNotFoundException {
-        List<User> list = customerRepository.findCustomerByAddress(add)
+        List<User> list = customerRepository.findByAddress(add)
                 .orElseThrow(() -> new ResourceNotFoundException("Customer not found this address " + add));
         return list;
     }
