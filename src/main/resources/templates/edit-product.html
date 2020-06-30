@@ -1,14 +1,6 @@
-<!--
-Author: W3layouts
-Author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
--->
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-
 <head>
-
     <title>Grocery Shoppy an Ecommerce Category Bootstrap Responsive Web Template | About Us :: w3layouts</title>
     <!--/tags -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -16,72 +8,17 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <meta name="keywords" content="Grocery Shoppy Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design"/>
     <script>
-		addEventListener("load", function () {
-			setTimeout(hideURLbar, 0);
-		}, false);
+        addEventListener("load", function () {
+            setTimeout(hideURLbar, 0);
+        }, false);
 
-		function hideURLbar() {
-			window.scrollTo(0, 1);
-		}
-
-
-
-
-
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        }
     </script>
     <style>
-.danhmuc{
 
-            background: #4f7fff;
-            color: #fff;
-            font-size: 15px;
-            text-transform: uppercase;
-            font-weight: 600;
-            border-radius: 4px 4px 0 0;
-            text-align: center;
-            padding: 12px 0px;
-            margin: 0;
-
-    }
-?    .hd-float.heading {
-    background-color: #fff;
-    text-align: left;
-    border-radius: 0;
-    border-top: 1px solid #cccccc;
-    border-bottom: 1px solid #cccccc;
-    border-right: 1px solid #cccccc;
-    margin-bottom: 0;
-}
-.hd-float.heading .tits {
-    background-color: #4f7fff;
-    display: inline-block;
-    position: relative;
-    padding: 1.5px 10px;
-    font-size: 15px;
-    text-align: center;
-    width: 24%;
-}
-.heading a {
-    color: #1d243e;
-}
-a, a:hover, a:focus {
-    text-decoration: none;
-}
-.heading {
-    background: #4f7fff;
-    color: #fff;
-    font-size: 15px;
-    text-transform: uppercase;
-    font-weight: 600;
-    line-height: 37px;
-    border-radius: 5px 5px 0 0;
-    text-align: center;
-    margin-top: 0;
-}
-.row{
-margin-top: 10px;
-}
-	</style>
+    </style>
     <!--//tags -->
     <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all"/>
     <link href="css/style.css" rel="stylesheet" type="text/css" media="all"/>
@@ -94,9 +31,7 @@ margin-top: 10px;
     <!-- fonts -->
 
 </head>
-
 <body>
-<!-- top-header -->
 <div class="header-most-top">
     <p>MUA SẮM ĐỒ GIA DỤNG VỚI ƯU ĐÃI VÀ GIẢM GIÁ HÀNG ĐẦU</p>
 </div>
@@ -258,8 +193,7 @@ margin-top: 10px;
         <h3>Danh mục</h3>
         <ul class="menuhorizontallevel1">
 
-            <li class="a" th:each="cat:${categories}"><a th:href="@{/products/{id}(id=${cat.id})}"
-                                                         th:text="${cat.name}"></a>
+            <li class="a" th:each="cat:${categories}"><a th:href="@{/products/{cat.id}}" th:text="${cat.name}"></a>
 
             </li>
 
@@ -288,270 +222,54 @@ margin-top: 10px;
         </div>
     </div>
 </div>
-<!-- //page -->
-<!-- about page -->
-<!-- welcome -->
-<!--Danh sach san pham-->
-
-<div class="row">
-    <div >
-        <h2 class="heading hd-float">
-            <div class="tits">
-                <a href="#">Gia dụng nhật</a>
-            </div>
-        </h2>
-        <div class="row">
-            <div class="col-xs-1 "></div>
-            <div class="col-xs-10">
-                <div th:each="product : ${listProductDoGiaDungNhat}" >
-                    <div class="col-xs-3 product-men">
-                        <div class="men-pro-item simpleCart_shelfItem">
-                            <div class="men-thumb-item">
-                                <img src="images/k3.jpg" alt="">
-                            </div>
-                            <div class="item-info-product ">
-                                <h4>
-                                    <a href="single.html" th:text="${product.name}"></a>
-                                </h4>
-                                <div class="info-product-price">
-                                    <span class="item_price"  th:text="${product.price}" ></span>
-                                    <del>$1020.00</del>
-                                </div>
-                                <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
-                                    <form action="#" method="post">
-                                        <fieldset>
-                                            <input type="hidden" name="cmd" value="_cart" />
-                                            <input type="hidden" name="add" value="1" />
-                                            <input type="hidden" name="business" value=" " />
-                                            <input type="hidden" name="item_name" value="Zeeba Basmati Rice - 5 KG" />
-                                            <input type="hidden" name="amount" value="950.00" />
-                                            <input type="hidden" name="discount_amount" value="1.00" />
-                                            <input type="hidden" name="currency_code" value="USD" />
-                                            <input type="hidden" name="return" value=" " />
-                                            <input type="hidden" name="cancel_return" value=" " />
-                                            <input type="submit" name="submit" value="Mua hàng" class="button" />
-                                        </fieldset>
-                                    </form>
-                                </div>
-
-                            </div>
+<!--Edit Product-->
+<!--
+<div class="container my-5">
+    <h3> Sửa Sản Phẩm</h3>
+    <div class="card">
+        <div class="card-body">
+            <div class="col-md-10">
+                &lt;!&ndash;Sửa lại đường dẫn &ndash;&gt;
+                <form th:action="@{/edit-products/{id}(id=${product.id})}" th:object="${product}" method="post" enctype="multipart/form-data">
+                    <div class="row">
+                        <div class="form-group col-md-8">
+                            <label for="name" class="col-form-label">Name</label> <input type="text" th:field="*{name}" class="form-control" id="name" placeholder="Name" required> <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="text-danger"></span>
                         </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xs-1 "></div>
-        </div>
-    </div>
-
-</div>
-<div class="row">
-    <div >
-        <h3 class="heading hd-float">
-            <div class="tits">
-                <a href="#">Bếp điện</a>
-            </div>
-        </h3>
-        <div class="row">
-            <div class="col-xs-1 "></div>
-            <div class="col-xs-10">
-                <div th:each="product : ${listProductBepDien}" >
-                    <div class="col-xs-3 product-men">
-                        <div class="men-pro-item simpleCart_shelfItem">
-                            <div class="men-thumb-item">
-                                <img src="images/k3.jpg" alt="">
-                            </div>
-                            <div class="item-info-product ">
-                                <h4>
-                                    <a href="single.html" th:text="${product.name}"></a>
-                                </h4>
-                                <div class="info-product-price">
-                                    <span class="item_price"  th:text="${product.price}" ></span>
-                                    <del>$1020.00</del>
-                                </div>
-                                <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
-                                    <form action="#" method="post">
-                                        <fieldset>
-                                            <input type="hidden" name="cmd" value="_cart" />
-                                            <input type="hidden" name="add" value="1" />
-                                            <input type="hidden" name="business" value=" " />
-                                            <input type="hidden" name="item_name" value="Zeeba Basmati Rice - 5 KG" />
-                                            <input type="hidden" name="amount" value="950.00" />
-                                            <input type="hidden" name="discount_amount" value="1.00" />
-                                            <input type="hidden" name="currency_code" value="USD" />
-                                            <input type="hidden" name="return" value=" " />
-                                            <input type="hidden" name="cancel_return" value=" " />
-                                            <input type="submit" name="submit" value="Mua hàng" class="button" />
-                                        </fieldset>
-                                    </form>
-                                </div>
-
-                            </div>
+                        <div class="form-group col-md-8">
+                            <label for="price" class="col-form-label">Price</label> <input type="text" th:field="*{price}" class="form-control" id="price" placeholder="Price" required> <span th:if="${#fields.hasErrors('price')}" th:errors="*{price}" class="text-danger"></span>
                         </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xs-1 "></div>
-        </div>
-    </div>
 
-</div>
-<div class="row">
-    <div >
-        <h2 class="heading hd-float">
-            <div class="tits">
-                <a href="#">Lò Nướng</a>
-            </div>
-        </h2>
-        <div class="row">
-            <div class="col-xs-1 "></div>
-            <div class="col-xs-10">
-                <div th:each="product : ${listProductMayLoNuong}" >
-                    <div class="col-xs-3 product-men">
-                        <div class="men-pro-item simpleCart_shelfItem">
-                            <div class="men-thumb-item">
-                                <img src="images/k3.jpg" alt="">
-                            </div>
-                            <div class="item-info-product ">
-                                <h4>
-                                    <a href="single.html" th:text="${product.name}"></a>
-                                </h4>
-                                <div class="info-product-price">
-                                    <span class="item_price"  th:text="${product.price}" ></span>
-                                    <del>$1020.00</del>
-                                </div>
-                                <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
-                                    <form action="#" method="post">
-                                        <fieldset>
-                                            <input type="hidden" name="cmd" value="_cart" />
-                                            <input type="hidden" name="add" value="1" />
-                                            <input type="hidden" name="business" value=" " />
-                                            <input type="hidden" name="item_name" value="Zeeba Basmati Rice - 5 KG" />
-                                            <input type="hidden" name="amount" value="950.00" />
-                                            <input type="hidden" name="discount_amount" value="1.00" />
-                                            <input type="hidden" name="currency_code" value="USD" />
-                                            <input type="hidden" name="return" value=" " />
-                                            <input type="hidden" name="cancel_return" value=" " />
-                                            <input type="submit" name="submit" value="Mua hàng" class="button" />
-                                        </fieldset>
-                                    </form>
-                                </div>
-
-                            </div>
+                        <div class="form-group col-md-8">
+                            <label for="description" class="col-form-label">Description</label> <input type="text" th:field="*{description}" class="form-control" id="description" placeholder="Description" required> <span th:if="${#fields.hasErrors('description')}" th:errors="*{description}" class="text-danger"></span>
                         </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xs-1 "></div>
-        </div>
-    </div>
+                        <div class="form-group col-md-8">
+                            <label for="category">Choose Category</label>
+                            <select class="form-control selectpicker" th:field="*{category}" id="category">
+                                <option value="">Nothing selected</option>
+                                <option th:each="category : ${categories}"
+                                        th:value="${category.id}"
+                                        th:text="${category.name}">pizza
+                                </option>
 
-</div>
-<div class="row">
-    <div >
-        <h2 class="heading hd-float">
-            <div class="tits">
-                <a href="#">Nồi Các Loại</a>
-            </div>
-        </h2>
-        <div class="row">
-            <div class="col-xs-1 "></div>
-            <div class="col-xs-10">
-                <div th:each="product : ${listProductMayNoi}" >
-                    <div class="col-xs-3 product-men">
-                        <div class="men-pro-item simpleCart_shelfItem">
-                            <div class="men-thumb-item">
-                                <img src="images/k3.jpg" alt="">
-                            </div>
-                            <div class="item-info-product ">
-                                <h4>
-                                    <a href="single.html" th:text="${product.name}"></a>
-                                </h4>
-                                <div class="info-product-price">
-                                    <span class="item_price"  th:text="${product.price}" ></span>
-                                    <del>$1020.00</del>
-                                </div>
-                                <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
-                                    <form action="#" method="post">
-                                        <fieldset>
-                                            <input type="hidden" name="cmd" value="_cart" />
-                                            <input type="hidden" name="add" value="1" />
-                                            <input type="hidden" name="business" value=" " />
-                                            <input type="hidden" name="item_name" value="Zeeba Basmati Rice - 5 KG" />
-                                            <input type="hidden" name="amount" value="950.00" />
-                                            <input type="hidden" name="discount_amount" value="1.00" />
-                                            <input type="hidden" name="currency_code" value="USD" />
-                                            <input type="hidden" name="return" value=" " />
-                                            <input type="hidden" name="cancel_return" value=" " />
-                                            <input type="submit" name="submit" value="Mua hàng" class="button" />
-                                        </fieldset>
-                                    </form>
-                                </div>
-
-                            </div>
+                            </select>
                         </div>
+                        <div class="form-group col-md-8">
+                            <input type="file" multiple="multiple" name="file" class="form-control-file">
+                        </div>
+                        <div class="col-md-6">
+                            <input type="submit" class="btn btn-primary" value="Thêm Sản phẩm">
+                        </div>
+
+                        <div class="form-group col-md-8"></div>
                     </div>
-                </div>
+                </form>
             </div>
-            <div class="col-xs-1 "></div>
-        </div>
-    </div>
-
-</div>
-<!--Danh sach san pham-->
-
-
-
-<!-- //welcome -->
-<!-- video -->
-<div class="about">
-    <div class="container">
-        <!-- tittle heading -->
-        <h3 class="tittle-w3l">Video
-            <span class="heading-style">
-					<i></i>
-					<i></i>
-					<i></i>
-				</span>
-        </h3>
-        <!-- //tittle heading -->
-        <div class="about-tp">
-            <div class="col-md-8 about-agileits-w3layouts-left">
-                <iframe src="https://player.vimeo.com/video/15520702?color=ffffff&title=0&byline=0"></iframe>
-            </div>
-            <div class="col-md-4 about-agileits-w3layouts-right">
-                <div class="img-video-about">
-                    <img src="images/videoimg2.png" alt="">
-                </div>
-                <h4>Grocery Shoppy</h4>
-                <p>Thị trường thương mại điện tử hàng đầu với hơn 70 triệu sản phẩm</p>
-            </div>
-            <div class="clearfix"></div>
         </div>
     </div>
 </div>
-<!-- //video-->
-<!-- //about page -->
-<!-- newsletter -->
-<div class="footer-top">
-    <div class="container-fluid">
-        <div class="col-xs-8 agile-leftmk">
-            <h2>Nhận hàng tạp hóa của bạn được giao từ các cửa hàng địa phương</h2>
-            <p>Giao hàng miễn phí cho đơn hàng đầu tiên của bạn!</p>
-            <form action="#" method="post">
-                <input type="email" placeholder="E-mail" name="email" required="">
-                <input type="submit" value="Đăng ký">
-            </form>
-            <div class="newsform-w3l">
-                <span class="fa fa-envelope-o" aria-hidden="true"></span>
-            </div>
-        </div>
-        <div class="col-xs-4 w3l-rightmk">
-            <img src="images/tab3.png" alt=" ">
-        </div>
-        <div class="clearfix"></div>
-    </div>
-</div>
-<!-- //newsletter -->
+-->
+
+<!-- edit product -->
 <!-- footer -->
 <footer>
     <div class="container">
@@ -648,14 +366,11 @@ margin-top: 10px;
                     <h3>Liên lạc</h3>
                     <ul>
                         <li>
-                            <i class="fa fa-map-marker"></i> 62/46 Huỳnh Khương AN
-                        </li>
+                            <i class="fa fa-map-marker"></i> 62/46 Huỳnh Khương AN</li>
                         <li>
-                            <i class="fa fa-mobile"></i> 0163 884 5676
-                        </li>
+                            <i class="fa fa-mobile"></i> 0163 884 5676</li>
                         <li>
-                            <i class="fa fa-phone"></i> +84 38 845 676
-                        </li>
+                            <i class="fa fa-phone"></i> +84 38 845 676 </li>
                         <li>
                             <i class="fa fa-envelope-o"></i>
                             <a href="vothittuoanh2911@gmail.com"> minhnguyenoanh@gmail.com</a>
@@ -694,7 +409,7 @@ margin-top: 10px;
                     <a href="#">
                         <img src="images/2.png" alt="">
                     </a>
-                    <div class="clearfix"></div>
+                    <div class="clearfix"> </div>
                 </div>
             </div>
             <!-- //social icons -->
@@ -762,25 +477,20 @@ margin-top: 10px;
 <!-- popup modal (for signin & signup)-->
 <script src="js/jquery.magnific-popup.js"></script>
 <script>
-		$(document).ready(function () {
-			$('.popup-with-zoom-anim').magnificPopup({
-				type: 'inline',
-				fixedContentPos: false,
-				fixedBgPos: true,
-				overflowY: 'auto',
-				closeBtnInside: true,
-				preloader: false,
-				midClick: true,
-				removalDelay: 300,
-				mainClass: 'my-mfp-zoom-in'
-			});
+    $(document).ready(function () {
+        $('.popup-with-zoom-anim').magnificPopup({
+            type: 'inline',
+            fixedContentPos: false,
+            fixedBgPos: true,
+            overflowY: 'auto',
+            closeBtnInside: true,
+            preloader: false,
+            midClick: true,
+            removalDelay: 300,
+            mainClass: 'my-mfp-zoom-in'
+        });
 
-		});
-
-
-
-
-
+    });
 </script>
 <!-- Large modal -->
 <!-- <script>
@@ -791,53 +501,43 @@ margin-top: 10px;
 <!-- cart-js -->
 <script src="js/minicart.js"></script>
 <script>
-		paypalm.minicartk.render(); //use only unique class names other than paypal1.minicart1.Also Replace same class name in css and minicart.min.js
+    paypalm.minicartk.render(); //use only unique class names other than paypal1.minicart1.Also Replace same class name in css and minicart.min.js
 
-		paypalm.minicartk.cart.on('checkout', function (evt) {
-			var items = this.items(),
-				len = items.length,
-				total = 0,
-				i;
+    paypalm.minicartk.cart.on('checkout', function (evt) {
+        var items = this.items(),
+            len = items.length,
+            total = 0,
+            i;
 
-			// Count the number of each item in the cart
-			for (i = 0; i < len; i++) {
-				total += items[i].get('quantity');
-			}
+        // Count the number of each item in the cart
+        for (i = 0; i < len; i++) {
+            total += items[i].get('quantity');
+        }
 
-			if (total < 3) {
-				alert('The minimum orderDetail quantity is 3. Please add more to your shopping cart before checking out');
-				evt.preventDefault();
-			}
-		});
-
-
-
-
-
+        if (total < 3) {
+            alert('The minimum orderDetail quantity is 3. Please add more to your shopping cart before checking out');
+            evt.preventDefault();
+        }
+    });
 </script>
 <!-- //cart-js -->
 
 <!-- password-script -->
 <script>
-		window.onload = function () {
-			document.getElementById("password1").onchange = validatePassword;
-			document.getElementById("password2").onchange = validatePassword;
-		}
+    window.onload = function () {
+        document.getElementById("password1").onchange = validatePassword;
+        document.getElementById("password2").onchange = validatePassword;
+    }
 
-		function validatePassword() {
-			var pass2 = document.getElementById("password2").value;
-			var pass1 = document.getElementById("password1").value;
-			if (pass1 != pass2)
-				document.getElementById("password2").setCustomValidity("Passwords Don't Match");
-			else
-				document.getElementById("password2").setCustomValidity('');
-			//empty string means no validation error
-		}
-
-
-
-
-
+    function validatePassword() {
+        var pass2 = document.getElementById("password2").value;
+        var pass1 = document.getElementById("password1").value;
+        if (pass1 != pass2)
+            document.getElementById("password2").setCustomValidity("Passwords Don't Match");
+        else
+            document.getElementById("password2").setCustomValidity('');
+        //empty string means no validation error
+    }
 </script>
 <!-- //password-script -->
 
@@ -849,44 +549,34 @@ margin-top: 10px;
 <script src="js/move-top.js"></script>
 <script src="js/easing.js"></script>
 <script>
-		jQuery(document).ready(function ($) {
-			$(".scroll").click(function (event) {
-				event.preventDefault();
+    jQuery(document).ready(function ($) {
+        $(".scroll").click(function (event) {
+            event.preventDefault();
 
-				$('html,body').animate({
-					scrollTop: $(this.hash).offset().top
-				}, 1000);
-			});
-		});
-
-
-
-
-
+            $('html,body').animate({
+                scrollTop: $(this.hash).offset().top
+            }, 1000);
+        });
+    });
 </script>
 <!-- //end-smooth-scrolling -->
 
 <!-- smooth-scrolling-of-move-up -->
 <script>
-		$(document).ready(function () {
-			/*
-			var defaults = {
-				containerID: 'toTop', // fading element id
-				containerHoverID: 'toTopHover', // fading element hover id
-				scrollSpeed: 1200,
-				easingType: 'linear'
-			};
-			*/
-			$().UItoTop({
-				easingType: 'easeOutQuart'
-			});
+    $(document).ready(function () {
+        /*
+        var defaults = {
+            containerID: 'toTop', // fading element id
+            containerHoverID: 'toTopHover', // fading element hover id
+            scrollSpeed: 1200,
+            easingType: 'linear'
+        };
+        */
+        $().UItoTop({
+            easingType: 'easeOutQuart'
+        });
 
-		});
-
-
-
-
-
+    });
 </script>
 <!-- //smooth-scrolling-of-move-up -->
 
@@ -895,6 +585,6 @@ margin-top: 10px;
 <!-- //for bootstrap working -->
 <!-- //js-files -->
 
-</body>
 
+</body>
 </html>

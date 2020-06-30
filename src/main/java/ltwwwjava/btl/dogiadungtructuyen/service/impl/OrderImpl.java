@@ -1,13 +1,12 @@
 package ltwwwjava.btl.dogiadungtructuyen.service.impl;
 
 import ltwwwjava.btl.dogiadungtructuyen.controllerAdvice.Dto;
-import ltwwwjava.btl.dogiadungtructuyen.dto.CategoryDTO;
 import ltwwwjava.btl.dogiadungtructuyen.dto.OrderDetailDTO;
 import ltwwwjava.btl.dogiadungtructuyen.exception.ResourceNotFoundException;
 import ltwwwjava.btl.dogiadungtructuyen.model.User;
 import ltwwwjava.btl.dogiadungtructuyen.model.OrderDetail;
 import ltwwwjava.btl.dogiadungtructuyen.model.Product;
-import ltwwwjava.btl.dogiadungtructuyen.repository.CustomerRepository;
+import ltwwwjava.btl.dogiadungtructuyen.repository.UserRepository;
 import ltwwwjava.btl.dogiadungtructuyen.repository.OrderRepository;
 import ltwwwjava.btl.dogiadungtructuyen.repository.ProductRepository;
 import ltwwwjava.btl.dogiadungtructuyen.service.OrderService;
@@ -23,7 +22,7 @@ public class OrderImpl implements OrderService {
     @Autowired
     private OrderRepository orderRepository;
     @Autowired
-    private CustomerRepository customerRepository;
+    private UserRepository customerRepository;
     @Autowired
     private ProductRepository productRepository;
 
