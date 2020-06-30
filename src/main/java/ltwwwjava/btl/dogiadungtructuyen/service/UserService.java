@@ -10,6 +10,8 @@ public interface UserService {
 
     User findById(String id) throws ResourceNotFoundException;
 
+    List<User> findByAccountType(int loai);
+
     List<User> findByAddress(String add) throws ResourceNotFoundException;
 
     User createAndUpdate(User user) throws ResourceNotFoundException;
