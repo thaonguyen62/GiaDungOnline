@@ -48,6 +48,18 @@ public class ProductController {
     }
 
 
+    @GetMapping("/cart")
+     public String getAllProductsd(Model model) {
+
+        return "cartt";
+    }
+    @GetMapping("/dshd")
+    public String getAllProductsdd(Model model) {
+
+        return "dshdd";
+    }
+
+
     @GetMapping("/products/{id}")
     public String getProductById(@PathVariable(value = "id") String id, Model model) throws ResourceNotFoundException {
         Optional<Category> c = categoryRepository.findById(id);
@@ -95,7 +107,7 @@ public class ProductController {
 
     }
 
-    /*@GetMapping("/edit-products")
+    @GetMapping("/edit-products")
     public String showUpdateForm(@PathVariable("id") String id, Model model) throws ResourceNotFoundException {
         Product product = productService.findById(id);
         model.addAttribute("product", product);
@@ -113,7 +125,7 @@ public class ProductController {
         model.addAttribute("products", productService.findAll());
         return "redirect:/index";
 
-    }*/
+    }
 
     @GetMapping("/delete/{id}")
     public String deleteProduct(@PathVariable("id") String id, Model model) throws ResourceNotFoundException {

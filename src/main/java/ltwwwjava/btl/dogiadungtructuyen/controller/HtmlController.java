@@ -1,5 +1,6 @@
 package ltwwwjava.btl.dogiadungtructuyen.controller;
 
+import ltwwwjava.btl.dogiadungtructuyen.dto.UserDTO;
 import ltwwwjava.btl.dogiadungtructuyen.model.Category;
 import ltwwwjava.btl.dogiadungtructuyen.model.Product;
 import ltwwwjava.btl.dogiadungtructuyen.repository.CategoryRepository;
@@ -20,8 +21,27 @@ public class HtmlController {
     @Autowired
     private CategoryRepository categoryRepository;
     //localhost:8087/houseware-service/products
+    @GetMapping("/employeeManager")
+    public String getlistEmployee(Model model) {
+        List<Category> listCat = categoryRepository.findAll();
+        model.addAttribute("categories",listCat);
+        return "listUser.html";
+    }
+    @GetMapping("/customerManager")
+    public String getlistCustomer(Model model) {
+        List<Category> listCat = categoryRepository.findAll();
+        model.addAttribute("categories",listCat);
+        return "listUser.html";
+    }
+    @GetMapping("/editUser")
+    public String geteditUser(Model model) {
+        List<Category> listCat = categoryRepository.findAll();
+        UserDTO personForm = new UserDTO();
+        model.addAttribute("personForm", personForm);
+        return "editUser";
+    }
     @GetMapping("/about")
-    public String getabout(Model model) {
+    public String get(Model model) {
         List<Category> listCat = categoryRepository.findAll();
         model.addAttribute("categories",listCat);
         return "about";
@@ -75,16 +95,8 @@ public class HtmlController {
         return "warrantySystem";
     }
 
-    @GetMapping("/edit-cat")
-    public String getEditCat(Model model) {
+    
 
-        return "edit-cat";
-    }
 
-    @GetMapping("/edit-product")
-    public String getEditProct(Model model)
-    {
-        return "edit-product";
-    }
 
 }

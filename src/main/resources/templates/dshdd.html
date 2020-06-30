@@ -25,7 +25,24 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		}
 	</script>
     <style>
+.dshd{
+    width:80%
+}
+        table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
 
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
     </style>
     <!--//tags -->
     <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
@@ -203,7 +220,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <h3>Danh mục</h3>
         <ul class="menuhorizontallevel1" >
 
-            <li class="a" th:each="cat:${categories}"><a th:href="@{/products/{cat.id}}" th:text="${cat.name}" ></a>
+            <li class="a" th:each="cat:${categories}"><a th:href="@{/products/{id}(id=${cat.id})}" th:text="${cat.name}" ></a>
 
             </li>
 
@@ -235,50 +252,29 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-- //page -->
 <!-- about page -->
 <!-- welcome -->
-<div class="welcome">
-    <div class="container">
-        <div class="danhmuc">
-            <h1>DSSP</h1>
-            <div th:each="product : ${listProduct}">
-                <h6 th:text="${product.name}"></h6>
+<div>
+    <div class="dshd" >
 
-            </div>
-        </div>
-        <!-- tittle heading -->
-        <h3 class="tittle-w3l"> Chào mừng đến với trang web của chúng tôi
-            <span class="heading-style">
-					<i></i>
-					<i></i>
-					<i></i>
-				</span>
-        </h3>
-        <!-- //tittle heading -->
-        <div class="w3l-welcome-info">
-            <div class="col-sm-6 col-xs-6 welcome-grids">
-                <div class="welcome-img">
-                    <img src="images/about.jpg" class="img-responsive zoom-img" alt="">
-                </div>
-            </div>
-            <div class="col-sm-6 col-xs-6 welcome-grids">
-                <div class="welcome-img">
-                    <img src="images/about2.jpg" class="img-responsive zoom-img" alt="">
-                </div>
-            </div>
-            <div class="clearfix"> </div>
-        </div>
-        <div class="w3l-welcome-text">
-            <p>
-                •    Năm 2012, Grocery Shoppy gia dụng được thành lập. Với sự mệnh mang lại sự tiện nghi, gắn kết cuộc sống hiện đại, Grocery Shoppy Gia dụng mong muốn mang đến những sản phẩm tiên tiến và chất lượng dành tặng cho khách hàng. Sự trải nghiệm khác biệt của khách hàng là một trong những phương châm Comet Gia dụng luôn hướng đến. Chính vì vậy, Comet Gia dụng không ngừng nỗ lực ra mắt những sản phẩm hiện đại, mẫu mã sang trọng và giá cả cạnh tranh.
+        <h2>Danh sách hóa đơn</h2>
 
-                •    Năm 2013: sản phẩm Grocery Shoppy Gia dụng được phân phối tại các hệ thống siêu thị điện máy, siêu thị hàng đầu tại Việt Nam.
+        <table>
+            <tr>
+                <th>Tên sản phẩm</th>
+                <th>Số lượng</th>
+                <th>Đơn giá</th>
+                <th>Khách hàng</th>
+                <th>Trạng thái</th>
+            </tr>
+            <tr>
+                <td> </td>
+                <td></td>
+                <td> </td>
+                <th></th>
+                <th></th>
+            </tr>
 
-                •    Năm 2015: chính thức tham gia vào các kênh truyền hình mua sắm uy tín tại Việt Nam.
+        </table>
 
-                •    Năm 2017: ra mắt sản phẩm nồi cơm điện tử công nghệ Fuzzy logic.
-
-                •    Năm 2018: ra mắt sản phẩm gia dụng (Kitchenware).
-            </p>
-        </div>
     </div>
 </div>
 <!-- //welcome -->
@@ -529,123 +525,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         </p>
     </div>
 </div>
-<!-- //copyright -->
-
-<!-- js-files -->
-<!-- jquery -->
-<script src="js/jquery-2.1.4.min.js"></script>
-<!-- //jquery -->
-
-<!-- popup modal (for signin & signup)-->
-<script src="js/jquery.magnific-popup.js"></script>
-<script>
-		$(document).ready(function () {
-			$('.popup-with-zoom-anim').magnificPopup({
-				type: 'inline',
-				fixedContentPos: false,
-				fixedBgPos: true,
-				overflowY: 'auto',
-				closeBtnInside: true,
-				preloader: false,
-				midClick: true,
-				removalDelay: 300,
-				mainClass: 'my-mfp-zoom-in'
-			});
-
-		});
-	</script>
-<!-- Large modal -->
-<!-- <script>
-    $('#').modal('show');
-</script> -->
-<!-- //popup modal (for signin & signup)-->
-
-<!-- cart-js -->
-<script src="js/minicart.js"></script>
-<script>
-		paypalm.minicartk.render(); //use only unique class names other than paypal1.minicart1.Also Replace same class name in css and minicart.min.js
-
-		paypalm.minicartk.cart.on('checkout', function (evt) {
-			var items = this.items(),
-				len = items.length,
-				total = 0,
-				i;
-
-			// Count the number of each item in the cart
-			for (i = 0; i < len; i++) {
-				total += items[i].get('quantity');
-			}
-
-			if (total < 3) {
-				alert('The minimum orderDetail quantity is 3. Please add more to your shopping cart before checking out');
-				evt.preventDefault();
-			}
-		});
-	</script>
-<!-- //cart-js -->
-
-<!-- password-script -->
-<script>
-		window.onload = function () {
-			document.getElementById("password1").onchange = validatePassword;
-			document.getElementById("password2").onchange = validatePassword;
-		}
-
-		function validatePassword() {
-			var pass2 = document.getElementById("password2").value;
-			var pass1 = document.getElementById("password1").value;
-			if (pass1 != pass2)
-				document.getElementById("password2").setCustomValidity("Passwords Don't Match");
-			else
-				document.getElementById("password2").setCustomValidity('');
-			//empty string means no validation error
-		}
-	</script>
-<!-- //password-script -->
-
-<!-- smoothscroll -->
-<script src="js/SmoothScroll.min.js"></script>
-<!-- //smoothscroll -->
-
-<!-- start-smooth-scrolling -->
-<script src="js/move-top.js"></script>
-<script src="js/easing.js"></script>
-<script>
-		jQuery(document).ready(function ($) {
-			$(".scroll").click(function (event) {
-				event.preventDefault();
-
-				$('html,body').animate({
-					scrollTop: $(this.hash).offset().top
-				}, 1000);
-			});
-		});
-	</script>
-<!-- //end-smooth-scrolling -->
-
-<!-- smooth-scrolling-of-move-up -->
-<script>
-		$(document).ready(function () {
-			/*
-			var defaults = {
-				containerID: 'toTop', // fading element id
-				containerHoverID: 'toTopHover', // fading element hover id
-				scrollSpeed: 1200,
-				easingType: 'linear'
-			};
-			*/
-			$().UItoTop({
-				easingType: 'easeOutQuart'
-			});
-
-		});
-	</script>
-<!-- //smooth-scrolling-of-move-up -->
-
-<!-- for bootstrap working -->
-<script src="js/bootstrap.js"></script>
-<!-- //for bootstrap working -->
-<!-- //js-files -->
 
 </body>
 
