@@ -15,14 +15,14 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <meta name="keywords" content="Grocery Shoppy Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
     <script>
-		addEventListener("load", function () {
-			setTimeout(hideURLbar, 0);
-		}, false);
+        addEventListener("load", function () {
+            setTimeout(hideURLbar, 0);
+        }, false);
 
-		function hideURLbar() {
-			window.scrollTo(0, 1);
-		}
-	</script>
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        }
+    </script>
     <style>
 
     </style>
@@ -249,7 +249,7 @@ private String name;
     <div class="card">
         <div class="card-body">
             <div class="col-md-10">
-                <form th:action="@{/add-product}" th:object="${product}" method="post">
+                <form th:action="@{/add-product}" th:object="${product}" method="post" enctype="multipart/form-data">
                     <div class="row">
                         <div class="form-group col-md-8">
                             <label for="name" class="col-form-label">Name</label> <input type="text" th:field="*{name}" class="form-control" id="name" placeholder="Name" required> <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="text-danger"></span>
@@ -272,13 +272,14 @@ private String name;
 
                             </select>
                         </div>
-
+                        <div class="form-group col-md-8">
+                            <input type="file" multiple="multiple" name="file" class="form-control-file">
+                        </div>
                         <div class="col-md-6">
                             <input type="submit" class="btn btn-primary" value="Thêm Sản phẩm">
                         </div>
 
                         <div class="form-group col-md-8"></div>
-
                     </div>
                 </form>
             </div>
@@ -494,21 +495,21 @@ private String name;
 <!-- popup modal (for signin & signup)-->
 <script src="js/jquery.magnific-popup.js"></script>
 <script>
-		$(document).ready(function () {
-			$('.popup-with-zoom-anim').magnificPopup({
-				type: 'inline',
-				fixedContentPos: false,
-				fixedBgPos: true,
-				overflowY: 'auto',
-				closeBtnInside: true,
-				preloader: false,
-				midClick: true,
-				removalDelay: 300,
-				mainClass: 'my-mfp-zoom-in'
-			});
+    $(document).ready(function () {
+        $('.popup-with-zoom-anim').magnificPopup({
+            type: 'inline',
+            fixedContentPos: false,
+            fixedBgPos: true,
+            overflowY: 'auto',
+            closeBtnInside: true,
+            preloader: false,
+            midClick: true,
+            removalDelay: 300,
+            mainClass: 'my-mfp-zoom-in'
+        });
 
-		});
-	</script>
+    });
+</script>
 <!-- Large modal -->
 <!-- <script>
     $('#').modal('show');
@@ -518,44 +519,44 @@ private String name;
 <!-- cart-js -->
 <script src="js/minicart.js"></script>
 <script>
-		paypalm.minicartk.render(); //use only unique class names other than paypal1.minicart1.Also Replace same class name in css and minicart.min.js
+    paypalm.minicartk.render(); //use only unique class names other than paypal1.minicart1.Also Replace same class name in css and minicart.min.js
 
-		paypalm.minicartk.cart.on('checkout', function (evt) {
-			var items = this.items(),
-				len = items.length,
-				total = 0,
-				i;
+    paypalm.minicartk.cart.on('checkout', function (evt) {
+        var items = this.items(),
+            len = items.length,
+            total = 0,
+            i;
 
-			// Count the number of each item in the cart
-			for (i = 0; i < len; i++) {
-				total += items[i].get('quantity');
-			}
+        // Count the number of each item in the cart
+        for (i = 0; i < len; i++) {
+            total += items[i].get('quantity');
+        }
 
-			if (total < 3) {
-				alert('The minimum orderDetail quantity is 3. Please add more to your shopping cart before checking out');
-				evt.preventDefault();
-			}
-		});
-	</script>
+        if (total < 3) {
+            alert('The minimum orderDetail quantity is 3. Please add more to your shopping cart before checking out');
+            evt.preventDefault();
+        }
+    });
+</script>
 <!-- //cart-js -->
 
 <!-- password-script -->
 <script>
-		window.onload = function () {
-			document.getElementById("password1").onchange = validatePassword;
-			document.getElementById("password2").onchange = validatePassword;
-		}
+    window.onload = function () {
+        document.getElementById("password1").onchange = validatePassword;
+        document.getElementById("password2").onchange = validatePassword;
+    }
 
-		function validatePassword() {
-			var pass2 = document.getElementById("password2").value;
-			var pass1 = document.getElementById("password1").value;
-			if (pass1 != pass2)
-				document.getElementById("password2").setCustomValidity("Passwords Don't Match");
-			else
-				document.getElementById("password2").setCustomValidity('');
-			//empty string means no validation error
-		}
-	</script>
+    function validatePassword() {
+        var pass2 = document.getElementById("password2").value;
+        var pass1 = document.getElementById("password1").value;
+        if (pass1 != pass2)
+            document.getElementById("password2").setCustomValidity("Passwords Don't Match");
+        else
+            document.getElementById("password2").setCustomValidity('');
+        //empty string means no validation error
+    }
+</script>
 <!-- //password-script -->
 
 <!-- smoothscroll -->
@@ -566,35 +567,35 @@ private String name;
 <script src="js/move-top.js"></script>
 <script src="js/easing.js"></script>
 <script>
-		jQuery(document).ready(function ($) {
-			$(".scroll").click(function (event) {
-				event.preventDefault();
+    jQuery(document).ready(function ($) {
+        $(".scroll").click(function (event) {
+            event.preventDefault();
 
-				$('html,body').animate({
-					scrollTop: $(this.hash).offset().top
-				}, 1000);
-			});
-		});
-	</script>
+            $('html,body').animate({
+                scrollTop: $(this.hash).offset().top
+            }, 1000);
+        });
+    });
+</script>
 <!-- //end-smooth-scrolling -->
 
 <!-- smooth-scrolling-of-move-up -->
 <script>
-		$(document).ready(function () {
-			/*
-			var defaults = {
-				containerID: 'toTop', // fading element id
-				containerHoverID: 'toTopHover', // fading element hover id
-				scrollSpeed: 1200,
-				easingType: 'linear'
-			};
-			*/
-			$().UItoTop({
-				easingType: 'easeOutQuart'
-			});
+    $(document).ready(function () {
+        /*
+        var defaults = {
+            containerID: 'toTop', // fading element id
+            containerHoverID: 'toTopHover', // fading element hover id
+            scrollSpeed: 1200,
+            easingType: 'linear'
+        };
+        */
+        $().UItoTop({
+            easingType: 'easeOutQuart'
+        });
 
-		});
-	</script>
+    });
+</script>
 <!-- //smooth-scrolling-of-move-up -->
 
 <!-- for bootstrap working -->
