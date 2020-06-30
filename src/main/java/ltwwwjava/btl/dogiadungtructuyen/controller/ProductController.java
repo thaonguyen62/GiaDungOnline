@@ -1,25 +1,28 @@
 package ltwwwjava.btl.dogiadungtructuyen.controller;
 
-import ltwwwjava.btl.dogiadungtructuyen.controllerAdvice.Dto;
-import ltwwwjava.btl.dogiadungtructuyen.dto.ProductDTO;
-import ltwwwjava.btl.dogiadungtructuyen.dto.UserDTO;
 import ltwwwjava.btl.dogiadungtructuyen.exception.ResourceNotFoundException;
 import ltwwwjava.btl.dogiadungtructuyen.model.Category;
 import ltwwwjava.btl.dogiadungtructuyen.model.Product;
-import ltwwwjava.btl.dogiadungtructuyen.model.User;
 import ltwwwjava.btl.dogiadungtructuyen.repository.CategoryRepository;
 import ltwwwjava.btl.dogiadungtructuyen.repository.ProductRepository;
 import ltwwwjava.btl.dogiadungtructuyen.service.impl.ProductImpl;
-import ltwwwjava.btl.dogiadungtructuyen.utils.Constants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -33,24 +36,18 @@ public class ProductController {
     @Autowired
     private CategoryRepository categoryRepository;
 
-    //localhost:8087/houseware-service/products
+    private final String UPLOAD_DIR = "src\\main\\resources\\static\\images\\";
+
     @GetMapping("/products")
     public String getAllProducts(Model model) {
         List<Product> list = productService.findAll();
         List<Category> listCat = categoryRepository.findAll();
         model.addAttribute("listProduct", list);
-        model.addAttribute("categories",listCat);
+        model.addAttribute("categories", listCat);
         return "index";
     }
 
 
-//    @GetMapping("/products/{id}")
-//    public String getProductById(@PathVariable(value = "id") String id, Model model) throws ResourceNotFoundException {
-//        Product product = productService.findById(id);
-//
-//        model.addAttribute("product", product);
-//        return "single";
-//    }
     @GetMapping("/products/{id}")
     public String getProductById(@PathVariable(value = "id") String id, Model model) throws ResourceNotFoundException {
         Optional<Category> c = categoryRepository.findById(id);
@@ -63,22 +60,36 @@ public class ProductController {
     public String showAddProductPage(Model model) {
         Product product = new Product();
         List<Category> categories = categoryRepository.findAll();
-        model.addAttribute("categories",categories);
+        model.addAttribute("categories", categories);
         model.addAttribute("product", product);
         return "insertProduct";
     }
 
     @PostMapping("/add-product")
-    public String addProduct(Model model, @ModelAttribute("Product") Product product) throws ResourceNotFoundException {
+    public String addProduct(Model model, @ModelAttribute("Product") Product product, @RequestParam("file") MultipartFile file, RedirectAttributes attributes) throws ResourceNotFoundException {
+        List<String> images = new ArrayList<>();
+        // check if file is empty
+        if (file.isEmpty()) {
+            attributes.addFlashAttribute("message", "Please select a file to upload.");
+        }
+
+        // normalize the file path
+        String fileName = StringUtils.cleanPath(file.getOriginalFilename());
+
+        // save the file on the local file system
+        try {
+            Path path = Paths.get(UPLOAD_DIR + fileName);
+            Files.copy(file.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
+            images.add(path.toString().replace("src\\main\\resources\\static\\",""));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        // return success response
+        attributes.addFlashAttribute("message", "You successfully uploaded " + fileName + '!');
 
 
-        /*Product product = new Product();
-        //product.setAccountType(Constants.CUSTOMER_TYPE);
-        product.setCategory(productDTO.getCategory());
-        product.setDescription(productDTO.getDescription());
-        product.setFileName(productDTO.getFileName());
-        product.setName(productDTO.getName());
-        product.setPrice(productDTO.getPrice());*/
+        product.setFileName(images);
         productService.createAndUpdate(product);
         return "redirect:/products";
 
