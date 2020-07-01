@@ -107,7 +107,7 @@ margin-top: 10px;
         <!-- header-bot-->
         <div class="col-md-4 logo_agile">
             <h1>
-                <a href="index.html">
+                <a th:href="@{/products}">
                     <span>G</span>rocery
                     <span>S</span>hoppy
                     <img src="images/logo2.png" alt=" ">
@@ -152,10 +152,8 @@ margin-top: 10px;
             <!-- cart details -->
             <div class="top_nav_right">
                 <div class="wthreecartaits wthreecartaits2 cart cart box_1">
-                    <form action="checkout.html" method="post" class="last">
-                        <input type="hidden" name="cmd" value="_cart">
-                        <input type="hidden" name="display" value="1">
-                        <button class="w3view-cart" type="submit" name="submit" value="">
+                    <form th:action="@{/cart}" method="get" class="last">
+                        <button class="w3view-cart" type="submit" value="">
                             <i class="fa fa-cart-arrow-down" aria-hidden="true"></i>
                         </button>
                     </form>
@@ -318,18 +316,11 @@ margin-top: 10px;
                                     <del>$1020.00</del>
                                 </div>
                                 <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
-                                    <form action="#" method="post">
+
+                                    <form th:action="@{/add-cart}" method="post" th:object="${product}">
                                         <fieldset>
-                                            <input type="hidden" name="cmd" value="_cart" />
-                                            <input type="hidden" name="add" value="1" />
-                                            <input type="hidden" name="business" value=" " />
-                                            <input type="hidden" name="item_name" value="Zeeba Basmati Rice - 5 KG" />
-                                            <input type="hidden" name="amount" value="950.00" />
-                                            <input type="hidden" name="discount_amount" value="1.00" />
-                                            <input type="hidden" name="currency_code" value="USD" />
-                                            <input type="hidden" name="return" value=" " />
-                                            <input type="hidden" name="cancel_return" value=" " />
-                                            <input type="submit" name="submit" value="Add to cart" class="button" />
+
+                                            <input type="submit" name="submit" value="Mua hàng" class="button" />
                                         </fieldset>
                                     </form>
                                 </div>
@@ -369,18 +360,94 @@ margin-top: 10px;
                                     <del>$1020.00</del>
                                 </div>
                                 <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
-                                    <form action="#" method="post">
+                                    <form th:action="@{/add-cart}" method="post" th:object="${product}">
                                         <fieldset>
-                                            <input type="hidden" name="cmd" value="_cart" />
-                                            <input type="hidden" name="add" value="1" />
-                                            <input type="hidden" name="business" value=" " />
-                                            <input type="hidden" name="item_name" value="Zeeba Basmati Rice - 5 KG" />
-                                            <input type="hidden" name="amount" value="950.00" />
-                                            <input type="hidden" name="discount_amount" value="1.00" />
-                                            <input type="hidden" name="currency_code" value="USD" />
-                                            <input type="hidden" name="return" value=" " />
-                                            <input type="hidden" name="cancel_return" value=" " />
-                                            <input type="submit" name="submit" value="Add to cart" class="button" />
+                                            <input type="submit" name="submit" value="Mua hàng" class="button" />
+                                        </fieldset>
+                                    </form>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-1 "></div>
+        </div>
+    </div>
+
+</div>
+<div class="row">
+    <div >
+        <h2 class="heading hd-float">
+            <div class="tits">
+                <a href="#">Lò Nướng</a>
+            </div>
+        </h2>
+        <div class="row">
+            <div class="col-xs-1 "></div>
+            <div class="col-xs-10">
+                <div th:each="product : ${listProductMayLoNuong}" >
+                    <div class="col-xs-3 product-men">
+                        <div class="men-pro-item simpleCart_shelfItem">
+                            <div class="men-thumb-item">
+                                <img src="images/k3.jpg" alt="">
+                            </div>
+                            <div class="item-info-product ">
+                                <h4>
+                                    <a href="single.html" th:text="${product.name}"></a>
+                                </h4>
+                                <div class="info-product-price">
+                                    <span class="item_price"  th:text="${product.price}" ></span>
+                                    <del>$1020.00</del>
+                                </div>
+                                <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
+                                    <form th:action="@{/add-cart}" method="post" th:object="${product}">
+                                        <fieldset>
+                                            <input type="submit" name="submit" value="Mua hàng" class="button" />
+                                        </fieldset>
+
+                                    </form>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-1 "></div>
+        </div>
+    </div>
+
+</div>
+<div class="row">
+    <div >
+        <h2 class="heading hd-float">
+            <div class="tits">
+                <a href="#">Nồi Các Loại</a>
+            </div>
+        </h2>
+        <div class="row">
+            <div class="col-xs-1 "></div>
+            <div class="col-xs-10">
+                <div th:each="product : ${listProductMayNoi}" >
+                    <div class="col-xs-3 product-men">
+                        <div class="men-pro-item simpleCart_shelfItem">
+                            <div class="men-thumb-item">
+                                <img src="images/k3.jpg" alt="">
+                            </div>
+                            <div class="item-info-product ">
+                                <h4>
+                                    <a href="single.html" th:text="${product.name}"></a>
+                                </h4>
+                                <div class="info-product-price">
+                                    <span class="item_price"  th:text="${product.price}" ></span>
+                                    <del>$1020.00</del>
+                                </div>
+                                <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
+                                    <form th:action="@{/add-cart}" method="post" th:object="${product}">
+                                        <fieldset>
+                                            <input type="submit" name="submit" value="Mua hàng" class="button" />
                                         </fieldset>
                                     </form>
                                 </div>
@@ -654,10 +721,10 @@ margin-top: 10px;
 
 <!-- js-files -->
 <!-- jquery -->
-<script src="js/jquery-2.1.4.min.js"></script>
-<!-- //jquery -->
+<!--<script src="js/jquery-2.1.4.min.js"></script>
+&lt;!&ndash; //jquery &ndash;&gt;
 
-<!-- popup modal (for signin & signup)-->
+&lt;!&ndash; popup modal (for signin & signup)&ndash;&gt;
 <script src="js/jquery.magnific-popup.js"></script>
 <script>
 		$(document).ready(function () {
@@ -680,13 +747,13 @@ margin-top: 10px;
 
 
 </script>
-<!-- Large modal -->
-<!-- <script>
+&lt;!&ndash; Large modal &ndash;&gt;
+&lt;!&ndash; <script>
     $('#').modal('show');
-</script> -->
-<!-- //popup modal (for signin & signup)-->
+</script> &ndash;&gt;
+&lt;!&ndash; //popup modal (for signin & signup)&ndash;&gt;
 
-<!-- cart-js -->
+&lt;!&ndash; cart-js &ndash;&gt;
 <script src="js/minicart.js"></script>
 <script>
 		paypalm.minicartk.render(); //use only unique class names other than paypal1.minicart1.Also Replace same class name in css and minicart.min.js
@@ -713,9 +780,9 @@ margin-top: 10px;
 
 
 </script>
-<!-- //cart-js -->
+&lt;!&ndash; //cart-js &ndash;&gt;
 
-<!-- password-script -->
+&lt;!&ndash; password-script &ndash;&gt;
 <script>
 		window.onload = function () {
 			document.getElementById("password1").onchange = validatePassword;
@@ -737,13 +804,13 @@ margin-top: 10px;
 
 
 </script>
-<!-- //password-script -->
+&lt;!&ndash; //password-script &ndash;&gt;
 
-<!-- smoothscroll -->
+&lt;!&ndash; smoothscroll &ndash;&gt;
 <script src="js/SmoothScroll.min.js"></script>
-<!-- //smoothscroll -->
+&lt;!&ndash; //smoothscroll &ndash;&gt;
 
-<!-- start-smooth-scrolling -->
+&lt;!&ndash; start-smooth-scrolling &ndash;&gt;
 <script src="js/move-top.js"></script>
 <script src="js/easing.js"></script>
 <script>
@@ -762,9 +829,9 @@ margin-top: 10px;
 
 
 </script>
-<!-- //end-smooth-scrolling -->
+&lt;!&ndash; //end-smooth-scrolling &ndash;&gt;
 
-<!-- smooth-scrolling-of-move-up -->
+&lt;!&ndash; smooth-scrolling-of-move-up &ndash;&gt;
 <script>
 		$(document).ready(function () {
 			/*
@@ -786,12 +853,12 @@ margin-top: 10px;
 
 
 </script>
-<!-- //smooth-scrolling-of-move-up -->
+&lt;!&ndash; //smooth-scrolling-of-move-up &ndash;&gt;
 
-<!-- for bootstrap working -->
+&lt;!&ndash; for bootstrap working &ndash;&gt;
 <script src="js/bootstrap.js"></script>
-<!-- //for bootstrap working -->
-<!-- //js-files -->
+&lt;!&ndash; //for bootstrap working &ndash;&gt;
+&lt;!&ndash; //js-files &ndash;&gt;-->
 
 </body>
 

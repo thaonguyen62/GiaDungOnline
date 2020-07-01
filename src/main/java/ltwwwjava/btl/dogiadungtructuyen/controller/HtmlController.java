@@ -21,25 +21,14 @@ public class HtmlController {
     @Autowired
     private CategoryRepository categoryRepository;
     //localhost:8087/houseware-service/products
-    @GetMapping("/employeeManager")
-    public String getlistEmployee(Model model) {
-        List<Category> listCat = categoryRepository.findAll();
-        model.addAttribute("categories",listCat);
-        return "listUser.html";
-    }
-    @GetMapping("/customerManager")
-    public String getlistCustomer(Model model) {
-        List<Category> listCat = categoryRepository.findAll();
-        model.addAttribute("categories",listCat);
-        return "listUser.html";
-    }
-    @GetMapping("/editUser")
-    public String geteditUser(Model model) {
-        List<Category> listCat = categoryRepository.findAll();
-        UserDTO personForm = new UserDTO();
-        model.addAttribute("personForm", personForm);
-        return "editUser";
-    }
+  
+//    @GetMapping("/editUser")
+//    public String geteditUser(Model model) {
+//        List<Category> listCat = categoryRepository.findAll();
+//        UserDTO personForm = new UserDTO();
+//        model.addAttribute("personForm", personForm);
+//        return "editUser";
+//    }
     @GetMapping("/about")
     public String get(Model model) {
         List<Category> listCat = categoryRepository.findAll();

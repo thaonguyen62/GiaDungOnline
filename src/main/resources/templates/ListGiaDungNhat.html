@@ -9,12 +9,12 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
 <head>
 
-    <title>about</title>
+    <title>Grocery Shoppy an Ecommerce Category Bootstrap Responsive Web Template | About Us :: w3layouts</title>
     <!--/tags -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="keywords" content="MON Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
-Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="keywords" content="Grocery Shoppy Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design"/>
     <script>
 		addEventListener("load", function () {
 			setTimeout(hideURLbar, 0);
@@ -23,16 +23,71 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		function hideURLbar() {
 			window.scrollTo(0, 1);
 		}
-	</script>
-    <style>
 
-    </style>
+
+
+
+
+    </script>
+    <style>
+.danhmuc{
+
+            background: #4f7fff;
+            color: #fff;
+            font-size: 15px;
+            text-transform: uppercase;
+            font-weight: 600;
+            border-radius: 4px 4px 0 0;
+            text-align: center;
+            padding: 12px 0px;
+            margin: 0;
+
+    }
+?    .hd-float.heading {
+    background-color: #fff;
+    text-align: left;
+    border-radius: 0;
+    border-top: 1px solid #cccccc;
+    border-bottom: 1px solid #cccccc;
+    border-right: 1px solid #cccccc;
+    margin-bottom: 0;
+}
+.hd-float.heading .tits {
+    background-color: #4f7fff;
+    display: inline-block;
+    position: relative;
+    padding: 1.5px 10px;
+    font-size: 15px;
+    text-align: center;
+    width: 24%;
+}
+.heading a {
+    color: #1d243e;
+}
+a, a:hover, a:focus {
+    text-decoration: none;
+}
+.heading {
+    background: #4f7fff;
+    color: #fff;
+    font-size: 15px;
+    text-transform: uppercase;
+    font-weight: 600;
+    line-height: 37px;
+    border-radius: 5px 5px 0 0;
+    text-align: center;
+    margin-top: 0;
+}
+.row{
+margin-top: 10px;
+}
+	</style>
     <!--//tags -->
-    <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
-    <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all"/>
+    <link href="css/style.css" rel="stylesheet" type="text/css" media="all"/>
     <link href="css/font-awesome.css" rel="stylesheet">
     <!--pop-up-box-->
-    <link href="css/popuo-box.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="css/popuo-box.css" rel="stylesheet" type="text/css" media="all"/>
     <!--//pop-up-box-->
     <!-- price range -->
     <link rel="stylesheet" type="text/css" href="css/jquery-ui1.css">
@@ -52,9 +107,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <!-- header-bot-->
         <div class="col-md-4 logo_agile">
             <h1>
-                <a th:href="@{/products}">
-                    <span></span>
-                    MON
+                <a href="index.html">
+                    <span>G</span>rocery
+                    <span>S</span>hoppy
                     <img src="images/logo2.png" alt=" ">
                 </a>
             </h1>
@@ -80,8 +135,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <span class="fa fa-pencil-square-o" aria-hidden="true"></span> Đăng Ký</a>
                 </li>
                 <li>
-                    <a th:href="@{/account}">
-                        <span class="fa " aria-hidden="true" th:text="${account}"></span> </a>
+                    <p>Tài Khoản</p>
                 </li>
             </ul>
             <!-- //header lists -->
@@ -98,7 +152,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <!-- cart details -->
             <div class="top_nav_right">
                 <div class="wthreecartaits wthreecartaits2 cart cart box_1">
-                    <form action="@{/checkout}" method="post" class="last">
+                    <form action="checkout.html" method="post" class="last">
                         <input type="hidden" name="cmd" value="_cart">
                         <input type="hidden" name="display" value="1">
                         <button class="w3view-cart" type="submit" name="submit" value="">
@@ -135,18 +189,49 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 </a>
                             </li>
 
+                            <li class="dropdown">
+                                <a class="nav-stylehead dropdown-toggle" href="#" data-toggle="dropdown">Giới thiệu
+                                    <b class="caret"></b>
+                                </a>
+                                <ul class="dropdown-menu agile_short_dropdown">
+                                    <li>
+                                        <a th:href="@{/about}">Về chúng tôi</a>
+                                    </li>
+                                    <li>
+                                        <a th:href="@{/about2}">Về hệ thống phân phối</a>
+                                    </li>
+                                </ul>
+                            </li>
                             <li>
-                                <a class="nav-stylehead" th:href="@{/about}">Giới thiệu
+                                <a class="nav-stylehead" th:href="@{/document}">Tài liệu
                                     <span class="sr-only">(current)</span>
                                 </a>
+                            </li>
+                            <li>
+                                <a class="nav-stylehead" th:href="@{/recruitment}">Tuyển dụng
+                                    <span class="sr-only">(current)</span>
+                                </a>
+                            </li>
+                            <li class="dropdown">
+                                <a class="nav-stylehead dropdown-toggle" href="#" data-toggle="dropdown">Bảo hành
+                                    <b class="caret"></b>
+                                </a>
+                                <ul class="dropdown-menu agile_short_dropdown">
+                                    <li>
+                                        <a th:href="@{/warrantyPolicy}">Chính sách bảo hành</a>
+                                    </li>
+                                    <li>
+                                        <a th:href="@{/warrantySystem}">Hệ thống bảo hành</a>
+                                    </li>
+                                </ul>
                             </li>
                             <li>
                                 <a class="nav-stylehead" th:href="@{/contact}">Liên hệ
                                     <span class="sr-only">(current)</span>
                                 </a>
                             </li>
-                            <li class="dropdown" id = "quanly">
-                                <a class="nav-stylehead dropdown-toggle" href="@{/employeeManager}" data-toggle="dropdown">Quản lý
+                            <li class="dropdown" id="quanly">
+                                <a class="nav-stylehead dropdown-toggle" href="#" data-toggle="dropdown">Quản lý
                                     <b class="caret"></b>
                                 </a>
                                 <ul class="dropdown-menu agile_short_dropdown">
@@ -168,13 +253,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </div>
 <!-- //navigation -->
 <!-- banner-2 -->
-<div  class="row">
-    <div class=" col-sm-3 menuhorizontal" >
+<div class="row">
+    <div class=" col-sm-3 menuhorizontal">
         <h3>Danh mục</h3>
-        <ul class="menuhorizontallevel1" >
+        <ul class="menuhorizontallevel1">
 
-            <li class="a" th:each="cat:${categories}">
-                <a th:href="@{/products/{id}(id=${cat.id})}" th:text="${cat.name}" ></a>
+            <li class="a" th:each="cat:${categories}"><a th:href="@{/products/{id}(id=${cat.id})}"
+                                                         th:text="${cat.name}"></a>
 
             </li>
 
@@ -198,62 +283,123 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <a th:href="@{/products}">Trang chủ</a>
                     <i>|</i>
                 </li>
-                <li>
-                    <p>Danh sách tài khoản</p>
-                </li>
+                <li></li>
             </ul>
         </div>
     </div>
 </div>
 <!-- //page -->
 <!-- about page -->
+<!-- welcome -->
+<!--Danh sach san pham-->
 
+<div class="row">
+    <div >
+        <h2 class="heading hd-float">
+            <div class="tits">
+                <a href="#">Gia dụng nhật</a>
+            </div>
+        </h2>
+        <div class="row">
+            <div class="col-xs-1 "></div>
+            <div class="col-xs-10">
+                <div th:each="product : ${listProductDoGiaDungNhat}" >
+                    <div class="col-xs-3 product-men">
+                        <div class="men-pro-item simpleCart_shelfItem">
+                            <div class="men-thumb-item">
+                                <img src="images/k3.jpg" alt="">
+                            </div>
+                            <div class="item-info-product ">
+                                <h4>
+                                    <a href="single.html" th:text="${product.name}"></a>
+                                </h4>
+                                <div class="info-product-price">
+                                    <span class="item_price"  th:text="${product.price}" ></span>
+                                    <del>$1020.00</del>
+                                </div>
+                                <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
+                                    <form action="#" method="post">
+                                        <fieldset>
+                                            <input type="hidden" name="cmd" value="_cart" />
+                                            <input type="hidden" name="add" value="1" />
+                                            <input type="hidden" name="business" value=" " />
+                                            <input type="hidden" name="item_name" value="Zeeba Basmati Rice - 5 KG" />
+                                            <input type="hidden" name="amount" value="950.00" />
+                                            <input type="hidden" name="discount_amount" value="1.00" />
+                                            <input type="hidden" name="currency_code" value="USD" />
+                                            <input type="hidden" name="return" value=" " />
+                                            <input type="hidden" name="cancel_return" value=" " />
+                                            <input type="submit" name="submit" value="Add to cart" class="button" />
+                                        </fieldset>
+                                    </form>
+                                </div>
 
-<!-- Danh sách nhân viên-->
-<div class="container">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-1 "></div>
+        </div>
+    </div>
 
-    <table class="table table-striped">
-        <thead>
-        <tr>
-            <th>STT</th>
-            <th>Tên</th>
-            <th>Địa chỉ</th>
-            <th>Ngày sinh</th>
-            <th>Sđt</th>
-            <th>Email</th>
-            <th>loại </th>
-            <th>Sửa</th>
-            <th>Xóa</th>
-
-        </tr>
-        </thead>
-        <tbody >
-
-        <tr th:each="u : ${userList}">
-            <td th:text="${u.id}"></td>
-            <td th:text="${u.name}"></td>
-            <td th:text="${u.address}"></td>
-            <td th:text="${u.birth}"></td>
-            <td th:text="${u.phone}"></td>
-            <td th:text="${u.mail}"></td>
-            <td th:text="${u.accountType}"></td>
-
-            <td>
-                <form th:action = "@{/editUser/{id}(id=${u.id})}">
-                    <input type="submit" value="Sửa" class="btn btn-success btn-sm"/>
-
-                </form>
-            </td>
-            <td><button type="button" class="btn btn-danger btn-sm">Xóa</button></td>
-
-
-        </tr>
-
-        </tbody>
-    </table>
 </div>
-<!-- Danh sách nhân viên-->
 
+<!--Danh sach san pham-->
+
+
+
+<!-- //welcome -->
+<!-- video -->
+<div class="about">
+    <div class="container">
+        <!-- tittle heading -->
+        <h3 class="tittle-w3l">Video
+            <span class="heading-style">
+					<i></i>
+					<i></i>
+					<i></i>
+				</span>
+        </h3>
+        <!-- //tittle heading -->
+        <div class="about-tp">
+            <div class="col-md-8 about-agileits-w3layouts-left">
+                <iframe src="https://player.vimeo.com/video/15520702?color=ffffff&title=0&byline=0"></iframe>
+            </div>
+            <div class="col-md-4 about-agileits-w3layouts-right">
+                <div class="img-video-about">
+                    <img src="images/videoimg2.png" alt="">
+                </div>
+                <h4>Grocery Shoppy</h4>
+                <p>Thị trường thương mại điện tử hàng đầu với hơn 70 triệu sản phẩm</p>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>
+<!-- //video-->
+<!-- //about page -->
+<!-- newsletter -->
+<div class="footer-top">
+    <div class="container-fluid">
+        <div class="col-xs-8 agile-leftmk">
+            <h2>Nhận hàng tạp hóa của bạn được giao từ các cửa hàng địa phương</h2>
+            <p>Giao hàng miễn phí cho đơn hàng đầu tiên của bạn!</p>
+            <form action="#" method="post">
+                <input type="email" placeholder="E-mail" name="email" required="">
+                <input type="submit" value="Đăng ký">
+            </form>
+            <div class="newsform-w3l">
+                <span class="fa fa-envelope-o" aria-hidden="true"></span>
+            </div>
+        </div>
+        <div class="col-xs-4 w3l-rightmk">
+            <img src="images/tab3.png" alt=" ">
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</div>
+<!-- //newsletter -->
 <!-- footer -->
 <footer>
     <div class="container">
@@ -350,11 +496,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <h3>Liên lạc</h3>
                     <ul>
                         <li>
-                            <i class="fa fa-map-marker"></i> 62/46 Huỳnh Khương AN</li>
+                            <i class="fa fa-map-marker"></i> 62/46 Huỳnh Khương AN
+                        </li>
                         <li>
-                            <i class="fa fa-mobile"></i> 0163 884 5676</li>
+                            <i class="fa fa-mobile"></i> 0163 884 5676
+                        </li>
                         <li>
-                            <i class="fa fa-phone"></i> +84 38 845 676 </li>
+                            <i class="fa fa-phone"></i> +84 38 845 676
+                        </li>
                         <li>
                             <i class="fa fa-envelope-o"></i>
                             <a href="vothittuoanh2911@gmail.com"> minhnguyenoanh@gmail.com</a>
@@ -393,7 +542,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <a href="#">
                         <img src="images/2.png" alt="">
                     </a>
-                    <div class="clearfix"> </div>
+                    <div class="clearfix"></div>
                 </div>
             </div>
             <!-- //social icons -->
@@ -446,7 +595,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-- copyright -->
 <div class="copy-right">
     <div class="container">
-        <p>© 2020 MON. Minh Nguyên Oanh
+        <p>© 2020 Grocery Shoppy. Minh Nguyên Oanh
 
         </p>
     </div>
@@ -475,7 +624,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			});
 
 		});
-	</script>
+
+
+
+
+
+</script>
 <!-- Large modal -->
 <!-- <script>
     $('#').modal('show');
@@ -503,7 +657,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				evt.preventDefault();
 			}
 		});
-	</script>
+
+
+
+
+
+</script>
 <!-- //cart-js -->
 
 <!-- password-script -->
@@ -522,7 +681,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				document.getElementById("password2").setCustomValidity('');
 			//empty string means no validation error
 		}
-	</script>
+
+
+
+
+
+</script>
 <!-- //password-script -->
 
 <!-- smoothscroll -->
@@ -542,7 +706,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				}, 1000);
 			});
 		});
-	</script>
+
+
+
+
+
+</script>
 <!-- //end-smooth-scrolling -->
 
 <!-- smooth-scrolling-of-move-up -->
@@ -561,7 +730,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			});
 
 		});
-	</script>
+
+
+
+
+
+</script>
 <!-- //smooth-scrolling-of-move-up -->
 
 <!-- for bootstrap working -->
