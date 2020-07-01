@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import javax.servlet.http.HttpSession;
 import java.util.Date;
 import java.util.List;
 
@@ -41,6 +42,15 @@ public class OrderController {
         orderDetail.setQuantity(15);
         orderService.createAndUpdate(orderDetail);
 //        productService.createAndUpdate(product);
+        return "redirect:/products";
+
+    }
+    @PostMapping("/payment")
+    public String payment(Model model, HttpSession session) throws ResourceNotFoundException {
+        if (!session.getAttributeNames().hasMoreElements()) {
+            return "redirect:/login";
+        }
+
         return "redirect:/products";
 
     }
