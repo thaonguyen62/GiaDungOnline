@@ -70,7 +70,7 @@ public class OrderImpl implements OrderService {
     public List<OrderDetail> getAllOrderByCustomer(String id) throws ResourceNotFoundException {
         List<OrderDetail> list = orderRepository.findByCustomer(id);
         if (list.isEmpty()) {
-            throw new ResourceNotFoundException("Order not found ");
+           return new ArrayList<>();
         }
         return list;
     }
