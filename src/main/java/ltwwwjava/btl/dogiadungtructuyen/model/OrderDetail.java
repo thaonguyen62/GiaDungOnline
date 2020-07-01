@@ -19,7 +19,7 @@ public class OrderDetail implements Serializable {
     private Date billDate;
     private double tax;
     private String customer;
-    private String products;
+    private Product products;
     private int quantity;
     private String orderId;
     //private String serviceAddress;
