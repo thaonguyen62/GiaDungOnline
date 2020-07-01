@@ -42,6 +42,6 @@ public class OrderController {
         orderService.createAndUpdate(orderDetail);
 //        productService.createAndUpdate(product);
         return "redirect:/products";
-
     }
+
 }
