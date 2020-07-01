@@ -45,7 +45,7 @@ public class UserController {
 
         if (userService.checkUserNameAndPassword(personForm.getUsername(), personForm.getPassword())){
             session.setAttribute("mySessionAttribute", personForm.getUsername());
-
+            session.setAttribute("type",personForm.getAccountType());
             return "redirect:/products";
         }
 
