@@ -351,11 +351,13 @@ display:block;
                 </td>
                 <td colspan="2" class="hidden-xs"> </td>
                 <td class="hidden-xs text-center"><strong>Tổng tiền 500.000 đ</strong>
-                </td>
-                <td><a href="http://hocwebgiare.com/" class="btn btn-success btn-block">Thanh toán <i class="fa fa-angle-right"></i></a>
-                </td>
+                 <form th:action="@{/payment}" method="post" >
+                    <td><input type="submit" name="submit" value="Thanh toán" class="button" />
+
+                    </td>
+                </form>
             </tr>
-            </tfoot>
+             </tfoot>
             </table>
         </div>
     </div>

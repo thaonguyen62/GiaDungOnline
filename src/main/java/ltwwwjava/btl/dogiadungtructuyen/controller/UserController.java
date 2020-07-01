@@ -16,6 +16,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.List;
 
@@ -39,12 +40,15 @@ public class UserController {
         model.addAttribute("personFormLogin", personForm);
         return "login";
     }
-
     @PostMapping("/login")
-    public String login(Model model, @ModelAttribute("personFormLogin") UserDTO personForm) throws ResourceNotFoundException {
+    public String login(Model model, @ModelAttribute("personFormLogin") UserDTO personForm, HttpSession session) throws ResourceNotFoundException {
 
-        if (userService.checkUserNameAndPassword(personForm.getUsername(), personForm.getPassword()))
+        if (userService.checkUserNameAndPassword(personForm.getUsername(), personForm.getPassword())){
+            session.setAttribute("mySessionAttribute", personForm.getUsername());
+
             return "redirect:/products";
+        }
+
         model.addAttribute("errorMessageLogin", Constants.USERNAME_PASSWORD_IS_INCORRECT);
         return "login";
     }
