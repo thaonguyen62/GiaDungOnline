@@ -52,17 +52,13 @@ public class ProductController {
         return "index";
     }
 
-
-
-    @GetMapping("/cart")
-     public String getAllProductsd(Model model) {
-
-        return "cartt";
-    }
-    @GetMapping("/dshd")
-    public String getAllProductsdd(Model model) {
-
-        return "dshdd";
+    @GetMapping("/list-product")
+    public String getListProduct(Model model) throws ResourceNotFoundException{
+        List<Product> list = productService.findAll();
+        List<Category> listCat = categoryRepository.findAll();
+        model.addAttribute("listProduct", list);
+        model.addAttribute("categories", listCat);
+        return "list-product";
     }
 
 
@@ -127,12 +123,12 @@ public class ProductController {
     public String updateProduct(@PathVariable(value = "id") String id, Model model, @Valid Product product, BindingResult result) throws ResourceNotFoundException {
         if (result.hasErrors()) {
             product.setId(id);
-            return "edit-product";
+            return "redirect:/edit-products/{id}";
         }
 
         productService.createAndUpdate(product);
         model.addAttribute("products", productService.findAll());
-        return "redirect:/index";
+        return "redirect:/list-product";
 
     }
 
@@ -140,7 +136,7 @@ public class ProductController {
     public String deleteProduct(@PathVariable("id") String id, Model model) throws ResourceNotFoundException {
         productService.delete(id);
         model.addAttribute("products", productService.findAll());
-        return "index";
+        return "redirect:/list-product";
     }
 
     @GetMapping("/products/product")
@@ -149,6 +145,8 @@ public class ProductController {
         model.addAttribute("products", list);
         return "product";
     }
+
+
 
 
 }

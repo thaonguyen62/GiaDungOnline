@@ -182,36 +182,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-- banner-2 -->
 <div  class="row">
     <div class=" col-sm-3 menuhorizontal" >
-        <h3>Danh sách sản phẩm</h3>
+        <h3>Danh mục</h3>
         <ul class="menuhorizontallevel1">
 
-            <li><a href="#">Điện gia dụng</a>
-                <ul class="menuhorizontallevel2">
-                    <li><a href="#">Nồi cơm điện</a></li>
-                    <li><a href="#">Lò nướng</a></li>
-                    <li><a href="#">Bếp điện</a></li>
-                </ul>
+            <li class="a" th:each="cat:${categories}">
+                <a th:href="@{/products/{id}(id=${cat.id})}" th:text="${cat.name}"></a>
             </li>
-            <li><a href="#">Gia dụng</a>
-                <ul class="menuhorizontallevel2">
-                    <li><a href="#">Chảo</a></li>
-                    <li><a href="#">Nồi</a></li>
-                    <li><a href="#">Hộp đựng</a></li>
-                </ul>
-            </li>
-            <li><a href="#">Thiết bị làm mát</a>
-                <ul class="menuhorizontallevel2">
-                    <li><a href="#">Quạt</a></li>
-                    <li><a href="#">Điều hòa</a></li>
-
-                </ul>
-            </li>
-            <li><a href="#">Thiết bị lọc nước</a></li>
-            <li><a href="#">Thiết bị khác</a></li>
 
 
         </ul>
-
     </div>
     <div class="page-head_agile_info_w3l col-sm-9">
 
