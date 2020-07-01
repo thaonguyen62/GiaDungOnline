@@ -34,7 +34,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 </div>
                 <div class="modal_body_left modal_body_left1">
                     <h3 class="agileinfo_sign">Chỉnh sửa thông tin</h3>
-                    <form th:action="@{/editemployee}"
+                    <form th:action="@{/editUser/{id}(id=${personForm.id})}"
                           th:object="${personForm}" method="POST">
 
                         <input placeholder="Tên" type="text" th:field="*{name}" required=""/>
@@ -50,9 +50,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <input placeholder="Email" type="text" th:field="*{mail}" required=""/>
                         <br/>
                         <input placeholder="Mật khẩu" type="password" th:field="*{password}" required=""/>
-<!--                        <br/>-->
-<!--                        <input placeholder="Nhập lại mật khẩu" type="password" th:field="*{retypePassword}" required=""/>-->
-<!--                        <br/>-->
+                        <br/>
+                        <input placeholder="Nhập lại mật khẩu" type="password" th:field="*{retypePassword}" required=""/>
+                        <br/>
                         <input type="submit" value="Edit"/>
                     </form>
                     <div th:if="${errorMessage}" th:utext="${errorMessage}"
