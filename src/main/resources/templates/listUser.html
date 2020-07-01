@@ -244,7 +244,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
                 </form>
             </td>
-            <td><button type="button" class="btn btn-danger btn-sm">Xóa</button></td>
+
+            <td>
+                <form th:action = "@{/deleteUser/{id}(id=${u.id})}">
+                    <input type="submit" value="Xóa" class="btn btn-danger btn-sm"/>
+
+                </form>
+
+            </td>
 
 
         </tr>
