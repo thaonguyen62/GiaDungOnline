@@ -95,6 +95,12 @@ public class HtmlController {
         return "warrantySystem";
     }
 
+    @GetMapping("/edit-cat")
+    public String getSystem(Model model) {
+
+        return "edit-cat";
+    }
+
     
 
 

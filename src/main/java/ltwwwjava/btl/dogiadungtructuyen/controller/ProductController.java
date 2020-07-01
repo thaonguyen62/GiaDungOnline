@@ -5,6 +5,7 @@ import ltwwwjava.btl.dogiadungtructuyen.model.Category;
 import ltwwwjava.btl.dogiadungtructuyen.model.Product;
 import ltwwwjava.btl.dogiadungtructuyen.repository.CategoryRepository;
 import ltwwwjava.btl.dogiadungtructuyen.repository.ProductRepository;
+import ltwwwjava.btl.dogiadungtructuyen.service.CategoryService;
 import ltwwwjava.btl.dogiadungtructuyen.service.impl.ProductImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
@@ -32,9 +33,9 @@ public class ProductController {
     @Autowired
     private ProductImpl productService;
     @Autowired
-    private ProductRepository productRepository;
-    @Autowired
     private CategoryRepository categoryRepository;
+    @Autowired
+    private CategoryService categoryService;
 
     private final String UPLOAD_DIR = "src\\main\\resources\\static\\images\\";
 
@@ -50,6 +51,7 @@ public class ProductController {
         model.addAttribute("listProductBepDien",list2);
         return "index";
     }
+
 
 
     @GetMapping("/cart")
@@ -111,14 +113,17 @@ public class ProductController {
 
     }
 
-    @GetMapping("/edit-products")
+    @GetMapping("/edit-products/{id}")
     public String showUpdateForm(@PathVariable("id") String id, Model model) throws ResourceNotFoundException {
-        Product product = productService.findById(id);
-        model.addAttribute("product", product);
+
+            Product product = productService.findById(id);
+            model.addAttribute("product",product);
+            List<Category> list = categoryService.getAllCategory();
+            model.addAttribute("list", list);
         return "edit-product";
     }
 
-    @PutMapping("/edit-products")
+    @PostMapping("/edit-product/{id}")
     public String updateProduct(@PathVariable(value = "id") String id, Model model, @Valid Product product, BindingResult result) throws ResourceNotFoundException {
         if (result.hasErrors()) {
             product.setId(id);

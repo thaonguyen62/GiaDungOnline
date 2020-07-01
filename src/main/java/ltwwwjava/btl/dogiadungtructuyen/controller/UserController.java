@@ -37,7 +37,7 @@ public class UserController {
     public String showAddPersonPage(Model model) {
         UserDTO personForm = new UserDTO();
         model.addAttribute("personForm", personForm);
-        
+
         return "register";
     }
 
