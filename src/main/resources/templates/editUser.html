@@ -50,12 +50,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <input placeholder="Email" type="text" th:field="*{mail}" required=""/>
                         <br/>
                         <input placeholder="Mật khẩu" type="password" th:field="*{password}" required=""/>
-                        <br/>
-                        <input placeholder="Nhập lại mật khẩu" type="password" th:field="*{retypePassword}" required=""/>
-                        <br/>
+<!--                        <br/>-->
+<!--                        <input placeholder="Nhập lại mật khẩu" type="password" th:field="*{retypePassword}" required=""/>-->
+<!--                        <br/>-->
                         <input type="submit" value="Edit"/>
                     </form>
-
+                    <div th:if="${errorMessage}" th:utext="${errorMessage}"
+                         style="color:red;font-style:italic;">
+                        ...
+                    </div>
 
                 </div>
             </div>

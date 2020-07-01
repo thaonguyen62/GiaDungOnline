@@ -227,17 +227,23 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
         </tr>
         </thead>
-        <tbody>
-        <tr>
-            <td>1</td>
-            <td>Oanh</td>
-            <td>Nghệ An</td>
-            <td>22-11-199</td>
-            <td>099999999</td>
-            <td>john@example.com</td>
-            <td>1</td>
+        <tbody >
 
-            <td><button type="button" class="btn btn-success btn-sm">Sửa</button></td>
+        <tr th:each="u : ${userList}">
+            <td th:text="${u.id}"></td>
+            <td th:text="${u.name}"></td>
+            <td th:text="${u.address}"></td>
+            <td th:text="${u.birth}"></td>
+            <td th:text="${u.phone}"></td>
+            <td th:text="${u.mail}"></td>
+            <td th:text="${u.accountType}"></td>
+
+            <td>
+                <form th:action = "@{/editUser/{id}(id=${u.id})}">
+                    <input type="submit" value="Sửa" class="btn btn-success btn-sm"/>
+
+                </form>
+            </td>
             <td><button type="button" class="btn btn-danger btn-sm">Xóa</button></td>
 
 
