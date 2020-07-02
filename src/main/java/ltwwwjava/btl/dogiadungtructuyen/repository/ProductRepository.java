@@ -4,6 +4,7 @@ package ltwwwjava.btl.dogiadungtructuyen.repository;
 import ltwwwjava.btl.dogiadungtructuyen.model.Category;
 import ltwwwjava.btl.dogiadungtructuyen.model.Product;
 import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 import java.util.Optional;

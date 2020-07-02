@@ -4,6 +4,8 @@ import ltwwwjava.btl.dogiadungtructuyen.exception.ResourceNotFoundException;
 import ltwwwjava.btl.dogiadungtructuyen.model.Category;
 import ltwwwjava.btl.dogiadungtructuyen.model.Product;
 import ltwwwjava.btl.dogiadungtructuyen.repository.CategoryRepository;
+import ltwwwjava.btl.dogiadungtructuyen.service.CategoryService;
+import ltwwwjava.btl.dogiadungtructuyen.service.ProductService;
 import ltwwwjava.btl.dogiadungtructuyen.service.impl.CategoryImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,7 +22,9 @@ public class CategoryController {
     @Autowired
     private CategoryRepository categoryRepository;
     @Autowired
-    private CategoryImpl categoryService;
+    private CategoryService categoryService;
+    @Autowired
+    private ProductService productService;
 
     @GetMapping("/list-cats")
     public String getlistCat(Model model) {
@@ -75,5 +79,13 @@ public class CategoryController {
         model.addAttribute("list", list);
         return "redirect:/list-cats";
     }
+
+    @GetMapping("/products/cat/{id}")
+    public String findProductByCat(@PathVariable("id") String id, Model model) throws ResourceNotFoundException {
+        model.addAttribute("list",productService.findProductByCategory(id));
+        model.addAttribute("categories",categoryService.getAllCategory());
+        return "list-products-cat";
+    }
+
 
 }

@@ -113,9 +113,8 @@ public class ProductController {
 
     }
 
-    @GetMapping("/edit-products/{id}")
+    @GetMapping("/edit-product/{id}")
     public String showUpdateForm(@PathVariable("id") String id, Model model) throws ResourceNotFoundException {
-
             Product product = productService.findById(id);
             model.addAttribute("product",product);
             List<Category> list = categoryService.getAllCategory();
@@ -149,6 +148,7 @@ public class ProductController {
         model.addAttribute("products", list);
         return "product";
     }
+
 
 
 

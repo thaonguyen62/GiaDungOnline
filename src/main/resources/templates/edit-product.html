@@ -20,15 +20,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
     </style>
     <!--//tags -->
-    <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all"/>
-    <link href="css/style.css" rel="stylesheet" type="text/css" media="all"/>
-    <link href="css/font-awesome.css" rel="stylesheet">
+    <link href="/houseware-service/css/bootstrap.css" rel="stylesheet" type="text/css" media="all"/>
+    <link href="/houseware-service/css/style.css" rel="stylesheet" type="text/css" media="all"/>
+    <link href="/houseware-service/css/font-awesome.css" rel="stylesheet">
     <!--pop-up-box-->
-    <link href="css/popuo-box.css" rel="stylesheet" type="text/css" media="all"/>
+    <link href="/houseware-service/css/popuo-box.css" rel="stylesheet" type="text/css" media="all"/>
     <!--//pop-up-box-->
     <!-- price range -->
-    <link rel="stylesheet" type="text/css" href="css/jquery-ui1.css">
-    <!-- fonts -->
+    <link rel="stylesheet" type="text/css" href="/houseware-service/css/jquery-ui1.css">
 
 </head>
 <body>
@@ -184,10 +183,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <h3>Danh mục</h3>
         <ul class="menuhorizontallevel1">
 
-            <li class="a" th:each="cat:${categories}"><a th:href="@{/products/{cat.id}}" th:text="${cat.name}"></a>
+            <li class="a" th:each="cat:${list}">
+                <a th:href="@{/products/cat/{id}(id=${cat.id})}" th:text="${cat.name}"></a>
             </li>
-
-
         </ul>
 
     </div>
@@ -203,7 +201,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <div class="card-body">
                 <div class="col-md-10">
                     <!--Sửa lại đường dẫn -->
-                    <form th:action="@{/edit-product/_${product.id}_}" th:object="${product}" method="post" enctype="multipart/form-data">
+                    <form th:action="@{/edit-product/{id}(id=${product.id})}" th:object="${product}" method="post" enctype="multipart/form-data">
                         <div class="row">
                             <div class="form-group col-md-8">
                                 <label for="name" class="col-form-label">Name</label> <input type="text" th:field="*{name}" class="form-control" id="name" placeholder="Name" required> <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="text-danger"></span>
