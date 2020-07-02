@@ -154,10 +154,8 @@ margin-top: 10px;
             <!-- cart details -->
             <div class="top_nav_right">
                 <div class="wthreecartaits wthreecartaits2 cart cart box_1">
-                    <form action="@{/checkout}" method="post" class="last">
-                        <input type="hidden" name="cmd" value="_cart">
-                        <input type="hidden" name="display" value="1">
-                        <button class="w3view-cart" type="submit" name="submit" value="">
+                    <form th:action="@{/cart}" method="get" class="last">
+                        <button class="w3view-cart" type="submit" value="">
                             <i class="fa fa-cart-arrow-down" aria-hidden="true"></i>
                         </button>
                     </form>
@@ -201,7 +199,7 @@ margin-top: 10px;
                                     <span class="sr-only">(current)</span>
                                 </a>
                             </li>
-                            <li class="dropdown" id = "quanly" ">
+                            <li class="dropdown" id = "quanly" >
                                 <a class="nav-stylehead dropdown-toggle" th:href="@{/employeeManager}" data-toggle="dropdown">Quản lý
                                     <b class="caret"></b>
                                 </a>
@@ -337,11 +335,7 @@ margin-top: 10px;
                                     <del>$1020.00</del>
                                 </div>
                                 <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
-                                    <form th:action="@{/add-cart}" method="post" th:object="${product}">
-                                        <fieldset>
-                                            <input type="submit" name="submit" value="Mua hàng" class="button" />
-                                        </fieldset>
-                                    </form>
+                                    <a th:href="@{/cart/product/{id}(id=${product.id})}">Mua Hang</a>
                                 </div>
 
                             </div>
@@ -364,7 +358,7 @@ margin-top: 10px;
         <div class="row">
             <div class="col-xs-1 "></div>
             <div class="col-xs-10">
-                <div th:each="product : ${listProductMayLoNuong}" >
+                <div th:each="product : ${listProductLoNuong}" >
                     <div class="col-xs-3 product-men">
                         <div class="men-pro-item simpleCart_shelfItem">
                             <div class="men-thumb-item">
@@ -379,12 +373,7 @@ margin-top: 10px;
                                     <del>$1020.00</del>
                                 </div>
                                 <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
-                                    <form th:action="@{/add-cart}" method="post" th:object="${product}">
-                                        <fieldset>
-                                            <input type="submit" name="submit" value="Mua hàng" class="button" />
-                                        </fieldset>
-
-                                    </form>
+                                    <a th:href="@{/cart/product/{id}(id=${product.id})}">Mua Hang</a>
                                 </div>
 
                             </div>
@@ -407,7 +396,7 @@ margin-top: 10px;
         <div class="row">
             <div class="col-xs-1 "></div>
             <div class="col-xs-10">
-                <div th:each="product : ${listProductMayNoi}" >
+                <div th:each="product : ${listProductNoiCacLoai}" >
                     <div class="col-xs-3 product-men">
                         <div class="men-pro-item simpleCart_shelfItem">
                             <div class="men-thumb-item">
@@ -422,11 +411,7 @@ margin-top: 10px;
                                     <del>$1020.00</del>
                                 </div>
                                 <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
-                                    <form th:action="@{/add-cart}" method="post" th:object="${product}">
-                                        <fieldset>
-                                            <input type="submit" name="submit" value="Mua hàng" class="button" />
-                                        </fieldset>
-                                    </form>
+                                    <a th:href="@{/cart/product/{id}(id=${product.id})}">Mua Hang</a>
                                 </div>
 
                             </div>

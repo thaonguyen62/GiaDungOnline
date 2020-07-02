@@ -49,6 +49,10 @@ public class ProductController {
         model.addAttribute("listProductDoGiaDungNhat",list1);
         List<Product> list2=productService.findProductByCategory(listCat.get(1).getId());
         model.addAttribute("listProductBepDien",list2);
+        List<Product> list3=productService.findProductByCategory(listCat.get(5).getId());
+        model.addAttribute("listProductLoNuong",list3);
+        List<Product> list4=productService.findProductByCategory(listCat.get(6).getId());
+        model.addAttribute("listProductNoiCacLoai",list4);
         return "index";
     }
 
