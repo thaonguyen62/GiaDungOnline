@@ -39,6 +39,13 @@ public class ProductController {
 
     private final String UPLOAD_DIR = "src\\main\\resources\\static\\images\\";
 
+    @GetMapping("/products/name")
+    public String findProductByName(@RequestParam(value =  "name",required = true) String name,Model model) throws ResourceNotFoundException{
+        model.addAttribute("categories",categoryService.getAllCategory());
+        model.addAttribute("list",productService.findProductByName(name));
+        return "single";
+    }
+
     @GetMapping("/products")
     public String getAllProducts(Model model) throws ResourceNotFoundException{
         List<Product> list = productService.findAll();
@@ -62,13 +69,13 @@ public class ProductController {
     }
 
 
-    @GetMapping("/products/{id}")
+    /*@GetMapping("/products/{id}")
     public String getProductById(@PathVariable(value = "id") String id, Model model) throws ResourceNotFoundException {
         Optional<Category> c = categoryRepository.findById(id);
 
         model.addAttribute("c", c);
         return "single";
-    }
+    }*/
 
     @RequestMapping(value = {"/add-product"}, method = RequestMethod.GET)
     public String showAddProductPage(Model model) {
