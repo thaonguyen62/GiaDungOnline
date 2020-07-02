@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class OrderImpl implements OrderService {
@@ -39,6 +40,11 @@ public class OrderImpl implements OrderService {
     }
 
     public OrderDetail createAndUpdate(OrderDetail orderDetail) throws ResourceNotFoundException {
+        Optional<OrderDetail> orderDetailOptional = orderRepository.findByCustomerAndProductsId(orderDetail.getCustomer(), orderDetail.getProducts().getId());
+        if (orderDetailOptional.isPresent()) {
+            orderDetailOptional.get().setQuantity(orderDetailOptional.get().getQuantity() + 1);
+            return orderRepository.save(orderDetailOptional.get());
+        }
         return orderRepository.save(orderDetail);
     }
 

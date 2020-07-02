@@ -6,12 +6,14 @@ import ltwwwjava.btl.dogiadungtructuyen.model.OrderDetail;
 import ltwwwjava.btl.dogiadungtructuyen.model.Product;
 import ltwwwjava.btl.dogiadungtructuyen.repository.CategoryRepository;
 import ltwwwjava.btl.dogiadungtructuyen.service.OrderService;
+import ltwwwjava.btl.dogiadungtructuyen.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.servlet.http.HttpSession;
@@ -24,6 +26,8 @@ public class OrderController {
     private OrderService orderService;
     @Autowired
     private CategoryRepository categoryRepository;
+    @Autowired
+    private ProductService productService;
 
     @GetMapping("/cart")
     public String getCart(Model model, HttpSession session) throws ResourceNotFoundException {
@@ -38,6 +42,15 @@ public class OrderController {
         List<Category> listCat = categoryRepository.findAll();
         model.addAttribute("categories", listCat);
         return "cartt";
+    }
+    @GetMapping("/list_order")
+    public String getAllCart(Model model) throws ResourceNotFoundException {
+
+        List<OrderDetail> list = orderService.getAll();
+        model.addAttribute("listOrder", list);
+        List<Category> listCat = categoryRepository.findAll();
+        model.addAttribute("categories", listCat);
+        return "dshdd";
     }
 
     @PostMapping("/add-cart")
@@ -78,4 +91,23 @@ public class OrderController {
         return "redirect:/products";
 
     }
+    @GetMapping("/cart/product/{id}")
+    public String addToCart(@PathVariable(value = "id") String id, Model model,HttpSession session) throws ResourceNotFoundException {
+        Product product = productService.findById(id);
+        OrderDetail orderDetail = new OrderDetail();
+        orderDetail.setBillDate(new Date());
+        String usernameCustomer;
+        if (!session.getAttributeNames().hasMoreElements()) {
+            usernameCustomer = session.getId();
+        } else {
+            usernameCustomer = session.getAttribute("mySessionAttribute").toString();
+        }
+        orderDetail.setCustomer(usernameCustomer);
+        orderDetail.setProducts(product);
+        orderDetail.setQuantity(1);
+        orderService.createAndUpdate(orderDetail);
+        return "redirect:/products";
+    }
+
+
 }

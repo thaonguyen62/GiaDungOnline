@@ -10,9 +10,6 @@ import java.util.Date;
 @Data
 @Document
 public class OrderDetail implements Serializable {
-
-
-
     @Id
     private String id;
     private int status;
