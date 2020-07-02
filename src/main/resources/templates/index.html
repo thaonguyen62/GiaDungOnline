@@ -284,11 +284,11 @@ margin-top: 10px;
                     <div class="col-xs-3 product-men">
                         <div class="men-pro-item simpleCart_shelfItem">
                             <div class="men-thumb-item">
-                                <img src="images/k3.jpg" alt="">
+                                <img src="images/k3.jpg" alt="" >
                             </div>
                             <div class="item-info-product ">
                                 <h4>
-                                    <a href="single.html" th:text="${product.name}"></a>
+                                    <a th:href="@{/product/{id}(id=${product.id})}" th:text="${product.name}"></a>
                                 </h4>
                                 <div class="info-product-price">
                                     <span class="item_price"  th:text="${product.price}" ></span>

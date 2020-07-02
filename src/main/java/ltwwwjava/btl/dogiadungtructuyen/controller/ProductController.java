@@ -113,6 +113,18 @@ public class ProductController {
 
     }
 
+
+    @GetMapping("/product/{id}")
+    public String getDetailProduct(@PathVariable("id") String id, Model model) throws ResourceNotFoundException {
+        List<Category> listCat = categoryRepository.findAll();
+        model.addAttribute("categories", listCat);
+        Product product = productService.findById(id);
+        model.addAttribute("productDetail",product);
+        List<Category> list = categoryService.getAllCategory();
+        model.addAttribute("list", list);
+        return "productDetail";
+    }
+
     @GetMapping("/edit-product/{id}")
     public String showUpdateForm(@PathVariable("id") String id, Model model) throws ResourceNotFoundException {
             Product product = productService.findById(id);
