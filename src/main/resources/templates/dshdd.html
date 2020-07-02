@@ -264,13 +264,15 @@ tr:nth-child(even) {
                 <th>Đơn giá</th>
                 <th>Khách hàng</th>
                 <th>Trạng thái</th>
+
             </tr>
-            <tr>
-                <td> </td>
-                <td></td>
-                <td> </td>
-                <th></th>
-                <th></th>
+            <tr th:each="order : ${listOrder}">
+                <td th:text="${order.products.name}"> </td>
+                <td th:text="${order.quantity}"></td>
+                <td th:text="${order.tax}"> </td>
+                <th th:text="${order.customer}"></th>
+                <th th:text="${order.status}"></th>
+
             </tr>
 
         </table>

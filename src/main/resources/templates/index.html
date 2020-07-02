@@ -299,12 +299,7 @@ margin-top: 10px;
                                 </div>
                                 <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
 
-                                    <form th:action="@{/add-cart}" method="post" th:object="${product}">
-                                        <fieldset>
-
-                                            <input type="submit" name="submit" value="Mua hàng" class="button" />
-                                        </fieldset>
-                                    </form>
+                                    <a th:href="@{/cart/product/{id}(id=${product.id})}">Mua Hang</a>
                                 </div>
 
                             </div>

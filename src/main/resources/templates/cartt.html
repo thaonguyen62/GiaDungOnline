@@ -122,7 +122,7 @@ display:block;
         <!-- header-bot-->
         <div class="col-md-4 logo_agile">
             <h1>
-                <a href="index.html">
+                <a th:href="@{/products}">
                     <span>G</span>rocery
                     <span>S</span>hoppy
                     <img src="images/logo2.png" alt=" ">
@@ -197,9 +197,7 @@ display:block;
                     <div class="collapse navbar-collapse menu--shylock" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav menu__list">
                             <li>
-                                <a class="nav-stylehead" th:href="@{/products}">Trang chủ
-                                    <span class="sr-only">(current)</span>
-                                </a>
+                                <a th:href="@{/products}">Trang chủ</a>
                             </li>
 
                             <li class="dropdown">
@@ -321,18 +319,22 @@ display:block;
                 <tbody><tr th:each="order:${listOrder}">
                     <td data-th="Product">
                         <div class="row">
-                            <div class="col-sm-2 hidden-xs"><img src="http://hocwebgiare.com/thiet_ke_web_chuan_demo/shopping_cart/images/090.jpg" alt="Sản phẩm 1" class="img-responsive" width="100">
+                            <div class="col-sm-2 hidden-xs"><img
+                                    src="http://hocwebgiare.com/thiet_ke_web_chuan_demo/shopping_cart/images/090.jpg"
+                                    alt="Sản phẩm 1" class="img-responsive" width="100">
                             </div>
                             <div class="col-sm-10">
-                                <h4 class="nomargin">Sản phẩm 1</h4>
-                                <p>Mô tả của sản phẩm 1</p>
+                                <h4 class="nomargin" th:text="${order.products.name}"></h4>
+                                <p th:text="${order.products.description}"></p>
                             </div>
                         </div>
                     </td>
-                    <td data-th="Price">200.000 đ</td>
-                    <td data-th="Quantity"><input class="form-control text-center" value="1" type="number">
+                    <td th:text="${order.products.description}"></td>
+                    <td data-th="Quantity"><input class="form-control text-center" th:value="${order.quantity}"
+                                                  type="number">
                     </td>
-                    <td data-th="Subtotal" class="text-center">200.000 đ</td>
+                    <td data-th="Subtotal" class="text-center"
+                        th:with="result=${order.quantity * order.products.price}" th:text="${result}"></td>
                     <td class="actions" data-th="">
                         <button class="btn btn-info btn-sm"><i class="fa fa-edit"></i>
                         </button>
@@ -341,9 +343,10 @@ display:block;
                     </td>
                 </tr>
 
+
                 </tbody><tfoot>
             <tr class="visible-xs">
-                <td class="text-center"><strong>Tổng 200.000 đ</strong>
+                <td class="text-center" ><strong></strong>
                 </td>
             </tr>
             <tr>
