@@ -15,4 +15,7 @@ public interface ProductService {
     boolean delete(String id) throws ResourceNotFoundException;
 
     List<Product> findProductByName(String name) throws ResourceNotFoundException;
+
+    List<Product> findProductByCategory(String idCat) throws ResourceNotFoundException;
+
 }
