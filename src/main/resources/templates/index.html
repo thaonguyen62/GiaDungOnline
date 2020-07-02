@@ -237,8 +237,7 @@ margin-top: 10px;
         <ul class="menuhorizontallevel1" >
 
             <li class="a" th:each="cat:${categories}">
-                <a th:href="@{/products/{id}(id=${cat.id})}" th:text="${cat.name}" ></a>
-
+                <a th:href="@{/products/cat/{id}(id=${cat.id})}" th:text="${cat.name}"></a>
             </li>
 
 
