@@ -1,98 +1,48 @@
-<!--
-Author: W3layouts
-Author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
--->
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
-
-    <title>about</title>
-    <!--/tags -->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="keywords" content="MON Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
-Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
-    <script>
-		addEventListener("load", function () {
-			setTimeout(hideURLbar, 0);
-		}, false);
-
-		function hideURLbar() {
-			window.scrollTo(0, 1);
-		}
-	</script>
-    <!--style-->
-
+    <meta charset="UTF-8">
+    <title>Title</title>
     <style>
-.danhmuc{
+        .col-xs-12 {
+            width: 100%;
+        }
 
-            background: #4f7fff;
-            color: #fff;
-            font-size: 15px;
-            text-transform: uppercase;
-            font-weight: 600;
-            border-radius: 4px 4px 0 0;
+        .vertival {
+            float: left;
+            width: 40%;
             text-align: center;
-            padding: 12px 0px;
-            margin: 0;
+            border: 1px solid #e1e1e1;
+        }
 
-    }
-?    .hd-float.heading {
-    background-color: #fff;
-    text-align: left;
-    border-radius: 0;
-    border-top: 1px solid #cccccc;
-    border-bottom: 1px solid #cccccc;
-    border-right: 1px solid #cccccc;
-    margin-bottom: 0;
-}
-.hd-float.heading .tits {
-    background-color: #4f7fff;
-    display: inline-block;
-    position: relative;
-    padding: 1.5px 10px;
-    font-size: 15px;
-    text-align: center;
-    width: 24%;
-}
-.heading a {
-    color: #1d243e;
-}
-a, a:hover, a:focus {
-    text-decoration: none;
-}
-.heading {
-    background: #4f7fff;
-    color: #fff;
-    font-size: 15px;
-    text-transform: uppercase;
-    font-weight: 600;
-    line-height: 37px;
-    border-radius: 5px 5px 0 0;
-    text-align: center;
-    margin-top: 0;
-}
-.row{
-margin-top: 10px;
-}
-	</style>
-    <!--style-->
-    <!--//tags -->
-    <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
-    <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
-    <link href="css/font-awesome.css" rel="stylesheet">
+        .vertival img {
+            box-shadow: none;
+        }
+
+        .single-product .rt-summary {
+            width: 60%;
+            float: right;
+            margin-bottom: 20px;
+
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+    </style>
+    <link href="/houseware-service/css/bootstrap.css" rel="stylesheet" type="text/css" media="all"/>
+    <link href="/houseware-service/css/style.css" rel="stylesheet" type="text/css" media="all"/>
+    <link href="/houseware-service/css/font-awesome.css" rel="stylesheet">
     <!--pop-up-box-->
-    <link href="css/popuo-box.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="/houseware-service/css/popuo-box.css" rel="stylesheet" type="text/css" media="all"/>
     <!--//pop-up-box-->
     <!-- price range -->
-    <link rel="stylesheet" type="text/css" href="css/jquery-ui1.css">
-    <!-- fonts -->
-
+    <link rel="stylesheet" type="text/css" href="/houseware-service/css/jquery-ui1.css">
 </head>
-
 <body>
 <!-- top-header -->
 <div class="header-most-top">
@@ -271,157 +221,89 @@ margin-top: 10px;
 <!--Danh sach san pham-->
 
 <div class="row">
-    <div >
-        <h2 class="heading hd-float">
-            <div class="tits">
-                <a href="#">Gia dụng nhật</a>
+    <div class="col-xs-12">
+
+        <div class="vertival">
+            <img src="https://thegioigiadungonline.com.vn/wp-content/uploads/2020/02/yamato-YT-268H-S.png"
+                 xoriginal="https://thegioigiadungonline.com.vn/wp-content/uploads/2020/02/yamato-YT-268H-S.png"
+                 style="width: 479px;">
+        </div>
+
+        <div class="rt-summary entry-summary">
+
+            <h1 class="product_title entry-title" th:text="${productDetail.name}"></h1>
+            <ul class="attribute-single number-two"></ul>
+            <div class="woocommerce-product-details__short-description">
+                <p th:text="${productDetail.description}"></p>
             </div>
-        </h2>
-        <div class="row">
-            <div class="col-xs-1 "></div>
-            <div class="col-xs-10">
-                <div th:each="product : ${listProductDoGiaDungNhat}" >
-                    <div class="col-xs-3 product-men">
-                        <div class="men-pro-item simpleCart_shelfItem">
-                            <div class="men-thumb-item">
-                                <img src="images/k3.jpg" alt="" >
-                            </div>
-                            <div class="item-info-product ">
-                                <h4>
-                                    <a th:href="@{/product/{id}(id=${product.id})}" th:text="${product.name}"></a>
-                                </h4>
-                                <div class="info-product-price">
-                                    <span class="item_price"  th:text="${product.price}" ></span>
-                                    <del>$1020.00</del>
-                                </div>
-                                <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
+            <p class="price">
+                <span class="rt_price_text"></span>
+                <span class="rt_single_regular_price no_sale" th:text="${productDetail.price}"></span>
+            </p>
 
-                                    <a th:href="@{/cart/product/{id}(id=${product.id})}">Mua Hang</a>
-                                </div>
 
-                            </div>
-                        </div>
+            <form class="cart" method="post" enctype="multipart/form-data">
+                <div class="quantity">
+                    <div class="qty-adjust">
+                        <a class="bt-ct qty-minus" href="#"><i class="fa fa-minus" aria-hidden="true"></i></a>
+                        <input type="number" step="1" min="1" name="quantity" value="1" title="SL"
+                               class="input-text qty text" size="4">
+                        <a class="bt-ct qty-plus" href="#"><i class="fa fa-plus" aria-hidden="true"></i></a>
                     </div>
                 </div>
-            </div>
-            <div class="col-xs-1 "></div>
-        </div>
-    </div>
 
-</div>
-<div class="row">
-    <div >
-        <h3 class="heading hd-float">
-            <div class="tits">
-                <a href="#">Bếp điện</a>
-            </div>
-        </h3>
-        <div class="row">
-            <div class="col-xs-1 "></div>
-            <div class="col-xs-10">
-                <div th:each="product : ${listProductBepDien}" >
-                    <div class="col-xs-3 product-men">
-                        <div class="men-pro-item simpleCart_shelfItem">
-                            <div class="men-thumb-item">
-                                <img src="images/k3.jpg" alt="">
-                            </div>
-                            <div class="item-info-product ">
-                                <h4>
-                                    <a href="single.html" th:text="${product.name}"></a>
-                                </h4>
-                                <div class="info-product-price">
-                                    <span class="item_price"  th:text="${product.price}" ></span>
-                                    <del>$1020.00</del>
-                                </div>
-                                <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
-                                    <a th:href="@{/cart/product/{id}(id=${product.id})}">Mua Hang</a>
-                                </div>
+                <button type="submit" name="add-to-cart" value="3415" class="single_add_to_cart_button button alt">Thêm vào
+                    giỏ
+                </button>
+            </form>
 
-                            </div>
-                        </div>
-                    </div>
+
+            <div class="luuy">(Đơn giá chưa bao gồm chi phí Nhân công &amp; Vật tư lắp đặt)</div>
+            <div class="luuy2"><a href="">Tham khảo bảng giá lắp đặt tại đây.</a></div>
+            <div class="box_hotline" style="margin-bottom: 10px;">
+                <div> ĐẶT MUA QUA ĐIỆN THOẠI</div>
+                <a class="hotline_single" href="tel: 0981.599.399"> 0981.599.399</a>
+            </div>
+            <div class="socical_single">
+                <!-- Đặt thẻ này vào phần đầu hoặc ngay trước thẻ đóng phần nội dung của bạn. -->
+                <script src="https://apis.google.com/js/platform.js" async="" defer="" gapi_processed="true">
+                    {
+                        lang: 'vi'
+                    }
+                </script>
+
+                <!-- Đặt thẻ này vào nơi bạn muốn nút chia sẻ kết xuất. -->
+                <div id="___plus_0" style="position: absolute; width: 450px; left: -10000px;">
+                    <iframe ng-non-bindable="" frameborder="0" hspace="0" marginheight="0" marginwidth="0" scrolling="no"
+                            style="position:absolute;top:-10000px;width:450px;margin:0px;border-style:none" tabindex="0"
+                            vspace="0" width="100%" id="I0_1593664700091" name="I0_1593664700091"
+                            src="https://apis.google.com/u/0/se/0/_/+1/sharebutton?plusShare=true&amp;usegapi=1&amp;action=share&amp;hl=vi&amp;origin=https%3A%2F%2Fthegioigiadungonline.com.vn&amp;url=https%3A%2F%2Fthegioigiadungonline.com.vn%2Fsan-pham%2Fhut-mui-nghieng-yamato-yt-268h-s%2F&amp;gsrc=3p&amp;ic=1&amp;jsh=m%3B%2F_%2Fscs%2Fapps-static%2F_%2Fjs%2Fk%3Doz.gapi.vi.SvZL2nVfaDQ.O%2Fam%3DwQc%2Fd%3D1%2Fct%3Dzgms%2Frs%3DAGLTcCMKuAcBC5xxRZEXNQrOzjm-_xH7VA%2Fm%3D__features__#_methods=onPlusOne%2C_ready%2C_close%2C_open%2C_resizeMe%2C_renderstart%2Concircled%2Cdrefresh%2Cerefresh%2Conload&amp;id=I0_1593664700091&amp;_gfid=I0_1593664700091&amp;parent=https%3A%2F%2Fthegioigiadungonline.com.vn&amp;pfname=&amp;rpctoken=83688179"
+                            data-gapiattached="true"></iframe>
+                </div>
+                <div class="g-plus" data-action="share" data-gapiscan="true" data-onload="true" data-gapistub="true"></div>
+                <div class="fb-like fb_iframe_widget"
+                     data-href="https://thegioigiadungonline.com.vn/san-pham/hut-mui-nghieng-yamato-yt-268h-s/"
+                     data-layout="button" data-action="like" data-size="small" data-show-faces="false" data-share="true"
+                     fb-xfbml-state="rendered"
+                     fb-iframe-plugin-query="action=like&amp;app_id=465788220570110&amp;container_width=0&amp;href=https%3A%2F%2Fthegioigiadungonline.com.vn%2Fsan-pham%2Fhut-mui-nghieng-yamato-yt-268h-s%2F&amp;layout=button&amp;locale=vi_VN&amp;sdk=joey&amp;share=true&amp;show_faces=false&amp;size=small">
+                <span style="vertical-align: bottom; width: 128px; height: 20px;"><iframe name="f14e4aa710bd6"
+                                                                                          width="1000px" height="1000px"
+                                                                                          data-testid="fb:like Facebook Social Plugin"
+                                                                                          title="fb:like Facebook Social Plugin"
+                                                                                          frameborder="0"
+                                                                                          allowtransparency="true"
+                                                                                          allowfullscreen="true"
+                                                                                          scrolling="no"
+                                                                                          allow="encrypted-media"
+                                                                                          src="https://www.facebook.com/v2.11/plugins/like.php?action=like&amp;app_id=465788220570110&amp;channel=https%3A%2F%2Fstaticxx.facebook.com%2Fx%2Fconnect%2Fxd_arbiter%2F%3Fversion%3D46%23cb%3Df3908cb07fdcf2%26domain%3Dthegioigiadungonline.com.vn%26origin%3Dhttps%253A%252F%252Fthegioigiadungonline.com.vn%252Ff174649c149353c%26relation%3Dparent.parent&amp;container_width=0&amp;href=https%3A%2F%2Fthegioigiadungonline.com.vn%2Fsan-pham%2Fhut-mui-nghieng-yamato-yt-268h-s%2F&amp;layout=button&amp;locale=vi_VN&amp;sdk=joey&amp;share=true&amp;show_faces=false&amp;size=small"
+                                                                                          style="border: none; visibility: visible; width: 128px; height: 20px;"
+                                                                                          class=""></iframe></span>
                 </div>
             </div>
-            <div class="col-xs-1 "></div>
+
         </div>
+
     </div>
-
-</div>
-<div class="row">
-    <div >
-        <h2 class="heading hd-float">
-            <div class="tits">
-                <a href="#">Lò Nướng</a>
-            </div>
-        </h2>
-        <div class="row">
-            <div class="col-xs-1 "></div>
-            <div class="col-xs-10">
-                <div th:each="product : ${listProductLoNuong}" >
-                    <div class="col-xs-3 product-men">
-                        <div class="men-pro-item simpleCart_shelfItem">
-                            <div class="men-thumb-item">
-                                <img src="images/k3.jpg" alt="">
-                            </div>
-                            <div class="item-info-product ">
-                                <h4>
-                                    <a href="single.html" th:text="${product.name}"></a>
-                                </h4>
-                                <div class="info-product-price">
-                                    <span class="item_price"  th:text="${product.price}" ></span>
-                                    <del>$1020.00</del>
-                                </div>
-                                <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
-                                    <a th:href="@{/cart/product/{id}(id=${product.id})}">Mua Hang</a>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xs-1 "></div>
-        </div>
-    </div>
-
-</div>
-<div class="row">
-    <div >
-        <h2 class="heading hd-float">
-            <div class="tits">
-                <a href="#">Nồi Các Loại</a>
-            </div>
-        </h2>
-        <div class="row">
-            <div class="col-xs-1 "></div>
-            <div class="col-xs-10">
-                <div th:each="product : ${listProductNoiCacLoai}" >
-                    <div class="col-xs-3 product-men">
-                        <div class="men-pro-item simpleCart_shelfItem">
-                            <div class="men-thumb-item">
-                                <img src="images/k3.jpg" alt="">
-                            </div>
-                            <div class="item-info-product ">
-                                <h4>
-                                    <a href="single.html" th:text="${product.name}"></a>
-                                </h4>
-                                <div class="info-product-price">
-                                    <span class="item_price"  th:text="${product.price}" ></span>
-                                    <del>$1020.00</del>
-                                </div>
-                                <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
-                                    <a th:href="@{/cart/product/{id}(id=${product.id})}">Mua Hang</a>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xs-1 "></div>
-        </div>
-    </div>
-
 </div>
 <!--Danh sach san pham-->
 
@@ -635,21 +517,21 @@ margin-top: 10px;
 <!-- popup modal (for signin & signup)-->
 <script src="js/jquery.magnific-popup.js"></script>
 <script>
-		$(document).ready(function () {
-			$('.popup-with-zoom-anim').magnificPopup({
-				type: 'inline',
-				fixedContentPos: false,
-				fixedBgPos: true,
-				overflowY: 'auto',
-				closeBtnInside: true,
-				preloader: false,
-				midClick: true,
-				removalDelay: 300,
-				mainClass: 'my-mfp-zoom-in'
-			});
+    $(document).ready(function () {
+        $('.popup-with-zoom-anim').magnificPopup({
+            type: 'inline',
+            fixedContentPos: false,
+            fixedBgPos: true,
+            overflowY: 'auto',
+            closeBtnInside: true,
+            preloader: false,
+            midClick: true,
+            removalDelay: 300,
+            mainClass: 'my-mfp-zoom-in'
+        });
 
-		});
-	</script>
+    });
+</script>
 <!-- Large modal -->
 <!-- <script>
     $('#').modal('show');
@@ -659,44 +541,44 @@ margin-top: 10px;
 <!-- cart-js -->
 <script src="js/minicart.js"></script>
 <script>
-		paypalm.minicartk.render(); //use only unique class names other than paypal1.minicart1.Also Replace same class name in css and minicart.min.js
+    paypalm.minicartk.render(); //use only unique class names other than paypal1.minicart1.Also Replace same class name in css and minicart.min.js
 
-		paypalm.minicartk.cart.on('checkout', function (evt) {
-			var items = this.items(),
-				len = items.length,
-				total = 0,
-				i;
+    paypalm.minicartk.cart.on('checkout', function (evt) {
+        var items = this.items(),
+            len = items.length,
+            total = 0,
+            i;
 
-			// Count the number of each item in the cart
-			for (i = 0; i < len; i++) {
-				total += items[i].get('quantity');
-			}
+        // Count the number of each item in the cart
+        for (i = 0; i < len; i++) {
+            total += items[i].get('quantity');
+        }
 
-			if (total < 3) {
-				alert('The minimum orderDetail quantity is 3. Please add more to your shopping cart before checking out');
-				evt.preventDefault();
-			}
-		});
-	</script>
+        if (total < 3) {
+            alert('The minimum orderDetail quantity is 3. Please add more to your shopping cart before checking out');
+            evt.preventDefault();
+        }
+    });
+</script>
 <!-- //cart-js -->
 
 <!-- password-script -->
 <script>
-		window.onload = function () {
-			document.getElementById("password1").onchange = validatePassword;
-			document.getElementById("password2").onchange = validatePassword;
-		}
+    window.onload = function () {
+        document.getElementById("password1").onchange = validatePassword;
+        document.getElementById("password2").onchange = validatePassword;
+    }
 
-		function validatePassword() {
-			var pass2 = document.getElementById("password2").value;
-			var pass1 = document.getElementById("password1").value;
-			if (pass1 != pass2)
-				document.getElementById("password2").setCustomValidity("Passwords Don't Match");
-			else
-				document.getElementById("password2").setCustomValidity('');
-			//empty string means no validation error
-		}
-	</script>
+    function validatePassword() {
+        var pass2 = document.getElementById("password2").value;
+        var pass1 = document.getElementById("password1").value;
+        if (pass1 != pass2)
+            document.getElementById("password2").setCustomValidity("Passwords Don't Match");
+        else
+            document.getElementById("password2").setCustomValidity('');
+        //empty string means no validation error
+    }
+</script>
 <!-- //password-script -->
 
 <!-- smoothscroll -->
@@ -707,35 +589,35 @@ margin-top: 10px;
 <script src="js/move-top.js"></script>
 <script src="js/easing.js"></script>
 <script>
-		jQuery(document).ready(function ($) {
-			$(".scroll").click(function (event) {
-				event.preventDefault();
+    jQuery(document).ready(function ($) {
+        $(".scroll").click(function (event) {
+            event.preventDefault();
 
-				$('html,body').animate({
-					scrollTop: $(this.hash).offset().top
-				}, 1000);
-			});
-		});
-	</script>
+            $('html,body').animate({
+                scrollTop: $(this.hash).offset().top
+            }, 1000);
+        });
+    });
+</script>
 <!-- //end-smooth-scrolling -->
 
 <!-- smooth-scrolling-of-move-up -->
 <script>
-		$(document).ready(function () {
-			/*
-			var defaults = {
-				containerID: 'toTop', // fading element id
-				containerHoverID: 'toTopHover', // fading element hover id
-				scrollSpeed: 1200,
-				easingType: 'linear'
-			};
-			*/
-			$().UItoTop({
-				easingType: 'easeOutQuart'
-			});
+    $(document).ready(function () {
+        /*
+        var defaults = {
+            containerID: 'toTop', // fading element id
+            containerHoverID: 'toTopHover', // fading element hover id
+            scrollSpeed: 1200,
+            easingType: 'linear'
+        };
+        */
+        $().UItoTop({
+            easingType: 'easeOutQuart'
+        });
 
-		});
-	</script>
+    });
+</script>
 <!-- //smooth-scrolling-of-move-up -->
 
 <!-- for bootstrap working -->
@@ -744,5 +626,4 @@ margin-top: 10px;
 <!-- //js-files -->
 
 </body>
-
 </html>
