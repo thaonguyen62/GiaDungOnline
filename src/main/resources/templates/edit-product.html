@@ -203,7 +203,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <div class="card-body">
                 <div class="col-md-10">
                     <!--Sửa lại đường dẫn -->
-                    <form th:action="@{/edit-product/{id}(id=${product.id})}" th:object="${product}" method="post" enctype="multipart/form-data">
+                    <form th:action="@{/edit-product/_${product.id}_}" th:object="${product}" method="post" enctype="multipart/form-data">
                         <div class="row">
                             <div class="form-group col-md-8">
                                 <label for="name" class="col-form-label">Name</label> <input type="text" th:field="*{name}" class="form-control" id="name" placeholder="Name" required> <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="text-danger"></span>
