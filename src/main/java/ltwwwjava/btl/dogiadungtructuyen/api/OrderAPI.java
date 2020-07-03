@@ -6,7 +6,7 @@ import ltwwwjava.btl.dogiadungtructuyen.dto.OrderDetailDTO;
 import ltwwwjava.btl.dogiadungtructuyen.exception.ResourceNotFoundException;
 import ltwwwjava.btl.dogiadungtructuyen.model.User;
 import ltwwwjava.btl.dogiadungtructuyen.model.OrderDetail;
-import ltwwwjava.btl.dogiadungtructuyen.service.impl.OrderImpl;
+import ltwwwjava.btl.dogiadungtructuyen.service.impl.OrderDetailImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,7 +17,7 @@ import java.util.*;
 @RestController
 public class OrderAPI {
     @Autowired
-    private OrderImpl orderService;
+    private OrderDetailImpl orderService;
 
     @GetMapping("/orders")
     @Dto(value = OrderDetailDTO.class)

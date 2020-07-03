@@ -8,6 +8,8 @@ import java.util.List;
 public interface UserService {
     List<User> getAllCustomer();
 
+    User findByUserName(String userName) throws ResourceNotFoundException;
+
     User findById(String id) throws ResourceNotFoundException;
 
     List<User> findByAccountType(int loai);

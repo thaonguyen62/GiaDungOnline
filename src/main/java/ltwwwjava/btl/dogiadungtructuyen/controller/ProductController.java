@@ -2,10 +2,11 @@ package ltwwwjava.btl.dogiadungtructuyen.controller;
 
 import ltwwwjava.btl.dogiadungtructuyen.exception.ResourceNotFoundException;
 import ltwwwjava.btl.dogiadungtructuyen.model.Category;
+import ltwwwjava.btl.dogiadungtructuyen.model.OrderDetail;
 import ltwwwjava.btl.dogiadungtructuyen.model.Product;
 import ltwwwjava.btl.dogiadungtructuyen.repository.CategoryRepository;
-import ltwwwjava.btl.dogiadungtructuyen.repository.ProductRepository;
 import ltwwwjava.btl.dogiadungtructuyen.service.CategoryService;
+import ltwwwjava.btl.dogiadungtructuyen.service.OrderDetailService;
 import ltwwwjava.btl.dogiadungtructuyen.service.impl.ProductImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -24,8 +26,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 
 @Controller
 public class ProductController {
@@ -36,10 +38,12 @@ public class ProductController {
     private CategoryRepository categoryRepository;
     @Autowired
     private CategoryService categoryService;
+    @Autowired
+    private OrderDetailService orderDetailService;
 
     private final String UPLOAD_DIR = "src\\main\\resources\\static\\images\\";
 
-    @GetMapping("/products/name")
+    @GetMapping("/products/search")
     public String findProductByName(@RequestParam(value =  "name",required = true) String name,Model model) throws ResourceNotFoundException{
         model.addAttribute("categories",categoryService.getAllCategory());
         model.addAttribute("list",productService.findProductByName(name));
@@ -112,8 +116,6 @@ public class ProductController {
 
         // return success response
         attributes.addFlashAttribute("message", "You successfully uploaded " + fileName + '!');
-
-
         product.setFileName(images);
         productService.createAndUpdate(product);
         return "redirect:/products";
@@ -123,21 +125,43 @@ public class ProductController {
 
     @GetMapping("/product/{id}")
     public String getDetailProduct(@PathVariable("id") String id, Model model) throws ResourceNotFoundException {
+        int quantity =1;
         List<Category> listCat = categoryRepository.findAll();
+        model.addAttribute("idProduct",id);
         model.addAttribute("categories", listCat);
         Product product = productService.findById(id);
         model.addAttribute("productDetail",product);
         List<Category> list = categoryService.getAllCategory();
         model.addAttribute("list", list);
+        model.addAttribute("quantity",quantity);
         return "productDetail";
+    }
+
+    @PostMapping("/product/{id}")
+    public String submitQuantity(@PathVariable("id") String id, @RequestParam int quantity , Model model, HttpSession session) throws ResourceNotFoundException {
+        Product product = productService.findById(id);
+        OrderDetail orderDetail = new OrderDetail();
+        orderDetail.setBillDate(new Date());
+        String usernameCustomer;
+        if (!session.getAttributeNames().hasMoreElements()) {
+            usernameCustomer = session.getId();
+        } else {
+            usernameCustomer = session.getAttribute("mySessionAttribute").toString();
+        }
+        orderDetail.setCustomer(usernameCustomer);
+        orderDetail.setProducts(product);
+        orderDetail.setQuantity(quantity);
+        orderDetail.setStatus(0);
+        orderDetailService.createAndUpdate(orderDetail);
+        return "redirect:/product/{id}";
     }
 
     @GetMapping("/edit-product/{id}")
     public String showUpdateForm(@PathVariable("id") String id, Model model) throws ResourceNotFoundException {
-            Product product = productService.findById(id);
-            model.addAttribute("product",product);
-            List<Category> list = categoryService.getAllCategory();
-            model.addAttribute("list", list);
+        Product product = productService.findById(id);
+        model.addAttribute("product",product);
+        List<Category> list = categoryService.getAllCategory();
+        model.addAttribute("list", list);
         return "edit-product";
     }
 

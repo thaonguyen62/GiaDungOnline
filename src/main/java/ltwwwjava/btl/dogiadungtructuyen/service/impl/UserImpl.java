@@ -16,6 +16,14 @@ public class UserImpl implements UserService {
     @Autowired
     private UserRepository customerRepository;
 
+    @Override
+    public User findByUserName(String userName) throws ResourceNotFoundException {
+        Optional<User> user = customerRepository.findByUsername(userName);
+        if (user.isPresent())
+            return user.get();
+        return null;
+    }
+
     public List<User> getAllCustomer() {
         return customerRepository.findAll();
     }

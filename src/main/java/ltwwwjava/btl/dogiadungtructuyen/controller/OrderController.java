@@ -1,16 +1,17 @@
 package ltwwwjava.btl.dogiadungtructuyen.controller;
 
+import ltwwwjava.btl.dogiadungtructuyen.dto.WrapperOrderDTO;
 import ltwwwjava.btl.dogiadungtructuyen.exception.ResourceNotFoundException;
-import ltwwwjava.btl.dogiadungtructuyen.model.Category;
-import ltwwwjava.btl.dogiadungtructuyen.model.OrderDetail;
-import ltwwwjava.btl.dogiadungtructuyen.model.Product;
+import ltwwwjava.btl.dogiadungtructuyen.model.*;
 import ltwwwjava.btl.dogiadungtructuyen.repository.CategoryRepository;
+import ltwwwjava.btl.dogiadungtructuyen.service.OrderDetailService;
 import ltwwwjava.btl.dogiadungtructuyen.service.OrderService;
 import ltwwwjava.btl.dogiadungtructuyen.service.ProductService;
+import ltwwwjava.btl.dogiadungtructuyen.service.UserService;
+import ltwwwjava.btl.dogiadungtructuyen.utils.Constants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,11 +24,15 @@ import java.util.List;
 @Controller
 public class OrderController {
     @Autowired
-    private OrderService orderService;
+    private OrderDetailService orderDetailService;
     @Autowired
     private CategoryRepository categoryRepository;
     @Autowired
     private ProductService productService;
+    @Autowired
+    private OrderService orderService;
+    @Autowired
+    private UserService userService;
 
     @GetMapping("/cart")
     public String getCart(Model model, HttpSession session) throws ResourceNotFoundException {
@@ -37,16 +42,35 @@ public class OrderController {
         } else {
             usernameCustomer = session.getAttribute("mySessionAttribute").toString();
         }
-        List<OrderDetail> list = orderService.getAllOrderByCustomer(usernameCustomer);
+        List<OrderDetail> list = orderDetailService.getAllOrderByCustomer(usernameCustomer);
+        WrapperOrderDTO wrapper = new WrapperOrderDTO();
+        wrapper.setOrderDetails(list);
         model.addAttribute("listOrder", list);
+        model.addAttribute("wrapper", wrapper);
         List<Category> listCat = categoryRepository.findAll();
         model.addAttribute("categories", listCat);
+        User user = new User();
+        user = userService.findByUserName(usernameCustomer);
+        model.addAttribute("customer",user);
+        double total =0;
+        total = wrapper.getOrderDetails().stream().mapToDouble(OrderDetail::getSubtotal).sum();
+        model.addAttribute("total",total);
         return "cartt";
     }
+
+    @PostMapping("/cart")
+    public String updateCart(Model model, @ModelAttribute() WrapperOrderDTO wrapper) {
+        List<OrderDetail> orderDetails = wrapper.getOrderDetails();
+        model.addAttribute("wrapper", wrapper);
+        orderDetails.forEach(orderDetail -> {
+            orderDetailService.updateQuantity(orderDetail.getId(), orderDetail.getQuantity());
+        });
+        return "redirect:/cart";
+    }
+
     @GetMapping("/list_order")
     public String getAllCart(Model model) throws ResourceNotFoundException {
-
-        List<OrderDetail> list = orderService.getAll();
+        List<OrderDetail> list = orderDetailService.getAll();
         model.addAttribute("listOrder", list);
         List<Category> listCat = categoryRepository.findAll();
         model.addAttribute("categories", listCat);
@@ -63,36 +87,46 @@ public class OrderController {
         } else {
             usernameCustomer = session.getAttribute("mySessionAttribute").toString();
         }
+        orderDetail.setStatus(0);
         orderDetail.setCustomer(usernameCustomer);
         orderDetail.setProducts(product);
         orderDetail.setQuantity(15);
-        orderService.createAndUpdate(orderDetail);
+        orderDetailService.createAndUpdate(orderDetail);
 //        productService.createAndUpdate(product);
         return "redirect:/products";
 
     }
 
     @PostMapping("/payment")
-    public String payment(Model model, HttpSession session) throws ResourceNotFoundException {
+    public String payment(Model model, HttpSession session, @ModelAttribute("wrapper") WrapperOrderDTO wrapperOrderDTO) throws ResourceNotFoundException {
         if (!session.getAttributeNames().hasMoreElements()) {
             return "redirect:/login";
         }
-        List<OrderDetail> list = orderService.getAllOrderByCustomer(session.getId());
-        if (!CollectionUtils.isEmpty(list)) {
-            list.forEach(orderDetail -> {
-                orderDetail.setCustomer(session.getAttribute("mySessionAttribute").toString());
-                try {
-                    orderService.createAndUpdate(orderDetail);
-                } catch (ResourceNotFoundException e) {
-                    e.printStackTrace();
-                }
-            });
+        double total;
+        wrapperOrderDTO.getOrderDetails().forEach(orderDetail -> {
+            orderDetail.setStatus(Constants.PAID);
+        });
+        Order order = new Order();
+        order.setOrderDetailDTOS(wrapperOrderDTO.getOrderDetails());
+        order.setBillDate(new Date());
+        order.setIdCustomer(wrapperOrderDTO.getOrderDetails().get(0).getCustomer());
+        total = wrapperOrderDTO.getOrderDetails().stream().mapToDouble(OrderDetail::getSubtotal).sum();
+        order.setTotal(total);
+        orderService.createAndUpdate(order);
+        for (OrderDetail orderDetail:wrapperOrderDTO.getOrderDetails()) {
+            orderDetail.setStatus(Constants.PAID);
+            orderDetailService.createAndUpdate(orderDetail);
         }
+        User user = new User();
+        user = userService.findByUserName(wrapperOrderDTO.getOrderDetails().get(0).getCustomer());
+        model.addAttribute("customer",user);
+
         return "redirect:/products";
 
     }
+
     @GetMapping("/cart/product/{id}")
-    public String addToCart(@PathVariable(value = "id") String id, Model model,HttpSession session) throws ResourceNotFoundException {
+    public String addToCart(@PathVariable(value = "id") String id, Model model, HttpSession session) throws ResourceNotFoundException {
         Product product = productService.findById(id);
         OrderDetail orderDetail = new OrderDetail();
         orderDetail.setBillDate(new Date());
@@ -105,9 +139,9 @@ public class OrderController {
         orderDetail.setCustomer(usernameCustomer);
         orderDetail.setProducts(product);
         orderDetail.setQuantity(1);
-        orderService.createAndUpdate(orderDetail);
+        orderDetail.setStatus(0);
+        orderDetailService.createAndUpdate(orderDetail);
         return "redirect:/products";
     }
-
 
 }
