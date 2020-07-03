@@ -12,97 +12,135 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <title>Grocery Shoppy an Ecommerce Category Bootstrap Responsive Web Template | About Us :: w3layouts</title>
     <!--/tags -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta name="keywords" content="Grocery Shoppy Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
-Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design"/>
     <script>
-		addEventListener("load", function () {
-			setTimeout(hideURLbar, 0);
-		}, false);
+        addEventListener("load", function () {
+            setTimeout(hideURLbar, 0);
+        }, false);
 
-		function hideURLbar() {
-			window.scrollTo(0, 1);
-		}
-	</script>
-    <style >
-.cart{
-    width:60%;
-}
-table{
-border-collapse: separate;
-    border-spacing: 2px;
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        }
+    </script>
+    <style>
+        .cart {
+            width: 60%;
+        }
 
-  font-family: arial, sans-serif;
-  border-collapse: collapse;
-  width: 100%;
-}
+        table {
+            border-collapse: separate;
+            border-spacing: 2px;
 
-td, th {
-  border: 1px solid #dddddd;
-  text-align: left;
-  padding: 8px;
-}
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
 
-tr:nth-child(even) {
-  background-color: #dddddd;
-}
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
 
-@media screen and (max-width: 600px) {
-table#cart tbody td .form-control {
-width:20%;
-display: inline !important;
-}
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
 
-.actions .btn {
-width:36%;
-margin:1.5em 0;
-}
+        @media screen and (max-width: 600px) {
+            table#cart tbody td .form-control {
+                width: 20%;
+                display: inline !important;
+            }
 
-.actions .btn-info {
-float:left;
-}
+            .actions .btn {
+                width: 36%;
+                margin: 1.5em 0;
+            }
 
-.actions .btn-danger {
-float:right;
-}
+            .actions .btn-info {
+                float: left;
+            }
 
-table#cart thead {
-display: none;
-}
+            .actions .btn-danger {
+                float: right;
+            }
 
-table#cart tbody td {
-display: block;
-padding: .6rem;
-min-width:320px;
-}
+            table#cart thead {
+                display: none;
+            }
 
-table#cart tbody tr td:first-child {
-background: #333;
-color: #fff;
-}
+            table#cart tbody td {
+                display: block;
+                padding: .6rem;
+                min-width: 320px;
+            }
 
-table#cart tbody td:before {
-content: attr(data-th);
-font-weight: bold;
-display: inline-block;
-width: 8rem;
-}
+            table#cart tbody tr td:first-child {
+                background: #333;
+                color: #fff;
+            }
 
-table#cart tfoot td {
-display:block;
-}
-table#cart tfoot td .btn {
-display:block;
-}
+            table#cart tbody td:before {
+                content: attr(data-th);
+                font-weight: bold;
+                display: inline-block;
+                width: 8rem;
+            }
 
+            table#cart tfoot td {
+                display: block;
+            }
 
+            table#cart tfoot td .btn {
+                display: block;
+            }
+        }
+
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
+            padding-top: 100px; /* Location of the box */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgb(0, 0, 0); /* Fallback color */
+            background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+        }
+
+        /* Modal Content */
+        .modal-content {
+            background-color: #fefefe;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 40%;
+        }
+
+        /* The Close Button */
+        .close {
+            color: #aaaaaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover, .close:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
     </style>
     <!--//tags -->
-    <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
-    <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all"/>
+    <link href="css/style.css" rel="stylesheet" type="text/css" media="all"/>
     <link href="css/font-awesome.css" rel="stylesheet">
     <!--pop-up-box-->
-    <link href="css/popuo-box.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="css/popuo-box.css" rel="stylesheet" type="text/css" media="all"/>
     <!--//pop-up-box-->
     <!-- price range -->
     <link rel="stylesheet" type="text/css" href="css/jquery-ui1.css">
@@ -156,8 +194,8 @@ display:block;
             <!-- //header lists -->
             <!-- search -->
             <div class="agileits_search">
-                <form action="@{/search}" method="post">
-                    <input name="Search" type="search" placeholder="Hàng chính hãng-giá rẻ vô địch" required="">
+                <form th:action="@{/products/search(name=${name})}" method="get">
+                    <input name="Search" type="search" th:name="name" placeholder="Hàng chính hãng-giá rẻ vô địch" required="">
                     <button type="submit" class="btn btn-default" aria-label="Left Align">
                         <span class="fa fa-search" aria-hidden="true"> </span>
                     </button>
@@ -219,7 +257,7 @@ display:block;
                                 </a>
                             </li>
                             <li>
-                                <a class="nav-stylehead"th:href="@{/recruitment}">Tuyển dụng
+                                <a class="nav-stylehead" th:href="@{/recruitment}">Tuyển dụng
                                     <span class="sr-only">(current)</span>
                                 </a>
                             </li>
@@ -241,7 +279,7 @@ display:block;
                                     <span class="sr-only">(current)</span>
                                 </a>
                             </li>
-                            <li class="dropdown" id = "quanly">
+                            <li class="dropdown" id="quanly">
                                 <a class="nav-stylehead dropdown-toggle" href="#" data-toggle="dropdown">Quản lý
                                     <b class="caret"></b>
                                 </a>
@@ -264,10 +302,10 @@ display:block;
 </div>
 <!-- //navigation -->
 <!-- banner-2 -->
-<div  class="row">
-    <div class=" col-sm-3 menuhorizontal" >
+<div class="row">
+    <div class=" col-sm-3 menuhorizontal">
         <h3>Danh mục</h3>
-        <ul class="menuhorizontallevel1" >
+        <ul class="menuhorizontallevel1">
 
             <li class="a" th:each="cat:${categories}">
                 <a th:href="@{/products/cat/{id}(id=${cat.id})}" th:text="${cat.name}"></a>
@@ -303,68 +341,182 @@ display:block;
 <!-- about page -->
 <!-- welcome -->
 <div>
-    <div class="cart" >
+    <div class="cart">
 
         <h2 class="text-center">Giỏ hàng</h2>
         <div class="container">
             <table id="cart" class="table table-hover table-condensed">
                 <thead>
                 <tr>
-                    <th style="width:50%" ></th>
+                    <th style="width:50%"></th>
                     <th style="width:10%">Giá</th>
                     <th style="width:8%">Số lượng</th>
                     <th style="width:22%" class="text-center">Thành tiền</th>
-                    <th style="width:10%"> </th>
+                    <th style="width:10%"></th>
                 </tr>
                 </thead>
-                <tbody><tr th:each="order:${listOrder}">
-                    <td data-th="Product">
-                        <div class="row">
-                            <div class="col-sm-2 hidden-xs"><img
-                                    src="http://hocwebgiare.com/thiet_ke_web_chuan_demo/shopping_cart/images/090.jpg"
-                                    alt="Sản phẩm 1" class="img-responsive" width="100">
+                <tbody>
+                <form th:object="${wrapper}" method="post" th:action="@{/cart}" enctype="multipart/form-data">
+                    <tr th:each="order,stat :${wrapper.orderDetails}">
+                        <td data-th="Product">
+                            <div class="row">
+                                <div class="col-sm-2 hidden-xs"><img
+                                        src="http://hocwebgiare.com/thiet_ke_web_chuan_demo/shopping_cart/images/090.jpg"
+                                        alt="Sản phẩm 1" class="img-responsive" width="100">
+                                </div>
+                                <div class="col-sm-10">
+                                    <h4 class="nomargin"
+                                        th:text="${order.products.name}"></h4>
+                                    <input type="hidden" th:field="*{orderDetails[__${stat.index}__].id}">
+                                    <input type="hidden" th:field="*{orderDetails[__${stat.index}__].customer}">
+                                    <input type="hidden" th:field="*{orderDetails[__${stat.index}__].status}">
+                                    <input type="hidden" th:field="*{orderDetails[__${stat.index}__].tax}">
+                                    <input type="hidden" th:field="*{orderDetails[__${stat.index}__].products.id}">
+                                    <input type="hidden" th:field="*{orderDetails[__${stat.index}__].products.price}">
+                                    <input type="hidden" th:field="*{orderDetails[__${stat.index}__].products.name}">
+                                    <input type="hidden"
+                                           th:field="*{orderDetails[__${stat.index}__].products.description}">
+                                    <input type="hidden" th:field="*{orderDetails[__${stat.index}__].products.price}">
+                                    <input type="hidden" th:field="*{orderDetails[__${stat.index}__].subtotal}">
+                                    <p th:field="*{orderDetails[__${stat.index}__].products.description}"
+                                       th:text="${order.products.description}"></p>
+                                </div>
                             </div>
-                            <div class="col-sm-10">
-                                <h4 class="nomargin" th:text="${order.products.name}"></h4>
-                                <p th:text="${order.products.description}"></p>
-                            </div>
-                        </div>
-                    </td>
-                    <td th:text="${order.products.priceclass="page-head_agile_info_w3l col-sm-9"}"></td>
-                    <td data-th="Quantity"><input class="form-control text-center" th:value="${order.quantity}"
-                                                  type="number">
-                    </td>
-                    <td data-th="Subtotal" class="text-center"
-                        th:with="result=${order.quantity * order.products.price}" th:text="${result}"></td>
-                    <td class="actions" data-th="">
-                        <button class="btn btn-info btn-sm"><i class="fa fa-edit"></i>
-                        </button>
-                        <button class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i>
-                        </button>
+                        </td>
+                        <td th:text="${order.products.price}" class="text-center"></td>
+                        <td data-th="Quantity" ><input th:field="*{orderDetails[__${stat.index}__].quantity}" class="form-control text-center" type="number"></td>
+                        <td data-th="Subtotal" class="text-center" th:text="${order.subtotal}"></td>
+                        <td class="actions" data-th="">
+                            <button class="btn btn-info btn-sm"><i class="fa fa-edit"></i>
+                            </button>
+                            <button class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i>
+                            </button>
+                        </td>
+                    </tr>
+                    <td><input type="submit" name="submit" value="Update" class="button"/>
+                </form>
+
+                </tbody>
+                <tfoot>
+                <tr class="visible-xs">
+                    <td class="text-center"><strong></strong>
                     </td>
                 </tr>
-
-
-                </tbody><tfoot>
-            <tr class="visible-xs">
-                <td class="text-center" ><strong></strong>
-                </td>
-            </tr>
-            <tr>
-                <td><a  th:href="@{/products}" class="btn btn-warning"><i class="fa fa-angle-left"></i> Tiếp tục mua hàng</a>
-                </td>
-                <td colspan="2" class="hidden-xs"> </td>
-                <td class="hidden-xs text-center"><strong>Tổng tiền 500.000 đ</strong>
-                 <form th:action="@{/payment}" method="post" >
-                    <td><input type="submit" name="submit" value="Thanh toán" class="button" />
-
+                <tr>
+                    <td><a th:href="@{/products}" class="btn btn-warning"><i class="fa fa-angle-left"></i> Tiếp tục mua hàng</a>
                     </td>
-                </form>
-            </tr>
-             </tfoot>
+                    <td colspan="3" class="hidden-xs"></td>
+
+                    <td><input id="myBtn" type="submit" name="submit" value="Thanh toán" class="button"/></td>
+                </tr>
+                </tfoot>
             </table>
+
         </div>
     </div>
+</div>
+<div id="myModal" class="modal">
+    <!-- Modal content -->
+    <div class="modal-content">
+        <span class="close">&times;</span>
+
+        <div style="text-align: center">
+            <h4 th:text="${customer?.name}"></h4>
+            <h4 th:text="${customer?.name}"></h4>
+        </div>
+        </br>
+        <form th:action="@{/payment}" method="post">
+            <table id="cart" class="table table-hover table-condensed">
+                <thead>
+                <tr>
+                    <th style="width:52%"></th>
+                    <th style="width:12%">Giá</th>
+                    <th style="width:10%">Số lượng</th>
+                    <th style="width:24%" class="text-center">Thành tiền</th>
+                </tr>
+                </thead>
+                <tbody>
+                <form th:object="${wrapper}" method="post" th:action="@{/cart}" enctype="multipart/form-data">
+                    <tr th:each="order,stat :${wrapper.orderDetails}">
+                        <td data-th="Product">
+                            <div class="row">
+                                <div class="col-sm-2 hidden-xs"><img
+                                        src="http://hocwebgiare.com/thiet_ke_web_chuan_demo/shopping_cart/images/090.jpg"
+                                        alt="Sản phẩm 1" class="img-responsive" width="100">
+                                </div>
+                                <div class="col-sm-10">
+                                    <h4 class="nomargin"
+                                        th:text="${order.products.name}"></h4>
+                                    <input type="hidden" th:field="*{orderDetails[__${stat.index}__].id}">
+                                    <input type="hidden" th:field="*{orderDetails[__${stat.index}__].customer}">
+                                    <input type="hidden" th:field="*{orderDetails[__${stat.index}__].status}">
+                                    <input type="hidden" th:field="*{orderDetails[__${stat.index}__].tax}">
+                                    <input type="hidden" th:field="*{orderDetails[__${stat.index}__].products.id}">
+                                    <input type="hidden" th:field="*{orderDetails[__${stat.index}__].products.price}">
+                                    <input type="hidden" th:field="*{orderDetails[__${stat.index}__].products.name}">
+                                    <input type="hidden"
+                                           th:field="*{orderDetails[__${stat.index}__].products.description}">
+                                    <input type="hidden" th:field="*{orderDetails[__${stat.index}__].products.price}">
+                                    <input type="hidden" th:field="*{orderDetails[__${stat.index}__].subtotal}">
+                                    <input type="hidden" th:field="*{orderDetails[__${stat.index}__].quantity}">
+                                    <p th:field="*{orderDetails[__${stat.index}__].products.description}"
+                                       th:text="${order.products.description}"></p>
+                                </div>
+                            </div>
+                        </td>
+                        <td th:text="${order.products.price}" class="text-center"></td>
+                        <td data-th="Quantity" th:text="${order.quantity}"></td>
+                        <td data-th="Subtotal" class="text-center" th:text="${order.subtotal}"></td>
+                    </tr>
+                </form>
+                </tbody>
+                <tfoot>
+                <tr class="visible-xs">
+                    <td class="text-center"><strong></strong>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3" class="hidden-xs"></td>
+                    <td class="hidden-xs text-center" th:value="${total}"><strong></strong></td>
+                </tr>
+                </tfoot>
+            </table>
+            <center>
+                <input type="submit" value="Xac Nhan Than Toan"/>
+            </center>
+        </form>
+    </div>
+    <script>
+        var modal = document.getElementById('myModal');
+        var btn = document.getElementById("myBtn");
+        var span = document.getElementsByClassName("close")[0];
+        btn.onclick = function () {
+            modal.style.display = "block";
+        }
+        span.onclick = function () {
+            modal.style.display = "none";
+        }
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+        //2
+        var searchModel = document.getElementById('mySearch');
+        var btn1 = document.getElementById("myBtn1");
+        var span1 = document.getElementsByClassName("close")[0];
+        btn1.onclick = function () {
+            searchModel.style.display = "block";
+        }
+        span1.onclick = function () {
+            searchModel.style.display = "none";
+        }
+        window.onclick = function (event) {
+            if (event.target == searchModel) {
+                searchModel.style.display = "none";
+            }
+        }
+    </script>
 </div>
 <!-- //welcome -->
 <!-- video -->
@@ -513,11 +665,14 @@ display:block;
                     <h3>Liên lạc</h3>
                     <ul>
                         <li>
-                            <i class="fa fa-map-marker"></i> 62/46 Huỳnh Khương AN</li>
+                            <i class="fa fa-map-marker"></i> 62/46 Huỳnh Khương AN
+                        </li>
                         <li>
-                            <i class="fa fa-mobile"></i> 0163 884 5676</li>
+                            <i class="fa fa-mobile"></i> 0163 884 5676
+                        </li>
                         <li>
-                            <i class="fa fa-phone"></i> +84 38 845 676 </li>
+                            <i class="fa fa-phone"></i> +84 38 845 676
+                        </li>
                         <li>
                             <i class="fa fa-envelope-o"></i>
                             <a href="vothittuoanh2911@gmail.com"> minhnguyenoanh@gmail.com</a>
@@ -556,7 +711,7 @@ display:block;
                     <a href="#">
                         <img src="images/2.png" alt="">
                     </a>
-                    <div class="clearfix"> </div>
+                    <div class="clearfix"></div>
                 </div>
             </div>
             <!-- //social icons -->
@@ -610,7 +765,6 @@ display:block;
 <div class="copy-right">
     <div class="container">
         <p>© 2020 Grocery Shoppy. Minh Nguyên Oanh
-
         </p>
     </div>
 </div>

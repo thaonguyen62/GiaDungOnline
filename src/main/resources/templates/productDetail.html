@@ -93,8 +93,8 @@
             <!-- //header lists -->
             <!-- search -->
             <div class="agileits_search">
-                <form action="@{/search}" method="post">
-                    <input name="Search" type="search" placeholder="Hàng chính hãng-giá rẻ vô địch" required="">
+                <form th:action="@{/products/search(name=${name})}" method="get">
+                    <input name="Search" type="search" th:name="name" placeholder="Hàng chính hãng-giá rẻ vô địch" required="">
                     <button type="submit" class="btn btn-default" aria-label="Left Align">
                         <span class="fa fa-search" aria-hidden="true"> </span>
                     </button>
@@ -240,23 +240,17 @@
                 <span class="rt_price_text"></span>
                 <span class="rt_single_regular_price no_sale" th:text="${productDetail.price}"></span>
             </p>
-
-
-            <form class="cart" method="post" enctype="multipart/form-data">
+            <form class="cart" th:action="@{/product/{id}(id=${idProduct})}" method="post"  enctype="multipart/form-data">
                 <div class="quantity">
                     <div class="qty-adjust">
-                        <a class="bt-ct qty-minus" href="#"><i class="fa fa-minus" aria-hidden="true"></i></a>
-                        <input type="number" step="1" min="1" name="quantity" value="1" title="SL"
+                        <input  type="number" step="1" min="1" name="quantity" value="1" title="SL"
                                class="input-text qty text" size="4">
-                        <a class="bt-ct qty-plus" href="#"><i class="fa fa-plus" aria-hidden="true"></i></a>
                     </div>
                 </div>
-
                 <button type="submit" name="add-to-cart" value="3415" class="single_add_to_cart_button button alt">Thêm vào
                     giỏ
                 </button>
             </form>
-
 
             <div class="luuy">(Đơn giá chưa bao gồm chi phí Nhân công &amp; Vật tư lắp đặt)</div>
             <div class="luuy2"><a href="">Tham khảo bảng giá lắp đặt tại đây.</a></div>

@@ -76,15 +76,6 @@ public class ProductController {
         return "list-product";
     }
 
-
-    /*@GetMapping("/products/{id}")
-    public String getProductById(@PathVariable(value = "id") String id, Model model) throws ResourceNotFoundException {
-        Optional<Category> c = categoryRepository.findById(id);
-
-        model.addAttribute("c", c);
-        return "single";
-    }*/
-
     @RequestMapping(value = {"/add-product"}, method = RequestMethod.GET)
     public String showAddProductPage(Model model) {
         Product product = new Product();
@@ -109,7 +100,7 @@ public class ProductController {
         try {
             Path path = Paths.get(UPLOAD_DIR + fileName);
             Files.copy(file.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
-            images.add(path.toString().replace("src\\main\\resources\\static\\",""));
+            images.add(path.toString().replace("src\\main\\resources\\static\\images\\","images/"));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -166,11 +157,34 @@ public class ProductController {
     }
 
     @PostMapping("/edit-product/{id}")
-    public String updateProduct(@PathVariable(value = "id") String id, Model model, @Valid Product product, BindingResult result) throws ResourceNotFoundException {
+    public String updateProduct(@PathVariable(value = "id") String id, Model model, @Valid Product product, BindingResult result,
+                                @RequestParam("file") MultipartFile file, RedirectAttributes attributes) throws ResourceNotFoundException {
         if (result.hasErrors()) {
             product.setId(id);
             return "redirect:/edit-products/{id}";
         }
+
+        List<String> images = new ArrayList<>();
+        // check if file is empty
+        if (file.isEmpty()) {
+            attributes.addFlashAttribute("message", "Please select a file to upload.");
+        }
+
+        // normalize the file path
+        String fileName = StringUtils.cleanPath(file.getOriginalFilename());
+
+        // save the file on the local file system
+        try {
+            Path path = Paths.get(UPLOAD_DIR + fileName);
+            Files.copy(file.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
+            images.add(path.toString().replace("src\\main\\resources\\static\\images\\","images/"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        // return success response
+        attributes.addFlashAttribute("message", "You successfully uploaded " + fileName + '!');
+        product.setFileName(images);
 
         productService.createAndUpdate(product);
         model.addAttribute("products", productService.findAll());
