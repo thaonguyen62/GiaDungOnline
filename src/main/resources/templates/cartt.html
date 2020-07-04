@@ -408,7 +408,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         </div>
         </br>
         <form th:action="@{/payment}" method="post">
-            <table id="cart" class="table table-hover table-condensed">
+            <table style="height:80%" id="cart" class="table-hover table-condensed">
                 <thead>
                 <tr>
                     <th style="width:52%"></th>
@@ -441,8 +441,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                     <input type="hidden" th:field="*{orderDetails[__${stat.index}__].products.price}">
                                     <input type="hidden" th:field="*{orderDetails[__${stat.index}__].subtotal}">
                                     <input type="hidden" th:field="*{orderDetails[__${stat.index}__].quantity}">
-                                    <p th:field="*{orderDetails[__${stat.index}__].products.description}"
-                                       th:text="${order.products.description}"></p>
+
                                 </div>
                             </div>
                         </td>
