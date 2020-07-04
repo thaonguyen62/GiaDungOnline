@@ -40,10 +40,13 @@ public class OrderController {
     @GetMapping("/cart")
     public String getCart(Model model, HttpSession session) throws ResourceNotFoundException {
         String usernameCustomer;
+        boolean hidden = false;
         if (!session.getAttributeNames().hasMoreElements()) {
             usernameCustomer = session.getId();
+            hidden = false;
         } else {
             usernameCustomer = session.getAttribute("mySessionAttribute").toString();
+            hidden = userService.checkAdmin(session.getAttribute("mySessionAttribute").toString());
         }
         List<OrderDetail> list = orderDetailService.getAllOrderByCustomer(usernameCustomer);
         WrapperOrderDTO wrapper = new WrapperOrderDTO();
@@ -54,10 +57,11 @@ public class OrderController {
         model.addAttribute("categories", listCat);
         User user = new User();
         user = userService.findByUserName(usernameCustomer);
-        model.addAttribute("customer",user);
-        double total =0;
+        model.addAttribute("customer", user);
+        double total = 0;
         total = wrapper.getOrderDetails().stream().mapToDouble(OrderDetail::getSubtotal).sum();
-        model.addAttribute("total",total);
+        model.addAttribute("total", total);
+        model.addAttribute("hiddenManagement", hidden);
         return "cartt";
     }
 
@@ -72,10 +76,17 @@ public class OrderController {
     }
 
     @GetMapping("/list_order")
-    public String getAllCart(Model model) throws ResourceNotFoundException {
+    public String getAllCart(Model model,HttpSession session) throws ResourceNotFoundException {
         List<Order> list = orderRepository.findAllByOrderByBillDateDesc();
         model.addAttribute("listOrder", list);
         List<Category> listCat = categoryRepository.findAll();
+        boolean hidden = false;
+        if (!session.getAttributeNames().hasMoreElements()) {
+            hidden = false;
+        } else {
+            hidden = userService.checkAdmin(session.getAttribute("mySessionAttribute").toString());
+        }
+        model.addAttribute("hiddenManagement", hidden);
         model.addAttribute("categories", listCat);
         return "dshdd";
     }
@@ -116,13 +127,13 @@ public class OrderController {
         total = wrapperOrderDTO.getOrderDetails().stream().mapToDouble(OrderDetail::getSubtotal).sum();
         order.setTotal(total);
         orderService.createAndUpdate(order);
-        for (OrderDetail orderDetail:wrapperOrderDTO.getOrderDetails()) {
+        for (OrderDetail orderDetail : wrapperOrderDTO.getOrderDetails()) {
             orderDetail.setStatus(Constants.PAID);
             orderDetailService.createAndUpdate(orderDetail);
         }
         User user = new User();
         user = userService.findByUserName(wrapperOrderDTO.getOrderDetails().get(0).getCustomer());
-        model.addAttribute("customer",user);
+        model.addAttribute("customer", user);
 
         return "redirect:/products";
 

@@ -4,6 +4,7 @@ import ltwwwjava.btl.dogiadungtructuyen.exception.ResourceNotFoundException;
 import ltwwwjava.btl.dogiadungtructuyen.model.User;
 import ltwwwjava.btl.dogiadungtructuyen.repository.UserRepository;
 import ltwwwjava.btl.dogiadungtructuyen.service.UserService;
+import ltwwwjava.btl.dogiadungtructuyen.utils.Constants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -34,7 +35,7 @@ public class UserImpl implements UserService {
         return user;
     }
 
-     public List<User> findByAccountType(int loai) {
+    public List<User> findByAccountType(int loai) {
         List<User> list = customerRepository.findByAccountType(loai);
         return list;
     }
@@ -71,8 +72,18 @@ public class UserImpl implements UserService {
 
     @Override
     public boolean checkUserNameAndPassword(String username, String password) {
-        Optional<User> user = customerRepository.findByUsernameAndPassword(username,password);
+        Optional<User> user = customerRepository.findByUsernameAndPassword(username, password);
         if (user.isPresent())
+            return true;
+        return false;
+    }
+
+    @Override
+    public boolean checkAdmin(String username) {
+        Optional<User> user = customerRepository.findByUsername(username);
+        if (!user.isPresent())
+            return false;
+        if (user.get().getAccountType() == Constants.ADMIN_TYPE)
             return true;
         return false;
     }

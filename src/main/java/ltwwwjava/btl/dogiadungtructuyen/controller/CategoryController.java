@@ -6,6 +6,7 @@ import ltwwwjava.btl.dogiadungtructuyen.model.Product;
 import ltwwwjava.btl.dogiadungtructuyen.repository.CategoryRepository;
 import ltwwwjava.btl.dogiadungtructuyen.service.CategoryService;
 import ltwwwjava.btl.dogiadungtructuyen.service.ProductService;
+import ltwwwjava.btl.dogiadungtructuyen.service.UserService;
 import ltwwwjava.btl.dogiadungtructuyen.service.impl.CategoryImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,20 +27,36 @@ public class CategoryController {
     private CategoryService categoryService;
     @Autowired
     private ProductService productService;
+    @Autowired
+    private UserService userService;
 
     @GetMapping("/list-cats")
-    public String getlistCat(Model model) {
+    public String getlistCat(Model model, HttpSession session) {
         List<Category> listCat = categoryRepository.findAll();
-        model.addAttribute("categories",listCat);
+        boolean hidden = false;
+        if (!session.getAttributeNames().hasMoreElements()) {
+            hidden = false;
+        } else {
+            hidden = userService.checkAdmin(session.getAttribute("mySessionAttribute").toString());
+        }
+        model.addAttribute("hiddenManagement", hidden);
+        model.addAttribute("categories", listCat);
         return "list-cat";
     }
 
     @RequestMapping(value = {"/add-category"}, method = RequestMethod.GET)
-    public String showAddProductPage(Model model) {
-        Category  category= new Category();
+    public String showAddProductPage(Model model, HttpSession session) {
+        Category category = new Category();
         List<Category> categories = categoryRepository.findAll();
         model.addAttribute("categories", categories);
         model.addAttribute("category", category);
+        boolean hidden = false;
+        if (!session.getAttributeNames().hasMoreElements()) {
+            hidden = false;
+        } else {
+            hidden = userService.checkAdmin(session.getAttribute("mySessionAttribute").toString());
+        }
+        model.addAttribute("hiddenManagement", hidden);
         return "add-cat";
     }
 
@@ -51,12 +69,19 @@ public class CategoryController {
     }
 
     @GetMapping("/edit-category/{id}")
-    public String showUpdateForm(@PathVariable("id") String id, Model model) throws ResourceNotFoundException {
+    public String showUpdateForm(@PathVariable("id") String id, Model model, HttpSession session) throws ResourceNotFoundException {
 
         Category product = categoryService.findCategoryById(id);
-        model.addAttribute("category",product);
+        model.addAttribute("category", product);
         List<Category> list = categoryService.getAllCategory();
         model.addAttribute("list", list);
+        boolean hidden = false;
+        if (!session.getAttributeNames().hasMoreElements()) {
+            hidden = false;
+        } else {
+            hidden = userService.checkAdmin(session.getAttribute("mySessionAttribute").toString());
+        }
+        model.addAttribute("hiddenManagement", hidden);
         return "edit-cat";
     }
 
@@ -73,7 +98,7 @@ public class CategoryController {
     }
 
     @GetMapping("delete-cat/{id}")
-    public String deleteCat(@PathVariable("id") String id, Model model) throws  ResourceNotFoundException{
+    public String deleteCat(@PathVariable("id") String id, Model model) throws ResourceNotFoundException {
         categoryService.deleteCategoryById(id);
         List<Category> list = categoryService.getAllCategory();
         model.addAttribute("list", list);
@@ -82,8 +107,8 @@ public class CategoryController {
 
     @GetMapping("/products/cat/{id}")
     public String findProductByCat(@PathVariable("id") String id, Model model) throws ResourceNotFoundException {
-        model.addAttribute("list",productService.findProductByCategory(id));
-        model.addAttribute("categories",categoryService.getAllCategory());
+        model.addAttribute("list", productService.findProductByCategory(id));
+        model.addAttribute("categories", categoryService.getAllCategory());
         return "list-products-cat";
     }
 

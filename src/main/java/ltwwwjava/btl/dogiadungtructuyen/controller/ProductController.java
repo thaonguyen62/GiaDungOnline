@@ -7,6 +7,7 @@ import ltwwwjava.btl.dogiadungtructuyen.model.Product;
 import ltwwwjava.btl.dogiadungtructuyen.repository.CategoryRepository;
 import ltwwwjava.btl.dogiadungtructuyen.service.CategoryService;
 import ltwwwjava.btl.dogiadungtructuyen.service.OrderDetailService;
+import ltwwwjava.btl.dogiadungtructuyen.service.UserService;
 import ltwwwjava.btl.dogiadungtructuyen.service.impl.ProductImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
@@ -40,35 +41,44 @@ public class ProductController {
     private CategoryService categoryService;
     @Autowired
     private OrderDetailService orderDetailService;
+    @Autowired
+    private UserService userService;
 
     private final String UPLOAD_DIR = "src\\main\\resources\\static\\images\\";
 
     @GetMapping("/products/search")
-    public String findProductByName(@RequestParam(value =  "name",required = true) String name,Model model) throws ResourceNotFoundException{
-        model.addAttribute("categories",categoryService.getAllCategory());
-        model.addAttribute("list",productService.findProductByName(name));
+    public String findProductByName(@RequestParam(value = "name", required = true) String name, Model model) throws ResourceNotFoundException {
+        model.addAttribute("categories", categoryService.getAllCategory());
+        model.addAttribute("list", productService.findProductByName(name));
         return "single";
     }
 
     @GetMapping("/products")
-    public String getAllProducts(Model model) throws ResourceNotFoundException{
+    public String getAllProducts(Model model, HttpSession session) throws ResourceNotFoundException {
+        boolean hidden = false;
+        if (!session.getAttributeNames().hasMoreElements()) {
+            hidden = false;
+        } else {
+            hidden = userService.checkAdmin(session.getAttribute("mySessionAttribute").toString());
+        }
         List<Product> list = productService.findAll();
         List<Category> listCat = categoryRepository.findAll();
         model.addAttribute("listProduct", list);
         model.addAttribute("categories", listCat);
-        List<Product> list1=productService.findProductByCategory(listCat.get(0).getId());
-        model.addAttribute("listProductDoGiaDungNhat",list1);
-        List<Product> list2=productService.findProductByCategory(listCat.get(1).getId());
-        model.addAttribute("listProductBepDien",list2);
-        List<Product> list3=productService.findProductByCategory(listCat.get(5).getId());
-        model.addAttribute("listProductLoNuong",list3);
-        List<Product> list4=productService.findProductByCategory(listCat.get(6).getId());
-        model.addAttribute("listProductNoiCacLoai",list4);
+        List<Product> list1 = productService.findProductByCategory(listCat.get(0).getId());
+        model.addAttribute("listProductDoGiaDungNhat", list1);
+        List<Product> list2 = productService.findProductByCategory(listCat.get(1).getId());
+        model.addAttribute("listProductBepDien", list2);
+        List<Product> list3 = productService.findProductByCategory(listCat.get(5).getId());
+        model.addAttribute("listProductLoNuong", list3);
+        List<Product> list4 = productService.findProductByCategory(listCat.get(6).getId());
+        model.addAttribute("listProductNoiCacLoai", list4);
+        model.addAttribute("hiddenManagement", hidden);
         return "index";
     }
 
     @GetMapping("/list-product")
-    public String getListProduct(Model model) throws ResourceNotFoundException{
+    public String getListProduct(Model model) throws ResourceNotFoundException {
         List<Product> list = productService.findAll();
         List<Category> listCat = categoryRepository.findAll();
         model.addAttribute("listProduct", list);
@@ -100,7 +110,7 @@ public class ProductController {
         try {
             Path path = Paths.get(UPLOAD_DIR + fileName);
             Files.copy(file.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
-            images.add(path.toString().replace("src\\main\\resources\\static\\images\\","images/"));
+            images.add(path.toString().replace("src\\main\\resources\\static\\images\\", "images/"));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -115,21 +125,28 @@ public class ProductController {
 
 
     @GetMapping("/product/{id}")
-    public String getDetailProduct(@PathVariable("id") String id, Model model) throws ResourceNotFoundException {
-        int quantity =1;
+    public String getDetailProduct(@PathVariable("id") String id, Model model, HttpSession session) throws ResourceNotFoundException {
+        int quantity = 1;
+        boolean hidden = false;
         List<Category> listCat = categoryRepository.findAll();
-        model.addAttribute("idProduct",id);
+        model.addAttribute("idProduct", id);
         model.addAttribute("categories", listCat);
         Product product = productService.findById(id);
-        model.addAttribute("productDetail",product);
+        model.addAttribute("productDetail", product);
         List<Category> list = categoryService.getAllCategory();
         model.addAttribute("list", list);
-        model.addAttribute("quantity",quantity);
+        model.addAttribute("quantity", quantity);
+        if (!session.getAttributeNames().hasMoreElements()) {
+            hidden = false;
+        } else {
+            hidden = userService.checkAdmin(session.getAttribute("mySessionAttribute").toString());
+        }
+        model.addAttribute("hiddenManagement", hidden);
         return "productDetail";
     }
 
     @PostMapping("/product/{id}")
-    public String submitQuantity(@PathVariable("id") String id, @RequestParam int quantity , Model model, HttpSession session) throws ResourceNotFoundException {
+    public String submitQuantity(@PathVariable("id") String id, @RequestParam int quantity, Model model, HttpSession session) throws ResourceNotFoundException {
         Product product = productService.findById(id);
         OrderDetail orderDetail = new OrderDetail();
         orderDetail.setBillDate(new Date());
@@ -148,11 +165,18 @@ public class ProductController {
     }
 
     @GetMapping("/edit-product/{id}")
-    public String showUpdateForm(@PathVariable("id") String id, Model model) throws ResourceNotFoundException {
+    public String showUpdateForm(@PathVariable("id") String id, Model model, HttpSession session) throws ResourceNotFoundException {
+        boolean hidden = false;
         Product product = productService.findById(id);
-        model.addAttribute("product",product);
+        model.addAttribute("product", product);
         List<Category> list = categoryService.getAllCategory();
         model.addAttribute("list", list);
+        if (!session.getAttributeNames().hasMoreElements()) {
+            hidden = false;
+        } else {
+            hidden = userService.checkAdmin(session.getAttribute("mySessionAttribute").toString());
+        }
+        model.addAttribute("hiddenManagement", hidden);
         return "edit-product";
     }
 
@@ -177,7 +201,7 @@ public class ProductController {
         try {
             Path path = Paths.get(UPLOAD_DIR + fileName);
             Files.copy(file.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
-            images.add(path.toString().replace("src\\main\\resources\\static\\images\\","images/"));
+            images.add(path.toString().replace("src\\main\\resources\\static\\images\\", "images/"));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -193,21 +217,25 @@ public class ProductController {
     }
 
     @GetMapping("/delete/{id}")
-    public String deleteProduct(@PathVariable("id") String id, Model model) throws ResourceNotFoundException {
+    public String deleteProduct(@PathVariable("id") String id, Model model,HttpSession session) throws ResourceNotFoundException {
         productService.delete(id);
         model.addAttribute("products", productService.findAll());
         return "redirect:/list-product";
     }
 
     @GetMapping("/products/product")
-    public String getProductByName(@Param(value = "search") String search, Model model) throws ResourceNotFoundException {
+    public String getProductByName(@Param(value = "search") String search, Model model,HttpSession session) throws ResourceNotFoundException {
         List<Product> list = productService.findProductByName(search);
         model.addAttribute("products", list);
+        boolean hidden = false;
+        if (!session.getAttributeNames().hasMoreElements()) {
+            hidden = false;
+        } else {
+            hidden = userService.checkAdmin(session.getAttribute("mySessionAttribute").toString());
+        }
+        model.addAttribute("hiddenManagement", hidden);
         return "product";
     }
-
-
-
 
 
 }
