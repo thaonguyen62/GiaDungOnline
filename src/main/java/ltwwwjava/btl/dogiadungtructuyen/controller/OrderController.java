@@ -4,6 +4,7 @@ import ltwwwjava.btl.dogiadungtructuyen.dto.WrapperOrderDTO;
 import ltwwwjava.btl.dogiadungtructuyen.exception.ResourceNotFoundException;
 import ltwwwjava.btl.dogiadungtructuyen.model.*;
 import ltwwwjava.btl.dogiadungtructuyen.repository.CategoryRepository;
+import ltwwwjava.btl.dogiadungtructuyen.repository.OrderRepository;
 import ltwwwjava.btl.dogiadungtructuyen.service.OrderDetailService;
 import ltwwwjava.btl.dogiadungtructuyen.service.OrderService;
 import ltwwwjava.btl.dogiadungtructuyen.service.ProductService;
@@ -33,6 +34,8 @@ public class OrderController {
     private OrderService orderService;
     @Autowired
     private UserService userService;
+    @Autowired
+    private OrderRepository orderRepository;
 
     @GetMapping("/cart")
     public String getCart(Model model, HttpSession session) throws ResourceNotFoundException {
@@ -70,7 +73,7 @@ public class OrderController {
 
     @GetMapping("/list_order")
     public String getAllCart(Model model) throws ResourceNotFoundException {
-        List<OrderDetail> list = orderDetailService.getAll();
+        List<Order> list = orderRepository.findAllByOrderByBillDateDesc();
         model.addAttribute("listOrder", list);
         List<Category> listCat = categoryRepository.findAll();
         model.addAttribute("categories", listCat);

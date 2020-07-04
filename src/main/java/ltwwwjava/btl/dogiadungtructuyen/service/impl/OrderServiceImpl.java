@@ -34,4 +34,9 @@ public class OrderServiceImpl implements OrderService {
     public List<Order> getAllOrderByCustomer(String id) throws ResourceNotFoundException {
         return null;
     }
+
+    @Override
+    public List<Order> getAll() {
+        return orderRepository.findAll();
+    }
 }

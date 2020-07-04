@@ -58,7 +58,6 @@ tr:nth-child(even) {
 </head>
 
 <body>
-<!-- top-header -->
 <div class="header-most-top">
     <p>MUA SẮM ĐỒ GIA DỤNG VỚI ƯU ĐÃI VÀ GIẢM GIÁ HÀNG ĐẦU</p>
 </div>
@@ -69,9 +68,9 @@ tr:nth-child(even) {
         <!-- header-bot-->
         <div class="col-md-4 logo_agile">
             <h1>
-                <a href="index.html">
-                    <span>G</span>rocery
-                    <span>S</span>hoppy
+                <a th:href="@{/products}">
+                    <span>Gia dụng</span>
+                    online
                     <img src="images/logo2.png" alt=" ">
                 </a>
             </h1>
@@ -88,16 +87,20 @@ tr:nth-child(even) {
                 <li>
                     <span class="fa fa-phone" aria-hidden="true"></span> 0163 884 5676
                 </li>
-                <li>
+
+                <li th:if="${session != null}">
                     <a th:href="@{/login}">
-                        <span class="fa fa-unlock-alt" aria-hidden="true"></span> Đăng nhập </a>
+                        <span class="fa fa-unlock-alt" aria-hidden="true"  >Đăng nhập</span> </a>
+
                 </li>
-                <li>
+                <li th:if="${session != null}">
                     <a th:href="@{/register}">
-                        <span class="fa fa-pencil-square-o" aria-hidden="true"></span> Đăng Ký</a>
+                        <span class="fa fa-pencil-square-o" aria-hidden="true"  >Đăng ký</span> </a>
                 </li>
                 <li>
-                    <p>Tài Khoản</p>
+                    <a th:href="@{/account}">
+                        <p th:text="${session.mySessionAttribute}" th:unless="${session == null}">[...]</p>
+                    </a>
                 </li>
             </ul>
             <!-- //header lists -->
@@ -114,10 +117,8 @@ tr:nth-child(even) {
             <!-- cart details -->
             <div class="top_nav_right">
                 <div class="wthreecartaits wthreecartaits2 cart cart box_1">
-                    <form action="checkout.html" method="post" class="last">
-                        <input type="hidden" name="cmd" value="_cart">
-                        <input type="hidden" name="display" value="1">
-                        <button class="w3view-cart" type="submit" name="submit" value="">
+                    <form th:action="@{/cart}" method="get" class="last">
+                        <button class="w3view-cart" type="submit" value="">
                             <i class="fa fa-cart-arrow-down" aria-hidden="true"></i>
                         </button>
                     </form>
@@ -151,49 +152,18 @@ tr:nth-child(even) {
                                 </a>
                             </li>
 
-                            <li class="dropdown">
-                                <a class="nav-stylehead dropdown-toggle" href="#" data-toggle="dropdown">Giới thiệu
-                                    <b class="caret"></b>
-                                </a>
-                                <ul class="dropdown-menu agile_short_dropdown">
-                                    <li>
-                                        <a th:href="@{/about}">Về chúng tôi</a>
-                                    </li>
-                                    <li>
-                                        <a th:href="@{/about2}">Về hệ thống phân phối</a>
-                                    </li>
-                                </ul>
-                            </li>
                             <li>
-                                <a class="nav-stylehead" th:href="@{/document}">Tài liệu
+                                <a class="nav-stylehead" th:href="@{/about}">Giới thiệu
                                     <span class="sr-only">(current)</span>
                                 </a>
-                            </li>
-                            <li>
-                                <a class="nav-stylehead"th:href="@{/recruitment}">Tuyển dụng
-                                    <span class="sr-only">(current)</span>
-                                </a>
-                            </li>
-                            <li class="dropdown">
-                                <a class="nav-stylehead dropdown-toggle" href="#" data-toggle="dropdown">Bảo hành
-                                    <b class="caret"></b>
-                                </a>
-                                <ul class="dropdown-menu agile_short_dropdown">
-                                    <li>
-                                        <a th:href="@{/warrantyPolicy}">Chính sách bảo hành</a>
-                                    </li>
-                                    <li>
-                                        <a th:href="@{/warrantySystem}">Hệ thống bảo hành</a>
-                                    </li>
-                                </ul>
                             </li>
                             <li>
                                 <a class="nav-stylehead" th:href="@{/contact}">Liên hệ
                                     <span class="sr-only">(current)</span>
                                 </a>
                             </li>
-                            <li class="dropdown" id = "quanly">
-                                <a class="nav-stylehead dropdown-toggle" href="#" data-toggle="dropdown">Quản lý
+                            <li class="dropdown" id = "quanly" >
+                                <a class="nav-stylehead dropdown-toggle" th:href="@{/employeeManager}" data-toggle="dropdown">Quản lý
                                     <b class="caret"></b>
                                 </a>
                                 <ul class="dropdown-menu agile_short_dropdown">
@@ -203,8 +173,18 @@ tr:nth-child(even) {
                                     <li>
                                         <a th:href="@{/customerManager}">Quản Lý Khách Hàng</a>
                                     </li>
+                                    <li>
+                                        <a th:href="@{/list-product}">Quản Lý Sản phẩm</a>
+                                    </li>
+                                    <li>
+                                        <a th:href="@{/list-cats}">Quản Lý Loại Sản Phẩm</a>
+                                    </li>
+                                    <li>
+                                        <a th:href="@{/list_order}">Quản Lý Hóa Đơn</a>
+                                    </li>
                                 </ul>
                             </li>
+
 
                         </ul>
                     </div>
@@ -259,20 +239,14 @@ tr:nth-child(even) {
 
         <table>
             <tr>
-                <th>Tên sản phẩm</th>
-                <th>Số lượng</th>
-                <th>Đơn giá</th>
-                <th>Khách hàng</th>
-                <th>Trạng thái</th>
-
+                <th>Mã khách hàng</th>
+                <th>Ngày mua</th>
+                <th>Tổng tiền</th>
             </tr>
             <tr th:each="order : ${listOrder}">
-                <td th:text="${order.products.name}"> </td>
-                <td th:text="${order.quantity}"></td>
-                <td th:text="${order.tax}"> </td>
-                <th th:text="${order.customer}"></th>
-                <th th:text="${order.status}"></th>
-
+                <td th:text="${order.idCustomer}"> </td>
+                <td th:text="${order.billDate}"></td>
+                <td th:text="${order.total}"> </td>
             </tr>
 
         </table>

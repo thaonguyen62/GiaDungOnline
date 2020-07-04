@@ -58,7 +58,7 @@
                 <a th:href="@{/products}">
                     <span></span>
                     MON
-                    <img src="images/logo2.png" alt=" ">
+                    <img th:src="@{/images/logo2.png}" alt=" ">
                 </a>
             </h1>
         </div>
@@ -224,9 +224,7 @@
     <div class="col-xs-12">
 
         <div class="vertival">
-            <img src="https://thegioigiadungonline.com.vn/wp-content/uploads/2020/02/yamato-YT-268H-S.png"
-                 xoriginal="https://thegioigiadungonline.com.vn/wp-content/uploads/2020/02/yamato-YT-268H-S.png"
-                 style="width: 479px;">
+            <img th:src="'/houseware-service/' + ${productDetail.fileName.get(0)}" style="width: 479px;">
         </div>
 
         <div class="rt-summary entry-summary">

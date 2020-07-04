@@ -78,6 +78,22 @@ a, a:hover, a:focus {
 .row{
 margin-top: 10px;
 }
+
+.snipcart-details{
+    font-size: 13px;
+    color: #fff;
+    background: #1accfd;
+    text-decoration: none;
+    position: relative;
+    border: none;
+    border-radius: 0;
+    width: 100%;
+    text-transform: uppercase;
+    padding: 13px;
+    outline: none;
+    letter-spacing: 1px;
+    font-weight: 600;
+}
 	</style>
     <!--style-->
     <!--//tags -->
@@ -105,11 +121,7 @@ margin-top: 10px;
         <!-- header-bot-->
         <div class="col-md-4 logo_agile">
             <h1>
-                <a th:href="@{/products}">
-                    <span></span>
-                    MON
-                    <img src="images/logo2.png" alt=" ">
-                </a>
+               F
             </h1>
         </div>
         <!-- header-bot -->
@@ -216,6 +228,9 @@ margin-top: 10px;
                                     <li>
                                         <a th:href="@{/list-cats}">Quản Lý Loại Sản Phẩm</a>
                                     </li>
+                                    <li>
+                                        <a th:href="@{/list_order}">Quản Lý Hóa Đơn</a>
+                                    </li>
                                 </ul>
                             </li>
 
@@ -278,13 +293,15 @@ margin-top: 10px;
             </div>
         </h2>
         <div class="row">
+
+
             <div class="col-xs-1 "></div>
             <div class="col-xs-10">
                 <div th:each="product : ${listProductDoGiaDungNhat}" >
                     <div class="col-xs-3 product-men">
                         <div class="men-pro-item simpleCart_shelfItem">
                             <div class="men-thumb-item">
-                                <img th:src="@{${product.fileName.get(0)}}" />
+                                <img style="width:150px;height:150px" th:src="@{${product.fileName.get(0)}}" />
                             </div>
                             <div class="item-info-product ">
                                 <h4>
@@ -292,11 +309,11 @@ margin-top: 10px;
                                 </h4>
                                 <div class="info-product-price">
                                     <span class="item_price"  th:text="${product.price}" ></span>
-                                    <del>$1020.00</del>
+
                                 </div>
                                 <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
 
-                                    <a th:href="@{/cart/product/{id}(id=${product.id})}">Mua Hang</a>
+                                    <a th:href="@{/cart/product/{id}(id=${product.id})}">Mua Hàng</a>
                                 </div>
 
                             </div>
@@ -323,7 +340,7 @@ margin-top: 10px;
                     <div class="col-xs-3 product-men">
                         <div class="men-pro-item simpleCart_shelfItem">
                             <div class="men-thumb-item">
-                                <img th:src="@{${product.fileName.get(0)}}" />
+                                <img style="width:150px;height:150px" th:src="@{${product.fileName.get(0)}}" />
                             </div>
                             <div class="item-info-product ">
                                 <h4>
@@ -331,10 +348,10 @@ margin-top: 10px;
                                 </h4>
                                 <div class="info-product-price">
                                     <span class="item_price"  th:text="${product.price}" ></span>
-                                    <del>$1020.00</del>
+
                                 </div>
                                 <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
-                                    <a th:href="@{/cart/product/{id}(id=${product.id})}">Mua Hang</a>
+                                    <a th:href="@{/cart/product/{id}(id=${product.id})}">Mua Hàng</a>
                                 </div>
 
                             </div>
@@ -361,7 +378,7 @@ margin-top: 10px;
                     <div class="col-xs-3 product-men">
                         <div class="men-pro-item simpleCart_shelfItem">
                             <div class="men-thumb-item">
-                                <img src="images/k3.jpg" alt="">
+                                <img style="width:150px;height:150px" th:src="@{${product.fileName.get(0)}}" />
                             </div>
                             <div class="item-info-product ">
                                 <h4>
@@ -369,10 +386,11 @@ margin-top: 10px;
                                 </h4>
                                 <div class="info-product-price">
                                     <span class="item_price"  th:text="${product.price}" ></span>
-                                    <del>$1020.00</del>
+
+
                                 </div>
                                 <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
-                                    <a th:href="@{/cart/product/{id}(id=${product.id})}">Mua Hang</a>
+                                    <a th:href="@{/cart/product/{id}(id=${product.id})}">Mua Hàng</a>
                                 </div>
 
                             </div>
@@ -399,7 +417,7 @@ margin-top: 10px;
                     <div class="col-xs-3 product-men">
                         <div class="men-pro-item simpleCart_shelfItem">
                             <div class="men-thumb-item">
-                                <img src="images/k3.jpg" alt="">
+                                <img style="width:150px;height:150px" th:src="@{${product.fileName.get(0)}}" />
                             </div>
                             <div class="item-info-product ">
                                 <h4>
@@ -407,10 +425,10 @@ margin-top: 10px;
                                 </h4>
                                 <div class="info-product-price">
                                     <span class="item_price"  th:text="${product.price}" ></span>
-                                    <del>$1020.00</del>
+
                                 </div>
                                 <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
-                                    <a th:href="@{/cart/product/{id}(id=${product.id})}">Mua Hang</a>
+                                    <a th:href="@{/cart/product/{id}(id=${product.id})}">Mua Hàng</a>
                                 </div>
 
                             </div>

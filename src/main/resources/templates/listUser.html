@@ -53,9 +53,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <div class="col-md-4 logo_agile">
             <h1>
                 <a th:href="@{/products}">
-                    <span></span>
-                    MON
-                    <img src="images/logo2.png" alt=" ">
+                    <span>Gia dụng</span>
+                    online
+                    <img th:src="@{/images/logo2.png}" alt=" ">
                 </a>
             </h1>
         </div>
@@ -98,10 +98,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <!-- cart details -->
             <div class="top_nav_right">
                 <div class="wthreecartaits wthreecartaits2 cart cart box_1">
-                    <form action="@{/checkout}" method="post" class="last">
-                        <input type="hidden" name="cmd" value="_cart">
-                        <input type="hidden" name="display" value="1">
-                        <button class="w3view-cart" type="submit" name="submit" value="">
+                    <form th:action="@{/cart}" method="get" class="last">
+                        <button class="w3view-cart" type="submit" value="">
                             <i class="fa fa-cart-arrow-down" aria-hidden="true"></i>
                         </button>
                     </form>

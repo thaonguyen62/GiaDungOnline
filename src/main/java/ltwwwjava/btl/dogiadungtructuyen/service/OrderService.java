@@ -15,4 +15,6 @@ public interface OrderService {
 
     List<Order> getAllOrderByCustomer(String id) throws ResourceNotFoundException;
 
+    List<Order> getAll();
+
 }
