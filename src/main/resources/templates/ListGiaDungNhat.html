@@ -141,8 +141,8 @@ margin-top: 10px;
             <!-- //header lists -->
             <!-- search -->
             <div class="agileits_search">
-                <form action="@{/search}" method="post">
-                    <input name="Search" type="search" placeholder="Hàng chính hãng-giá rẻ vô địch" required="">
+                <form th:action="@{/products/search(name=${name})}" method="get">
+                    <input name="Search" type="search" th:name="name" placeholder="Hàng chính hãng-giá rẻ vô địch" required="">
                     <button type="submit" class="btn btn-default" aria-label="Left Align">
                         <span class="fa fa-search" aria-hidden="true"> </span>
                     </button>

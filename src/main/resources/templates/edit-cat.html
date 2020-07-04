@@ -74,8 +74,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <!-- //header lists -->
             <!-- search -->
             <div class="agileits_search">
-                <form action="@{/search}" method="post">
-                    <input name="Search" type="search" placeholder="Hàng chính hãng-giá rẻ vô địch" required="">
+                <
+                <form th:action="@{/products/search(name=${name})}" method="get">
+                    <input name="Search" type="search" th:name="name" placeholder="Hàng chính hãng-giá rẻ vô địch"
+                           required="">
                     <button type="submit" class="btn btn-default" aria-label="Left Align">
                         <span class="fa fa-search" aria-hidden="true"> </span>
                     </button>
@@ -208,13 +210,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <div class="row">
                             <div class="form-group col-md-8">
                                 <label for="name" class="col-form-label">Name</label>
-                                <input type="text" th:field="*{name}" class="form-control" id="name" placeholder="Name" required>
-                                <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="text-danger"></span>
+                                <input type="text" th:field="*{name}" class="form-control" id="name" placeholder="Name"
+                                       required>
+                                <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"
+                                      class="text-danger"></span>
                             </div>
                             <div class="form-group col-md-8">
                                 <label for="name" class="col-form-label">Description</label>
-                                <input type="text" th:field="*{description}" class="form-control" id="description" placeholder="description" required>
-                                <span th:if="${#fields.hasErrors('description')}" th:errors="*{description}" class="text-danger"></span>
+                                <input type="text" th:field="*{description}" class="form-control" id="description"
+                                       placeholder="description" required>
+                                <span th:if="${#fields.hasErrors('description')}" th:errors="*{description}"
+                                      class="text-danger"></span>
                             </div>
 
                             <div class="col-md-6">
@@ -340,11 +346,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <h3>Liên lạc</h3>
                     <ul>
                         <li>
-                            <i class="fa fa-map-marker"></i> 62/46 Huỳnh Khương AN</li>
+                            <i class="fa fa-map-marker"></i> 62/46 Huỳnh Khương AN
+                        </li>
                         <li>
-                            <i class="fa fa-mobile"></i> 0163 884 5676</li>
+                            <i class="fa fa-mobile"></i> 0163 884 5676
+                        </li>
                         <li>
-                            <i class="fa fa-phone"></i> +84 38 845 676 </li>
+                            <i class="fa fa-phone"></i> +84 38 845 676
+                        </li>
                         <li>
                             <i class="fa fa-envelope-o"></i>
                             <a href="vothittuoanh2911@gmail.com"> minhnguyenoanh@gmail.com</a>
@@ -383,7 +392,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <a href="#">
                         <img src="images/2.png" alt="">
                     </a>
-                    <div class="clearfix"> </div>
+                    <div class="clearfix"></div>
                 </div>
             </div>
             <!-- //social icons -->
@@ -558,7 +567,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script src="js/bootstrap.js"></script>
 <!-- //for bootstrap working -->
 <!-- //js-files -->
-
 
 
 </body>

@@ -1,6 +1,8 @@
 package ltwwwjava.btl.dogiadungtructuyen.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -9,6 +11,8 @@ import java.util.Date;
 
 @Data
 @Document
+@AllArgsConstructor
+@NoArgsConstructor
 public class OrderDetail implements Serializable {
     @Id
     private String id;
@@ -19,7 +23,6 @@ public class OrderDetail implements Serializable {
     private Product products;
     private int quantity;
     private String orderId;
-    //private String serviceAddress;
-
+    private double subtotal;
 
 }

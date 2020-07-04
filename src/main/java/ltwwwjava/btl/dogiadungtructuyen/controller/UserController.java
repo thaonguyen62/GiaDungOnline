@@ -4,15 +4,18 @@ import ltwwwjava.btl.dogiadungtructuyen.dto.UserDTO;
 import ltwwwjava.btl.dogiadungtructuyen.dto.ValidateDTO;
 import ltwwwjava.btl.dogiadungtructuyen.exception.ResourceNotFoundException;
 import ltwwwjava.btl.dogiadungtructuyen.model.Category;
+import ltwwwjava.btl.dogiadungtructuyen.model.OrderDetail;
 import ltwwwjava.btl.dogiadungtructuyen.model.User;
 import ltwwwjava.btl.dogiadungtructuyen.repository.CategoryRepository;
 import ltwwwjava.btl.dogiadungtructuyen.repository.ProductRepository;
+import ltwwwjava.btl.dogiadungtructuyen.service.OrderDetailService;
 import ltwwwjava.btl.dogiadungtructuyen.service.UserService;
 import ltwwwjava.btl.dogiadungtructuyen.service.impl.ProductImpl;
 import ltwwwjava.btl.dogiadungtructuyen.utils.Constants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.CollectionUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,6 +34,8 @@ public class UserController {
     @Autowired
     private CategoryRepository categoryRepository;
 
+    @Autowired
+    OrderDetailService orderDetailService;
 
     //localhost:8087/houseware-service/products
 
@@ -46,6 +51,17 @@ public class UserController {
         if (userService.checkUserNameAndPassword(personForm.getUsername(), personForm.getPassword())){
             session.setAttribute("mySessionAttribute", personForm.getUsername());
             session.setAttribute("type",personForm.getAccountType());
+            List<OrderDetail> list = orderDetailService.getAllOrderByCustomer(session.getId());
+            if (!CollectionUtils.isEmpty(list)) {
+                list.forEach(orderDetail -> {
+                    orderDetail.setCustomer(session.getAttribute("mySessionAttribute").toString());
+                    try {
+                        orderDetailService.createAndUpdate(orderDetail);
+                    } catch (ResourceNotFoundException e) {
+                        e.printStackTrace();
+                    }
+                });
+            }
             return "redirect:/products";
         }
 
@@ -72,8 +88,8 @@ public class UserController {
     }
     @GetMapping("/editUser/{id}")
     public String geteditUser(@PathVariable(value = "id") String id, Model model) throws ResourceNotFoundException {
-       User user = userService.findById(id);
-       UserDTO personForm = new UserDTO();
+        User user = userService.findById(id);
+        UserDTO personForm = new UserDTO();
         personForm.setId(user.getId());
         personForm.setName(user.getName());
         personForm.setUsername(user.getUsername());
@@ -104,24 +120,24 @@ public class UserController {
             user.setUsername(personForm.getUsername());
             user.setBirth(personForm.getBirth());
             userService.createAndUpdate(user);
-        List<User> userList = userService.findByAccountType(personForm.getAccountType());
-        model.addAttribute("userList",userList);
-        if(personForm.getAccountType()==1){
-            return "redirect:/employeeManager";
-        }else
+            List<User> userList = userService.findByAccountType(personForm.getAccountType());
+            model.addAttribute("userList",userList);
+            if(personForm.getAccountType()==1){
+                return "redirect:/employeeManager";
+            }else
 
-            return "redirect:/customerManager";
+                return "redirect:/customerManager";
         }
         return "editUser";
-  }
+    }
 
 
     @GetMapping("/deleteUser/{id}")
     public String getdeleteUser(@PathVariable("id") String id, Model model) throws  ResourceNotFoundException{
-            User user = userService.findById(id);
-           if( user!=null){
-               userService.deleteCustomerById(id);
-           }
+        User user = userService.findById(id);
+        if( user!=null){
+            userService.deleteCustomerById(id);
+        }
         List<User> userList = userService.findByAccountType(user.getAccountType());
         model.addAttribute("userList",userList);
         if(user.getAccountType()==1){

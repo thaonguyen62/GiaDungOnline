@@ -11,9 +11,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <title>Grocery Shoppy an Ecommerce Category Bootstrap Responsive Web Template | About Us :: w3layouts</title>
     <!--/tags -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta name="keywords" content="Grocery Shoppy Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
-Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design"/>
     <script>
         addEventListener("load", function () {
             setTimeout(hideURLbar, 0);
@@ -27,11 +27,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
     </style>
     <!--//tags -->
-    <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
-    <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all"/>
+    <link href="css/style.css" rel="stylesheet" type="text/css" media="all"/>
     <link href="css/font-awesome.css" rel="stylesheet">
     <!--pop-up-box-->
-    <link href="css/popuo-box.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="css/popuo-box.css" rel="stylesheet" type="text/css" media="all"/>
     <!--//pop-up-box-->
     <!-- price range -->
     <link rel="stylesheet" type="text/css" href="css/jquery-ui1.css">
@@ -70,19 +70,22 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <span class="fa fa-phone" aria-hidden="true"></span> 0163 884 5676
                 </li>
                 <li>
-                    <a href="http://localhost:63342/dogiadungtructuyen/templates/signin.html" data-toggle="modal" data-target="#myModal1">
+                    <a href="http://localhost:63342/dogiadungtructuyen/templates/signin.html" data-toggle="modal"
+                       data-target="#myModal1">
                         <span class="fa fa-unlock-alt" aria-hidden="true"></span> Đăng nhập </a>
                 </li>
                 <li>
-                    <a href="http://localhost:63342/dogiadungtructuyen/templates/signup.html" data-toggle="modal" data-target="#myModal2">
+                    <a href="http://localhost:63342/dogiadungtructuyen/templates/signup.html" data-toggle="modal"
+                       data-target="#myModal2">
                         <span class="fa fa-pencil-square-o" aria-hidden="true"></span> Đăng Ký</a>
                 </li>
             </ul>
             <!-- //header lists -->
             <!-- search -->
             <div class="agileits_search">
-                <form action="#" method="post">
-                    <input name="Search" type="search" placeholder="Hàng chính hãng-giá rẻ vô địch" required="">
+                <form th:action="@{/products/search(name=${name})}" method="get">
+                    <input name="Search" type="search" th:name="name" placeholder="Hàng chính hãng-giá rẻ vô địch"
+                           required="">
                     <button type="submit" class="btn btn-default" aria-label="Left Align">
                         <span class="fa fa-search" aria-hidden="true"> </span>
                     </button>
@@ -180,7 +183,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </div>
 <!-- //navigation -->
 <!-- banner-2 -->
-<div  class="row">
+<div class="row">
     <div class=" col-sm-3 menuhorizontal">
         <h3>Danh mục</h3>
         <ul class="menuhorizontallevel1">
@@ -233,14 +236,29 @@ private String name;
                 <form th:action="@{/add-product}" th:object="${product}" method="post" enctype="multipart/form-data">
                     <div class="row">
                         <div class="form-group col-md-8">
-                            <label for="name" class="col-form-label">Name</label> <input type="text" th:field="*{name}" class="form-control" id="name" placeholder="Name" required> <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="text-danger"></span>
+                            <label for="name" class="col-form-label">Name</label> <input type="text" th:field="*{name}"
+                                                                                         class="form-control" id="name"
+                                                                                         placeholder="Name" required>
+                            <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="text-danger"></span>
                         </div>
                         <div class="form-group col-md-8">
-                            <label for="price" class="col-form-label">Price</label> <input type="text" th:field="*{price}" class="form-control" id="price" placeholder="Price" required> <span th:if="${#fields.hasErrors('price')}" th:errors="*{price}" class="text-danger"></span>
+                            <label for="price" class="col-form-label">Price</label> <input type="text"
+                                                                                           th:field="*{price}"
+                                                                                           class="form-control"
+                                                                                           id="price"
+                                                                                           placeholder="Price" required>
+                            <span th:if="${#fields.hasErrors('price')}" th:errors="*{price}" class="text-danger"></span>
                         </div>
 
                         <div class="form-group col-md-8">
-                            <label for="description" class="col-form-label">Description</label> <input type="text" th:field="*{description}" class="form-control" id="description" placeholder="Description" required> <span th:if="${#fields.hasErrors('description')}" th:errors="*{description}" class="text-danger"></span>
+                            <label for="description" class="col-form-label">Description</label> <input type="text"
+                                                                                                       th:field="*{description}"
+                                                                                                       class="form-control"
+                                                                                                       id="description"
+                                                                                                       placeholder="Description"
+                                                                                                       required> <span
+                                th:if="${#fields.hasErrors('description')}" th:errors="*{description}"
+                                class="text-danger"></span>
                         </div>
                         <div class="form-group col-md-8">
                             <label for="category">Choose Category</label>
@@ -365,11 +383,14 @@ private String name;
                     <h3>Liên lạc</h3>
                     <ul>
                         <li>
-                            <i class="fa fa-map-marker"></i> 62/46 Huỳnh Khương AN</li>
+                            <i class="fa fa-map-marker"></i> 62/46 Huỳnh Khương AN
+                        </li>
                         <li>
-                            <i class="fa fa-mobile"></i> 0163 884 5676</li>
+                            <i class="fa fa-mobile"></i> 0163 884 5676
+                        </li>
                         <li>
-                            <i class="fa fa-phone"></i> +84 38 845 676 </li>
+                            <i class="fa fa-phone"></i> +84 38 845 676
+                        </li>
                         <li>
                             <i class="fa fa-envelope-o"></i>
                             <a href="vothittuoanh2911@gmail.com"> minhnguyenoanh@gmail.com</a>
@@ -408,7 +429,7 @@ private String name;
                     <a href="#">
                         <img src="images/2.png" alt="">
                     </a>
-                    <div class="clearfix"> </div>
+                    <div class="clearfix"></div>
                 </div>
             </div>
             <!-- //social icons -->
