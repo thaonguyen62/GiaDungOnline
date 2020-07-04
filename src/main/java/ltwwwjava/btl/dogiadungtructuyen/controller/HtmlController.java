@@ -5,12 +5,14 @@ import ltwwwjava.btl.dogiadungtructuyen.model.Category;
 import ltwwwjava.btl.dogiadungtructuyen.model.Product;
 import ltwwwjava.btl.dogiadungtructuyen.repository.CategoryRepository;
 import ltwwwjava.btl.dogiadungtructuyen.repository.ProductRepository;
+import ltwwwjava.btl.dogiadungtructuyen.service.UserService;
 import ltwwwjava.btl.dogiadungtructuyen.service.impl.ProductImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 @Controller
 public class HtmlController {
@@ -20,6 +22,8 @@ public class HtmlController {
     private ProductRepository productRepository;
     @Autowired
     private CategoryRepository categoryRepository;
+    @Autowired
+    UserService userService;
     //localhost:8087/houseware-service/products
   
 //    @GetMapping("/editUser")
@@ -30,26 +34,54 @@ public class HtmlController {
 //        return "editUser";
 //    }
     @GetMapping("/about")
-    public String get(Model model) {
+    public String get(Model model, HttpSession  session) {
         List<Category> listCat = categoryRepository.findAll();
+        boolean hidden = false;
+        if (!session.getAttributeNames().hasMoreElements()) {
+            hidden = false;
+        } else {
+            hidden = userService.checkAdmin(session.getAttribute("mySessionAttribute").toString());
+        }
+        model.addAttribute("hiddenManagement", hidden);
         model.addAttribute("categories",listCat);
         return "about";
     }
     @GetMapping("/about2")
-    public String getabout2(Model model) {
+    public String getabout2(Model model,HttpSession session) {
         List<Category> listCat = categoryRepository.findAll();
+        boolean hidden = false;
+        if (!session.getAttributeNames().hasMoreElements()) {
+            hidden = false;
+        } else {
+            hidden = userService.checkAdmin(session.getAttribute("mySessionAttribute").toString());
+        }
+        model.addAttribute("hiddenManagement", hidden);
         model.addAttribute("categories",listCat);
         return "about2";
     }
     @GetMapping("/checkout")
-    public String getcheckout(Model model) {
+    public String getcheckout(Model model,HttpSession session) {
         List<Category> listCat = categoryRepository.findAll();
+        boolean hidden = false;
+        if (!session.getAttributeNames().hasMoreElements()) {
+            hidden = false;
+        } else {
+            hidden = userService.checkAdmin(session.getAttribute("mySessionAttribute").toString());
+        }
+        model.addAttribute("hiddenManagement", hidden);
         model.addAttribute("categories",listCat);
         return "checkout";
     }
     @GetMapping("/contact")
-    public String getcontact(Model model) {
+    public String getcontact(Model model,HttpSession session) {
         List<Category> listCat = categoryRepository.findAll();
+        boolean hidden = false;
+        if (!session.getAttributeNames().hasMoreElements()) {
+            hidden = false;
+        } else {
+            hidden = userService.checkAdmin(session.getAttribute("mySessionAttribute").toString());
+        }
+        model.addAttribute("hiddenManagement", hidden);
         model.addAttribute("categories",listCat);
         return "contact";
     }
@@ -60,8 +92,15 @@ public class HtmlController {
         return "document";
     }
     @GetMapping("/insertProduct")
-    public String getinsertProduct(Model model) {
+    public String getinsertProduct(Model model,HttpSession session) {
         List<Category> listCat = categoryRepository.findAll();
+        boolean hidden = false;
+        if (!session.getAttributeNames().hasMoreElements()) {
+            hidden = false;
+        } else {
+            hidden = userService.checkAdmin(session.getAttribute("mySessionAttribute").toString());
+        }
+        model.addAttribute("hiddenManagement", hidden);
         model.addAttribute("categories",listCat);
         return "insertProduct";
     }
