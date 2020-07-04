@@ -68,7 +68,7 @@ public class UserController {
         model.addAttribute("errorMessageLogin", Constants.USERNAME_PASSWORD_IS_INCORRECT);
         return "login";
     }
-    //nhanvien 0
+    //nhanvien 1
     @GetMapping("/employeeManager")
     public String getlistEmployee(Model model) {
         List<Category> listCat = categoryRepository.findAll();
@@ -77,7 +77,7 @@ public class UserController {
         model.addAttribute("userList",userList);
         return "listUser";
     }
-    //khach hang 1
+    //khach hang 0
     @GetMapping("/customerManager")
     public String getlistCustomer(Model model) {
         List<Category> listCat = categoryRepository.findAll();
