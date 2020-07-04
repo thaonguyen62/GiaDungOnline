@@ -3,6 +3,7 @@ package ltwwwjava.btl.dogiadungtructuyen.service.impl;
 import ltwwwjava.btl.dogiadungtructuyen.exception.ResourceNotFoundException;
 import ltwwwjava.btl.dogiadungtructuyen.model.User;
 import ltwwwjava.btl.dogiadungtructuyen.repository.UserRepository;
+import ltwwwjava.btl.dogiadungtructuyen.service.EmailService;
 import ltwwwjava.btl.dogiadungtructuyen.service.UserService;
 import ltwwwjava.btl.dogiadungtructuyen.utils.Constants;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,12 +11,16 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.CompletableFuture;
 
 @Service
 public class UserImpl implements UserService {
 
     @Autowired
     private UserRepository customerRepository;
+
+    @Autowired
+    private EmailService emailService;
 
     @Override
     public User findByUserName(String userName) throws ResourceNotFoundException {
@@ -52,6 +57,9 @@ public class UserImpl implements UserService {
 //        if (cus.isPresent())
 //            throw new ResourceNotFoundException("Phone and mail existed");
         //cu.setPassword(passwordEncoder.encode(customer.getPassword()));
+        CompletableFuture<Void> completableFuture = CompletableFuture.runAsync(() -> {
+            emailService.sendEmail(user.getMail(), Constants.REGISTRATION);
+        });
         return customerRepository.save(cu);
     }
 
